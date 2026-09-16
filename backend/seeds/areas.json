@@ -1,0 +1,126 @@
+[
+  {
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "areas": [
+      {
+        "locality": "Koramangala",
+        "pincode": "560034",
+        "centroid": [77.6245, 12.9352],
+        "bbox": [77.6080, 12.9200, 77.6420, 12.9520]
+      },
+      {
+        "locality": "Indiranagar",
+        "pincode": "560038",
+        "centroid": [77.6412, 12.9784],
+        "bbox": [77.6250, 12.9650, 77.6580, 12.9920]
+      },
+      {
+        "locality": "HSR Layout",
+        "pincode": "560102",
+        "centroid": [77.6393, 12.9121],
+        "bbox": [77.6200, 12.8980, 77.6600, 12.9280]
+      },
+      {
+        "locality": "Whitefield",
+        "pincode": "560066",
+        "centroid": [77.7499, 12.9698],
+        "bbox": [77.7200, 12.9450, 77.7780, 12.9980]
+      },
+      {
+        "locality": "Jayanagar",
+        "pincode": "560041",
+        "centroid": [77.5855, 12.9308],
+        "bbox": [77.5680, 12.9150, 77.6020, 12.9480]
+      }
+    ]
+  },
+  {
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "country": "India",
+    "areas": [
+      {
+        "locality": "Banjara Hills",
+        "pincode": "500034",
+        "centroid": [78.4482, 17.4156],
+        "bbox": [78.4300, 17.4000, 78.4680, 17.4320]
+      },
+      {
+        "locality": "Jubilee Hills",
+        "pincode": "500033",
+        "centroid": [78.4073, 17.4319],
+        "bbox": [78.3880, 17.4150, 78.4280, 17.4500]
+      },
+      {
+        "locality": "Gachibowli",
+        "pincode": "500032",
+        "centroid": [78.3489, 17.4401],
+        "bbox": [78.3280, 17.4200, 78.3700, 17.4600]
+      },
+      {
+        "locality": "Kukatpally",
+        "pincode": "500072",
+        "centroid": [78.4138, 17.4948],
+        "bbox": [78.3900, 17.4750, 78.4350, 17.5150]
+      },
+      {
+        "locality": "Madhapur",
+        "pincode": "500081",
+        "centroid": [78.3886, 17.4483],
+        "bbox": [78.3700, 17.4300, 78.4100, 17.4680]
+      }
+    ]
+  },
+  {
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "areas": [
+      {
+        "locality": "Bandra West",
+        "pincode": "400050",
+        "centroid": [72.8333, 19.0596],
+        "bbox": [72.8150, 19.0450, 72.8520, 19.0750]
+      },
+      {
+        "locality": "Andheri West",
+        "pincode": "400058",
+        "centroid": [72.8397, 19.1197],
+        "bbox": [72.8200, 19.1000, 72.8600, 19.1400]
+      },
+      {
+        "locality": "Powai",
+        "pincode": "400076",
+        "centroid": [72.9051, 19.1176],
+        "bbox": [72.8850, 19.1000, 72.9250, 19.1350]
+      }
+    ]
+  },
+  {
+    "city": "Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "areas": [
+      {
+        "locality": "Hauz Khas",
+        "pincode": "110016",
+        "centroid": [77.2065, 28.5494],
+        "bbox": [77.1900, 28.5350, 77.2250, 28.5650]
+      },
+      {
+        "locality": "Connaught Place",
+        "pincode": "110001",
+        "centroid": [77.2197, 28.6315],
+        "bbox": [77.2050, 28.6200, 77.2350, 28.6450]
+      },
+      {
+        "locality": "Karol Bagh",
+        "pincode": "110005",
+        "centroid": [77.1906, 28.6517],
+        "bbox": [77.1750, 28.6380, 77.2080, 28.6650]
+      }
+    ]
+  }
+]

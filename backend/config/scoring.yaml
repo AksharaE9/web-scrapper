@@ -1,0 +1,18 @@
+# LeadCore Zero v2 — Logistic Scoring Weights Configuration
+
+weights:
+  base: 0.35
+  phone_valid: 0.15
+  email_valid: 0.10
+  website_accessible: 0.10
+  multi_source_agreement: 0.20
+  operating_status_open: 0.05
+  address_complete: 0.05
+
+penalties:
+  personal_number_risk: -0.10
+  disused_status: -0.30
+
+tiers:
+  verified_threshold: 0.80
+  likely_threshold: 0.60

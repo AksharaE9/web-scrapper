@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Fitness & Wellness",
+    "search_categories": ["gym", "crossfit", "yoga studio", "pilates", "spa", "ayurvedic massage", "swimming pool"],
+    "exclude_keywords": ["equipment", "manufacturer", "wholesaler", "apparel", "distributor"]
+  },
+  {
+    "name": "Personal Care & Beauty",
+    "search_categories": ["salon", "beauty parlour", "hair salon", "barber shop", "nail salon", "skin clinic"],
+    "exclude_keywords": ["academy", "training", "products supplier", "distributor"]
+  },
+  {
+    "name": "Healthcare & Clinics",
+    "search_categories": ["dental clinic", "pharmacy", "diagnostic lab", "physiotherapy clinic", "eye clinic", "pediatric clinic"],
+    "exclude_keywords": ["manufacturing", "bulk drugs", "college", "medical equipment"]
+  },
+  {
+    "name": "Food & Beverage",
+    "search_categories": ["cafe", "bakery", "restaurant", "bistro", "coffee roasters", "sweet shop"],
+    "exclude_keywords": ["packaging", "raw beans", "flour mill", "commercial kitchen equipment"]
+  },
+  {
+    "name": "Education & Coaching",
+    "search_categories": ["coaching centre", "tuition centre", "iit jee coaching", "neet coaching", "music school", "dance academy"],
+    "exclude_keywords": ["driving school", "software consulting"]
+  },
+  {
+    "name": "Automotive & Repair",
+    "search_categories": ["car repair", "car service center", "auto garage", "bike repair", "car detailing", "tyre shop"],
+    "exclude_keywords": ["car showroom", "dealership", "scrap yard"]
+  },
+  {
+    "name": "Pet Services",
+    "search_categories": ["veterinary clinic", "pet shop", "dog grooming", "pet boarding", "pet hospital"],
+    "exclude_keywords": ["cattle feed", "poultry", "breeder"]
+  }
+]
