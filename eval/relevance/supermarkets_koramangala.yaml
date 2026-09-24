@@ -1,0 +1,47 @@
+case: supermarkets_koramangala
+query:
+  keyword: "supermarket"
+  locality: "Koramangala"
+  city: "Bengaluru"
+  state: "Karnataka"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  # ── TRUE POSITIVES ───────────────────────────────────────────────────────
+  - name: "Nature's Basket Koramangala"
+    categories: ["supermarket", "grocery_store"]
+    relevant: true
+  - name: "More Supermarket 5th Block"
+    categories: ["supermarket", "grocery_store"]
+    relevant: true
+  - name: "Star Market Koramangala"
+    categories: ["supermarket", "hypermarket"]
+    relevant: true
+  - name: "SPAR Hypermarket Oasis Mall"
+    categories: ["supermarket", "hypermarket"]
+    relevant: true
+  - name: "Nilgiris 1905 Supermarket"
+    categories: ["supermarket", "convenience_store"]
+    relevant: true
+
+  # ── NEGATIVES ────────────────────────────────────────────────────────────
+  - name: "Koramangala Tea & Pan Corner"
+    categories: ["convenience_store", "kiosk"]
+    relevant: false
+    annotator_note: "Small kiosk/pan shop"
+  - name: "Third Wave Coffee Roasters"
+    categories: ["cafe", "coffee_shop"]
+    relevant: false
+    annotator_note: "Cafe"
+  - name: "Kalyan Jewellers 80ft Road"
+    categories: ["jewelry_store", "clothing_store"]
+    relevant: false
+    annotator_note: "Jewelry showroom"
+  - name: "Truffles Burger Joint"
+    categories: ["restaurant"]
+    relevant: false
+    annotator_note: "Restaurant"
+  - name: "Apollo Clinic Diagnostics"
+    categories: ["medical_laboratory", "clinic"]
+    relevant: false
+    annotator_note: "Diagnostic clinic"

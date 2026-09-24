@@ -1,20 +1,20 @@
 {
   "scorecard_version": "VALIDATE-1.0",
-  "commit_sha": "7b5dab4f1047",
-  "timestamp": "2026-09-24T05:09:18Z",
-  "n_fixtures": 6,
-  "macro_precision": 1.0,
+  "commit_sha": "92901264ae35",
+  "timestamp": "2026-09-24T05:24:53Z",
+  "n_fixtures": 12,
+  "macro_precision": 0.9694,
   "macro_precision_pooled_ci": [
-    0.8713,
-    1.0
+    0.8725,
+    0.9896
   ],
-  "macro_recall": 0.7583,
-  "macro_f1": 0.8259,
-  "macro_accuracy": 0.8861,
-  "accept_all_baseline": 0.4688,
-  "delta_above_baseline_pp": 53.12,
-  "tier_precision_variance": 0.0,
-  "tier_variance_warning": true,
+  "macro_recall": 0.8514,
+  "macro_f1": 0.8795,
+  "macro_accuracy": 0.9136,
+  "accept_all_baseline": 0.47,
+  "delta_above_baseline_pp": 49.94,
+  "tier_precision_variance": 0.004715,
+  "tier_variance_warning": false,
   "total_seeded_negatives": 9,
   "total_seeded_fp": 0,
   "seeded_fp_rate": 0.0,
@@ -46,10 +46,10 @@
       "f05": 1.0,
       "accept_all_baseline_precision": 0.5,
       "delta_vs_baseline_pp": 50.0,
-      "permutation_p": 0.0099,
+      "permutation_p": 0.001,
       "review_rate": 0.1,
       "accuracy": 1.0,
-      "ms_per_candidate": 50.37,
+      "ms_per_candidate": 51.15,
       "cascade_split": {
         "hard_gates": 4,
         "scorer": 5,
@@ -190,10 +190,10 @@
       "f05": 0.9524,
       "accept_all_baseline_precision": 0.5,
       "delta_vs_baseline_pp": 50.0,
-      "permutation_p": 0.0099,
+      "permutation_p": 0.001,
       "review_rate": 0.4,
       "accuracy": 0.9,
-      "ms_per_candidate": 7.02,
+      "ms_per_candidate": 6.59,
       "cascade_split": {
         "hard_gates": 2,
         "scorer": 4,
@@ -344,10 +344,10 @@
       "f05": 1.0,
       "accept_all_baseline_precision": 0.3684,
       "delta_vs_baseline_pp": 63.16,
-      "permutation_p": 0.0099,
+      "permutation_p": 0.001,
       "review_rate": 0.1579,
       "accuracy": 1.0,
-      "ms_per_candidate": 5.03,
+      "ms_per_candidate": 5.18,
       "cascade_split": {
         "hard_gates": 9,
         "scorer": 7,
@@ -543,6 +543,595 @@
       "seeded_fp_rate": 0.0
     },
     {
+      "case": "degree_college_dilsukhnagar",
+      "keyword": "degree college",
+      "locality": "Dilsukhnagar",
+      "total_candidates": 9,
+      "positive_labels": 4,
+      "negative_labels": 5,
+      "base_rate": 0.4444,
+      "tp": 4,
+      "fp": 1,
+      "tn": 4,
+      "fn": 0,
+      "review": 0,
+      "precision": 0.8,
+      "precision_ci": [
+        0.3755,
+        0.9638
+      ],
+      "recall": 1.0,
+      "recall_ci": [
+        0.5101,
+        1.0
+      ],
+      "f1": 0.8889,
+      "f05": 0.8333,
+      "accept_all_baseline_precision": 0.4444,
+      "delta_vs_baseline_pp": 35.56,
+      "permutation_p": 0.001,
+      "review_rate": 0.0,
+      "accuracy": 0.8889,
+      "ms_per_candidate": 4.36,
+      "cascade_split": {
+        "hard_gates": 4,
+        "scorer": 5,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 0
+      },
+      "yield_vs_expectation": {
+        "accepted": 4,
+        "expected_min": 3,
+        "yield_ratio": 1.3333,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 60.0,
+      "false_positives": [
+        {
+          "name": "Chaitanya Junior College Dilsukhnagar",
+          "stage": "scorer",
+          "p": 0.993,
+          "categories": [
+            "junior_college",
+            "school"
+          ],
+          "reasons": [
+            {
+              "type": "positive",
+              "label": "listed in defining category",
+              "icon": "\u2713"
+            },
+            {
+              "type": "positive",
+              "label": "name explicitly matches keyword",
+              "icon": "\u2713"
+            },
+            {
+              "type": "positive",
+              "label": "text match (110%)",
+              "icon": "\u2713"
+            }
+          ],
+          "is_seeded_negative": false
+        }
+      ],
+      "false_negatives": [],
+      "all_decisions": [
+        {
+          "name": "Megacity Degree College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9948,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sai Sudhir Degree College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9951,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Noble Degree & PG College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9962,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Vani Degree College for Women",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9947,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sri Vani Vidyashiketan High School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Nalanda Vidyaniketan School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "TIME Dilsukhnagar Institute",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Chaitanya Junior College Dilsukhnagar",
+          "ground_truth": false,
+          "outcome": "accepted",
+          "p": 0.993,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Royal Enfield Showroom Dilsukhnagar",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    },
+    {
+      "case": "degree_college_kukatpally",
+      "keyword": "degree college",
+      "locality": "Kukatpally",
+      "total_candidates": 11,
+      "positive_labels": 5,
+      "negative_labels": 6,
+      "base_rate": 0.4545,
+      "tp": 5,
+      "fp": 0,
+      "tn": 6,
+      "fn": 0,
+      "review": 2,
+      "precision": 1.0,
+      "precision_ci": [
+        0.5655,
+        1.0
+      ],
+      "recall": 1.0,
+      "recall_ci": [
+        0.5655,
+        1.0
+      ],
+      "f1": 1.0,
+      "f05": 1.0,
+      "accept_all_baseline_precision": 0.4545,
+      "delta_vs_baseline_pp": 54.55,
+      "permutation_p": 0.001,
+      "review_rate": 0.1818,
+      "accuracy": 1.0,
+      "ms_per_candidate": 5.86,
+      "cascade_split": {
+        "hard_gates": 4,
+        "scorer": 5,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 2
+      },
+      "yield_vs_expectation": {
+        "accepted": 5,
+        "expected_min": 3,
+        "yield_ratio": 1.6667,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 60.0,
+      "false_positives": [],
+      "false_negatives": [],
+      "all_decisions": [
+        {
+          "name": "Avinash College of Commerce Kukatpally",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9934,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Pragathi Women's Degree College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.995,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "JNTUH College of Engineering",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.993,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Vikas Degree College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9948,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Siddhartha Degree & PG College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9961,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "DAV Public School Kukatpally",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Bhashyam High School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sri Chaitanya Techno School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Resonance Eduventures Kukatpally",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5738,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Little Pearls Pre-Primary School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Pest Busters Pest Control",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5521,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    },
+    {
+      "case": "degree_college_madhapur",
+      "keyword": "degree college",
+      "locality": "Madhapur",
+      "total_candidates": 7,
+      "positive_labels": 3,
+      "negative_labels": 4,
+      "base_rate": 0.4286,
+      "tp": 2,
+      "fp": 0,
+      "tn": 4,
+      "fn": 1,
+      "review": 1,
+      "precision": 1.0,
+      "precision_ci": [
+        0.3424,
+        1.0
+      ],
+      "recall": 0.6667,
+      "recall_ci": [
+        0.2077,
+        0.9385
+      ],
+      "f1": 0.8,
+      "f05": 0.9091,
+      "accept_all_baseline_precision": 0.4286,
+      "delta_vs_baseline_pp": 57.14,
+      "permutation_p": 0.001,
+      "review_rate": 0.1429,
+      "accuracy": 0.8571,
+      "ms_per_candidate": 4.91,
+      "cascade_split": {
+        "hard_gates": 4,
+        "scorer": 2,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 1
+      },
+      "yield_vs_expectation": {
+        "accepted": 2,
+        "expected_min": 3,
+        "yield_ratio": 0.6667,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 150.0,
+      "false_positives": [],
+      "false_negatives": [
+        {
+          "name": "National Institute of Tourism and Hospitality Management",
+          "stage": "hard_gates",
+          "p": 0.0,
+          "categories": [
+            "college",
+            "higher_education",
+            "college_and_university"
+          ],
+          "outcome": "rejected"
+        }
+      ],
+      "all_decisions": [
+        {
+          "name": "Roots Collegium Degree College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.995,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Dr. B.R. Ambedkar Open University Campus",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9779,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "National Institute of Tourism and Hospitality Management",
+          "ground_truth": true,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Delhi Public School Madhapur",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Oakridge International School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Global Art Academy Madhapur",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Cyber Towers Food Court",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5377,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    },
+    {
+      "case": "diagnostic_centres_whitefield",
+      "keyword": "diagnostic centre",
+      "locality": "Whitefield",
+      "total_candidates": 10,
+      "positive_labels": 5,
+      "negative_labels": 5,
+      "base_rate": 0.5,
+      "tp": 5,
+      "fp": 0,
+      "tn": 5,
+      "fn": 0,
+      "review": 4,
+      "precision": 1.0,
+      "precision_ci": [
+        0.5655,
+        1.0
+      ],
+      "recall": 1.0,
+      "recall_ci": [
+        0.5655,
+        1.0
+      ],
+      "f1": 1.0,
+      "f05": 1.0,
+      "accept_all_baseline_precision": 0.5,
+      "delta_vs_baseline_pp": 50.0,
+      "permutation_p": 0.001,
+      "review_rate": 0.4,
+      "accuracy": 1.0,
+      "ms_per_candidate": 6.48,
+      "cascade_split": {
+        "hard_gates": 1,
+        "scorer": 5,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 4
+      },
+      "yield_vs_expectation": {
+        "accepted": 5,
+        "expected_min": 3,
+        "yield_ratio": 1.6667,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 60.0,
+      "false_positives": [],
+      "false_negatives": [],
+      "all_decisions": [
+        {
+          "name": "Manipal Diagnostic Services Whitefield",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9723,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Anand Diagnostic Laboratory",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9727,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Dr Lal PathLabs Whitefield",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9933,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "SRL Diagnostics Collection Centre",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9935,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Apollo Diagnostics Centre",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.993,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "MedPlus Pharmacy Whitefield",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5623,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Whitefield Eye Clinic",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5596,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Cessna Pet Care Clinic",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5623,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Cult Fit Whitefield Gym",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5377,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Subway Sandwiches ITPL",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    },
+    {
       "case": "gyms_koramangala",
       "keyword": "gyms",
       "locality": "Koramangala",
@@ -569,10 +1158,10 @@
       "f05": 0.8333,
       "accept_all_baseline_precision": 0.5,
       "delta_vs_baseline_pp": 50.0,
-      "permutation_p": 0.0099,
+      "permutation_p": 0.001,
       "review_rate": 0.4167,
       "accuracy": 0.75,
-      "ms_per_candidate": 5.09,
+      "ms_per_candidate": 5.6,
       "cascade_split": {
         "hard_gates": 4,
         "scorer": 3,
@@ -733,6 +1322,132 @@
       "seeded_fp_rate": null
     },
     {
+      "case": "pet_clinics_indiranagar",
+      "keyword": "pet clinic",
+      "locality": "Indiranagar",
+      "total_candidates": 8,
+      "positive_labels": 4,
+      "negative_labels": 4,
+      "base_rate": 0.5,
+      "tp": 4,
+      "fp": 0,
+      "tn": 4,
+      "fn": 0,
+      "review": 2,
+      "precision": 1.0,
+      "precision_ci": [
+        0.5101,
+        1.0
+      ],
+      "recall": 1.0,
+      "recall_ci": [
+        0.5101,
+        1.0
+      ],
+      "f1": 1.0,
+      "f05": 1.0,
+      "accept_all_baseline_precision": 0.5,
+      "delta_vs_baseline_pp": 50.0,
+      "permutation_p": 0.001,
+      "review_rate": 0.25,
+      "accuracy": 1.0,
+      "ms_per_candidate": 6.18,
+      "cascade_split": {
+        "hard_gates": 2,
+        "scorer": 4,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 2
+      },
+      "yield_vs_expectation": {
+        "accepted": 4,
+        "expected_min": 3,
+        "yield_ratio": 1.3333,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 75.0,
+      "false_positives": [],
+      "false_negatives": [],
+      "all_decisions": [
+        {
+          "name": "Cessna Lifeline Veterinary Hospital Indiranagar",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9929,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Dr. Rana's Pet Clinic & Surgery",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9929,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "PetCare Animal Hospital",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.993,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Happy Tails Veterinary Clinic",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9935,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Paw Space Pet Grooming & Spa",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.6365,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Heads Up For Tails Pet Supplies Store",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "The Bark Club Dog Boarding",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5667,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Toit Brewpub Indiranagar",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    },
+    {
       "case": "pooja_whitefield",
       "keyword": "pooja stores",
       "locality": "Whitefield",
@@ -759,10 +1474,10 @@
       "f05": 0.625,
       "accept_all_baseline_precision": 0.4444,
       "delta_vs_baseline_pp": 55.56,
-      "permutation_p": 0.0099,
+      "permutation_p": 0.001,
       "review_rate": 0.4444,
       "accuracy": 0.6667,
-      "ms_per_candidate": 5.86,
+      "ms_per_candidate": 5.93,
       "cascade_split": {
         "hard_gates": 6,
         "scorer": 4,
@@ -1030,10 +1745,10 @@
       "f05": 1.0,
       "accept_all_baseline_precision": 0.5,
       "delta_vs_baseline_pp": 50.0,
-      "permutation_p": 0.0099,
+      "permutation_p": 0.001,
       "review_rate": 0.2,
       "accuracy": 1.0,
-      "ms_per_candidate": 6.39,
+      "ms_per_candidate": 5.95,
       "cascade_split": {
         "hard_gates": 3,
         "scorer": 5,
@@ -1140,6 +1855,178 @@
           "p": 0.5405,
           "stage": "review_band",
           "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    },
+    {
+      "case": "supermarkets_koramangala",
+      "keyword": "supermarket",
+      "locality": "Koramangala",
+      "total_candidates": 10,
+      "positive_labels": 5,
+      "negative_labels": 5,
+      "base_rate": 0.5,
+      "tp": 5,
+      "fp": 1,
+      "tn": 4,
+      "fn": 0,
+      "review": 3,
+      "precision": 0.8333,
+      "precision_ci": [
+        0.4365,
+        0.9699
+      ],
+      "recall": 1.0,
+      "recall_ci": [
+        0.5655,
+        1.0
+      ],
+      "f1": 0.9091,
+      "f05": 0.8621,
+      "accept_all_baseline_precision": 0.5,
+      "delta_vs_baseline_pp": 33.33,
+      "permutation_p": 0.001,
+      "review_rate": 0.3,
+      "accuracy": 0.9,
+      "ms_per_candidate": 6.7,
+      "cascade_split": {
+        "hard_gates": 1,
+        "scorer": 6,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 3
+      },
+      "yield_vs_expectation": {
+        "accepted": 5,
+        "expected_min": 3,
+        "yield_ratio": 1.6667,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 50.0,
+      "false_positives": [
+        {
+          "name": "Koramangala Tea & Pan Corner",
+          "stage": "scorer",
+          "p": 0.9699,
+          "categories": [
+            "convenience_store",
+            "kiosk"
+          ],
+          "reasons": [
+            {
+              "type": "positive",
+              "label": "listed in defining category",
+              "icon": "\u2713"
+            },
+            {
+              "type": "positive",
+              "label": "text match (110%)",
+              "icon": "\u2713"
+            },
+            {
+              "type": "negative",
+              "label": "text resembles incompatible category",
+              "icon": "\u2717"
+            }
+          ],
+          "is_seeded_negative": false
+        }
+      ],
+      "false_negatives": [],
+      "all_decisions": [
+        {
+          "name": "Nature's Basket Koramangala",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9723,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "More Supermarket 5th Block",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9928,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Star Market Koramangala",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.993,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "SPAR Hypermarket Oasis Mall",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9926,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Nilgiris 1905 Supermarket",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9931,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Koramangala Tea & Pan Corner",
+          "ground_truth": false,
+          "outcome": "accepted",
+          "p": 0.9699,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Third Wave Coffee Roasters",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.553,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Kalyan Jewellers 80ft Road",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5594,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Truffles Burger Joint",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5523,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Apollo Clinic Diagnostics",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
           "is_seeded_negative": false
         }
       ],

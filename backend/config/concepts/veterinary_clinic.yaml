@@ -3,6 +3,7 @@ version: 1
 labels:
 - veterinary clinic
 - pet hospital
+- pet clinic
 - vet doctor
 - animal care
 definition: Medical care and clinical services for domestic pets and animals.
@@ -14,6 +15,7 @@ signals:
     - pet hospital
     - animal hospital
     - pet doctor
+    - pet clinic
   supporting_terms:
     medium:
     - vaccination
@@ -27,6 +29,10 @@ categories:
   defining:
   - services.veterinary
   - services.pet_care
+  - veterinary_care
+  - animal_hospital
+  - amenity=veterinary
+  - veterinary
   host:
   - pet_store
   incompatible:

@@ -43,6 +43,12 @@ backend_root = Path(__file__).resolve().parent.parent.parent
 if str(backend_root) not in sys.path:
     sys.path.insert(0, str(backend_root))
 
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 from app.relevance.concepts import resolve_concept
 from app.relevance.engine import evaluate_candidate
 
@@ -238,10 +244,10 @@ async def evaluate_single_case(case_path: Path) -> dict[str, Any]:
     accept_all_precision = base_rate  # precision if we accept everything
     precision_delta_pp = (precision - accept_all_precision) * 100.0
 
-    # Permutation p-value (simplified: shuffle labels k=100 times)
+    # Permutation p-value (k=1000 permutation resamples per protocol)
     null_precisions = []
     gt_list = [item.get("relevant") for item in labels]
-    for _ in range(100):
+    for _ in range(1000):
         shuffled = gt_list.copy()
         random.shuffle(shuffled)
         null_tp = sum(1 for item, s_gt in zip(labels, shuffled)

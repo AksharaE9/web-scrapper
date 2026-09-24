@@ -1,0 +1,210 @@
+{
+  "baseline": {
+    "precision": 0.9623,
+    "recall": 0.8226,
+    "accuracy": 0.903,
+    "tp": 51,
+    "fp": 2,
+    "tn": 70,
+    "fn": 11,
+    "precision_ci_lo": 0.8725,
+    "precision_ci_hi": 0.9896,
+    "n_judged": 53
+  },
+  "baselines": {
+    "B1": {
+      "precision": 0.4627,
+      "recall": 1.0,
+      "accuracy": 0.4627,
+      "tp": 62,
+      "fp": 72,
+      "tn": 0,
+      "fn": 0,
+      "precision_ci_lo": 0.3805,
+      "precision_ci_hi": 0.547,
+      "n_judged": 134
+    },
+    "B2": {
+      "precision": 0.4429,
+      "recall": 0.5,
+      "accuracy": 0.4776,
+      "tp": 31,
+      "fp": 39,
+      "tn": 33,
+      "fn": 31,
+      "precision_ci_lo": 0.3325,
+      "precision_ci_hi": 0.5592,
+      "n_judged": 70
+    },
+    "B3": {
+      "precision": 0.4627,
+      "recall": 1.0,
+      "accuracy": 0.4627,
+      "tp": 62,
+      "fp": 72,
+      "tn": 0,
+      "fn": 0,
+      "precision_ci_lo": 0.3805,
+      "precision_ci_hi": 0.547,
+      "n_judged": 134
+    },
+    "B4": {
+      "precision": 0.9706,
+      "recall": 0.5323,
+      "accuracy": 0.7761,
+      "tp": 33,
+      "fp": 1,
+      "tn": 71,
+      "fn": 29,
+      "precision_ci_lo": 0.8508,
+      "precision_ci_hi": 0.9948,
+      "n_judged": 34
+    },
+    "B5": {
+      "shuffled_precision_mean": 0.483,
+      "shuffled_precision_std": 0.0797,
+      "runs": 5
+    }
+  },
+  "mutations": {
+    "MUT-1 Inverted predicate": {
+      "precision": 0.0217,
+      "recall": 0.0161,
+      "accuracy": 0.209,
+      "tp": 1,
+      "fp": 45,
+      "tn": 27,
+      "fn": 61,
+      "precision_ci_lo": 0.0038,
+      "precision_ci_hi": 0.1134,
+      "n_judged": 46
+    },
+    "MUT-2 Geo filter bypass": {
+      "precision": 0.9623,
+      "recall": 0.8226,
+      "accuracy": 0.903,
+      "tp": 51,
+      "fp": 2,
+      "tn": 70,
+      "fn": 11,
+      "precision_ci_lo": 0.8725,
+      "precision_ci_hi": 0.9896,
+      "n_judged": 53
+    },
+    "MUT-3 No category gate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "accuracy": 0.5373,
+      "tp": 0,
+      "fp": 0,
+      "tn": 72,
+      "fn": 62,
+      "precision_ci_lo": 0.0,
+      "precision_ci_hi": 0.7935,
+      "n_judged": 0
+    },
+    "MUT-4 Normaliser identity": {
+      "precision": 0.9808,
+      "recall": 0.8226,
+      "accuracy": 0.9104,
+      "tp": 51,
+      "fp": 1,
+      "tn": 71,
+      "fn": 11,
+      "precision_ci_lo": 0.8988,
+      "precision_ci_hi": 0.9966,
+      "n_judged": 52
+    },
+    "MUT-5 Return ranks 20-40": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "accuracy": 0.5373,
+      "tp": 0,
+      "fp": 0,
+      "tn": 72,
+      "fn": 62,
+      "precision_ci_lo": 0.0,
+      "precision_ci_hi": 0.7935,
+      "n_judged": 0
+    },
+    "MUT-7 Empty results": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "accuracy": 0.5373,
+      "tp": 0,
+      "fp": 0,
+      "tn": 72,
+      "fn": 62,
+      "precision_ci_lo": 0.0,
+      "precision_ci_hi": 0.7935,
+      "n_judged": 0
+    },
+    "MUT-8 Stale cross-query": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "accuracy": 0.5373,
+      "tp": 0,
+      "fp": 0,
+      "tn": 72,
+      "fn": 62,
+      "precision_ci_lo": 0.0,
+      "precision_ci_hi": 0.7935,
+      "n_judged": 0
+    },
+    "MUT-6 Shuffled labels": {
+      "precision": 0.483,
+      "expected": "falls to base rate",
+      "passed": true
+    }
+  },
+  "metamorphic_relations": {
+    "MR-1 Specialisation": {
+      "mr": "MR-1",
+      "violations": 0,
+      "passed": true
+    },
+    "MR-2 Radius Monotonicity": {
+      "mr": "MR-2",
+      "monotonic": true,
+      "distances_m": [
+        23.6,
+        118.0,
+        471.9
+      ],
+      "passed": true
+    },
+    "MR-3 Typo Invariance": {
+      "mr": "MR-3",
+      "jaccard": 1.0,
+      "threshold": 0.8,
+      "passed": true
+    },
+    "MR-4 Permutation Invariance": {
+      "mr": "MR-4",
+      "matches": 3,
+      "total": 3,
+      "passed": true
+    },
+    "MR-5 Source Monotonicity": {
+      "mr": "MR-5",
+      "single_p": 0.9928,
+      "multi_p": 0.9925,
+      "passed": true
+    },
+    "MR-6 Null / Garbage Query": {
+      "mr": "MR-6",
+      "violations": 0,
+      "passed": true
+    },
+    "MR-7 Duplicate Injection": {
+      "mr": "MR-7",
+      "consistent": true,
+      "passed": true
+    },
+    "MR-8 Negative Geography": {
+      "mr": "MR-8",
+      "outcome": "rejected",
+      "passed": true
+    }
+  }
+}

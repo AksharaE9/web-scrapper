@@ -1,0 +1,47 @@
+case: diagnostic_centres_whitefield
+query:
+  keyword: "diagnostic centre"
+  locality: "Whitefield"
+  city: "Bengaluru"
+  state: "Karnataka"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  # ── TRUE POSITIVES ───────────────────────────────────────────────────────
+  - name: "Manipal Diagnostic Services Whitefield"
+    categories: ["diagnostic_centre", "medical_laboratory"]
+    relevant: true
+  - name: "Anand Diagnostic Laboratory"
+    categories: ["medical_laboratory", "diagnostic_centre"]
+    relevant: true
+  - name: "Dr Lal PathLabs Whitefield"
+    categories: ["diagnostic_centre", "medical_laboratory"]
+    relevant: true
+  - name: "SRL Diagnostics Collection Centre"
+    categories: ["diagnostic_centre", "medical_laboratory"]
+    relevant: true
+  - name: "Apollo Diagnostics Centre"
+    categories: ["diagnostic_centre", "medical_laboratory"]
+    relevant: true
+
+  # ── NEGATIVES ────────────────────────────────────────────────────────────
+  - name: "MedPlus Pharmacy Whitefield"
+    categories: ["pharmacy", "drugstore"]
+    relevant: false
+    annotator_note: "Retail pharmacy store"
+  - name: "Whitefield Eye Clinic"
+    categories: ["doctor", "clinic"]
+    relevant: false
+    annotator_note: "Consulting ophthalmology clinic"
+  - name: "Cessna Pet Care Clinic"
+    categories: ["veterinary_care", "animal_hospital"]
+    relevant: false
+    annotator_note: "Veterinary clinic"
+  - name: "Cult Fit Whitefield Gym"
+    categories: ["gym", "fitness_centre"]
+    relevant: false
+    annotator_note: "Gym"
+  - name: "Subway Sandwiches ITPL"
+    categories: ["restaurant", "fast_food"]
+    relevant: false
+    annotator_note: "Fast food restaurant"

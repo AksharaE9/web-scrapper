@@ -53,11 +53,12 @@ async def run(state: RunState) -> dict[str, Any]:
         logger.info(f"N10: No entities to persist for run {run_id_str}")
         return {"entities": []}
 
-    # Sort entities by confidence and corroboration
-    entities.sort(key=lambda e: (e.confidence, e.independent_source_count), reverse=True)
-    query_obj = state.get("query")
-    max_results = getattr(query_obj, "max_results", 50) if query_obj else 50
+    raw_entity_count = len(entities)
     target_entities = entities[:max_results] if max_results else entities
+    logger.info(
+        f"N10 Funnel Telemetry: [Stage 1: Relevance Accepted = {raw_entity_count}] -> "
+        f"[Stage 2: Target Slicing (top_k={max_results}) = {len(target_entities)}]"
+    )
 
     pool = get_pool()
     updated_entities: list[ResolvedEntity] = []

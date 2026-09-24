@@ -1,0 +1,37 @@
+case: degree_college_madhapur
+query:
+  keyword: "degree college"
+  locality: "Madhapur"
+  city: "Hyderabad"
+  state: "Telangana"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  # ── TRUE POSITIVES (Madhapur / Hitec City area) ──────────────────────────
+  - name: "Roots Collegium Degree College"
+    categories: ["college", "higher_education"]
+    relevant: true
+  - name: "Dr. B.R. Ambedkar Open University Campus"
+    categories: ["college_and_university", "higher_education"]
+    relevant: true
+  - name: "National Institute of Tourism and Hospitality Management"
+    categories: ["college", "higher_education", "college_and_university"]
+    relevant: true
+
+  # ── HELD-OUT NEGATIVES ───────────────────────────────────────────────────
+  - name: "Delhi Public School Madhapur"
+    categories: ["school", "educational_institution"]
+    relevant: false
+    annotator_note: "K-12 school"
+  - name: "Oakridge International School"
+    categories: ["school", "international_school"]
+    relevant: false
+    annotator_note: "International K-12 school"
+  - name: "Global Art Academy Madhapur"
+    categories: ["art_school", "hobby_classes"]
+    relevant: false
+    annotator_note: "Children art classes"
+  - name: "Cyber Towers Food Court"
+    categories: ["food_court", "restaurant"]
+    relevant: false
+    annotator_note: "Food court"

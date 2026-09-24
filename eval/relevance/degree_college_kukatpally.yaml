@@ -1,0 +1,51 @@
+case: degree_college_kukatpally
+query:
+  keyword: "degree college"
+  locality: "Kukatpally"
+  city: "Hyderabad"
+  state: "Telangana"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  # ── TRUE POSITIVES (Held-out degree colleges in Kukatpally) ───────────────
+  - name: "Avinash College of Commerce Kukatpally"
+    categories: ["college", "higher_education"]
+    relevant: true
+  - name: "Pragathi Women's Degree College"
+    categories: ["college", "college_and_university"]
+    relevant: true
+  - name: "JNTUH College of Engineering"
+    categories: ["college", "engineering_college", "higher_education"]
+    relevant: true
+  - name: "Vikas Degree College"
+    categories: ["college_and_university"]
+    relevant: true
+  - name: "Siddhartha Degree & PG College"
+    categories: ["college", "higher_education"]
+    relevant: true
+
+  # ── HELD-OUT NEGATIVES (Held-out K-12 schools & institutes) ──────────────
+  - name: "DAV Public School Kukatpally"
+    categories: ["school", "educational_institution"]
+    relevant: false
+    annotator_note: "K-12 CBSE school — held out test"
+  - name: "Bhashyam High School"
+    categories: ["school", "secondary_school"]
+    relevant: false
+    annotator_note: "K-12 school — held out test"
+  - name: "Sri Chaitanya Techno School"
+    categories: ["school", "educational_institution"]
+    relevant: false
+    annotator_note: "Techno school K-12 — held out test"
+  - name: "Resonance Eduventures Kukatpally"
+    categories: ["coaching_center", "tutoring_service"]
+    relevant: false
+    annotator_note: "Coaching institute — not a college"
+  - name: "Little Pearls Pre-Primary School"
+    categories: ["preschool", "kindergarten"]
+    relevant: false
+    annotator_note: "Pre-primary school"
+  - name: "Pest Busters Pest Control"
+    categories: ["pest_control", "cleaning_service"]
+    relevant: false
+    annotator_note: "Completely unrelated business"

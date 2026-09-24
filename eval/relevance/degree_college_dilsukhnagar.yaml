@@ -1,0 +1,44 @@
+case: degree_college_dilsukhnagar
+query:
+  keyword: "degree college"
+  locality: "Dilsukhnagar"
+  city: "Hyderabad"
+  state: "Telangana"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  # ── TRUE POSITIVES (Held-out degree colleges in Dilsukhnagar) ─────────────
+  - name: "Megacity Degree College"
+    categories: ["college", "college_and_university"]
+    relevant: true
+  - name: "Sai Sudhir Degree College"
+    categories: ["college", "higher_education"]
+    relevant: true
+  - name: "Noble Degree & PG College"
+    categories: ["college", "college_and_university"]
+    relevant: true
+  - name: "Vani Degree College for Women"
+    categories: ["college"]
+    relevant: true
+
+  # ── HELD-OUT NEGATIVES (Schools & non-colleges in Dilsukhnagar) ───────────
+  - name: "Sri Vani Vidyashiketan High School"
+    categories: ["school", "secondary_school"]
+    relevant: false
+    annotator_note: "K-12 state board school"
+  - name: "Nalanda Vidyaniketan School"
+    categories: ["school", "educational_institution"]
+    relevant: false
+    annotator_note: "K-10 school"
+  - name: "TIME Dilsukhnagar Institute"
+    categories: ["coaching_center", "training_centre"]
+    relevant: false
+    annotator_note: "Aptitude & CAT test prep institute"
+  - name: "Chaitanya Junior College Dilsukhnagar"
+    categories: ["junior_college", "school"]
+    relevant: false
+    annotator_note: "Intermediate +2 college (not degree)"
+  - name: "Royal Enfield Showroom Dilsukhnagar"
+    categories: ["motorcycle_dealer", "store"]
+    relevant: false
+    annotator_note: "Vehicle showroom"

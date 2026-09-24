@@ -1,0 +1,40 @@
+case: pet_clinics_indiranagar
+query:
+  keyword: "pet clinic"
+  locality: "Indiranagar"
+  city: "Bengaluru"
+  state: "Karnataka"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  # ── TRUE POSITIVES ───────────────────────────────────────────────────────
+  - name: "Cessna Lifeline Veterinary Hospital Indiranagar"
+    categories: ["veterinary_care", "animal_hospital"]
+    relevant: true
+  - name: "Dr. Rana's Pet Clinic & Surgery"
+    categories: ["veterinary_care", "animal_hospital"]
+    relevant: true
+  - name: "PetCare Animal Hospital"
+    categories: ["veterinary_care"]
+    relevant: true
+  - name: "Happy Tails Veterinary Clinic"
+    categories: ["veterinary_care", "clinic"]
+    relevant: true
+
+  # ── NEGATIVES ────────────────────────────────────────────────────────────
+  - name: "Paw Space Pet Grooming & Spa"
+    categories: ["pet_grooming", "pet_store"]
+    relevant: false
+    annotator_note: "Grooming spa — not a clinical veterinary hospital"
+  - name: "Heads Up For Tails Pet Supplies Store"
+    categories: ["pet_store", "store"]
+    relevant: false
+    annotator_note: "Pet food & accessories retail store"
+  - name: "The Bark Club Dog Boarding"
+    categories: ["pet_boarding", "hotel"]
+    relevant: false
+    annotator_note: "Dog boarding / kennel facility"
+  - name: "Toit Brewpub Indiranagar"
+    categories: ["brewery", "restaurant", "pub"]
+    relevant: false
+    annotator_note: "Brewpub"
