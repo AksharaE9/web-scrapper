@@ -310,7 +310,7 @@ async def test_degree_college_rejects_k12_schools():
 # ─────────────────────────────────────────────────────────────────────────────
 # Wilson CI: ensure precision reporting always includes CI
 # ─────────────────────────────────────────────────────────────────────────────
-def test_wilson_ci_properties():
+async def test_wilson_ci_properties():
     """Statistical: Wilson CI must have sensible coverage properties."""
     # At n=4 (4-run tier), CI must be very wide
     lo, hi = wilson_ci(4, 4)  # 100% over 4 items
