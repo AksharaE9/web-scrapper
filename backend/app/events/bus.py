@@ -36,7 +36,12 @@ class SSEEvent:
     ts: float = field(default_factory=time.time)
 
     def encode(self) -> str:
-        return f"event: {self.event}\ndata: {json.dumps(self.data)}\n\n"
+        payload = dict(self.data)
+        if "event" not in payload:
+            payload["event"] = self.event
+        if "run_id" not in payload:
+            payload["run_id"] = self.run_id
+        return f"event: {self.event}\ndata: {json.dumps(payload)}\n\n"
 
 
 class EventBus:
@@ -86,9 +91,11 @@ class EventBus:
         if dropped:
             log.warning("SSE queue full, events dropped", run_id=run_id, dropped=dropped)
 
-    async def close_run(self, run_id: str | UUID) -> None:
+    async def close_run(self, run_id: str | UUID, drain_delay_s: float = 0.05) -> None:
         """Signal all listeners that this run is done (sends sentinel None)."""
         run_id = str(run_id)
+        if drain_delay_s > 0:
+            await asyncio.sleep(drain_delay_s)
         async with self._lock:
             queues = list(self._queues.get(run_id, []))
         for q in queues:
@@ -96,6 +103,7 @@ class EventBus:
                 q.put_nowait(None)
             except asyncio.QueueFull:
                 pass
+
 
 
 _default_bus: EventBus | None = None

@@ -1,0 +1,19 @@
+case: coaching_kukatpally
+query:
+  keyword: "coaching centres"
+  locality: "Kukatpally"
+  city: "Hyderabad"
+  state: "Telangana"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  - {name: "Sri Chaitanya IIT Academy", categories: ["educational_institution", "coaching"], brand: "Sri Chaitanya", relevant: true}
+  - {name: "Narayana IIT-JEE & NEET Coaching", categories: ["educational_institution", "coaching"], brand: "Narayana", relevant: true}
+  - {name: "TIME Institute Kukatpally (CAT/Bank Exams)", categories: ["educational_institution"], brand: "TIME", relevant: true}
+  - {name: "Vidyalankar Classes", categories: ["educational_institution"], brand: null, relevant: true}
+  - {name: "Kukatpally Mathematics & Physics Tuition Centre", categories: ["school"], brand: null, relevant: true}
+  - {name: "Pista House Bakery & Restaurant", categories: ["restaurant", "bakery"], brand: "Pista House", relevant: false}
+  - {name: "Kukatpally Wine Mart", categories: ["liquor_store"], brand: null, relevant: false}
+  - {name: "Sujana Forum Mall", categories: ["shopping_mall"], brand: null, relevant: false}
+  - {name: "MedPlus Pharmacy", categories: ["pharmacy"], brand: "MedPlus", relevant: false}
+  - {name: "Raymond Menswear & Tailors", categories: ["clothing_store"], brand: "Raymond", relevant: false}

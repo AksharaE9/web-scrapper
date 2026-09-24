@@ -1,0 +1,111 @@
+concept_id: supermarket
+version: 1
+labels:
+- supermarket
+- supermarkets
+- grocery store
+- hypermarket
+- departmental store
+- kirana
+- provision store
+- general store
+- daily needs
+- grocery
+- groceries
+- provisions
+definition: A self-service retail market selling a wide variety of food, packaged
+  groceries, fresh produce, and household goods.
+signals:
+  defining_terms:
+    strong:
+    - supermarket
+    - grocery
+    - groceries
+    - mart
+    - hypermarket
+    - provisions
+    - kirana
+    - dmart
+    - reliance fresh
+    - more
+    - daily needs
+    - general store
+  supporting_terms:
+    medium:
+    - foodstuffs
+    - daily essentials
+    - packaged food
+    - fmcg
+    - vegetables
+    - dairy
+    - snacks
+    - staples
+    - rice
+    - pulses
+    - oil
+  non_evidence: inherit
+categories:
+  defining:
+  - supermarket
+  - grocery_store
+  - hypermarket
+  - convenience_store
+  - shop=supermarket
+  - shop=convenience
+  - shop=grocery
+  - shop=general
+  host:
+  - department_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - hospital
+  - gym
+  - hotel
+  - bank
+  - bar
+veto_terms:
+- wholesaler
+- fmcg depot
+- warehouse
+- hospital
+- gym
+- spa
+- massage
+- salon
+- dental
+- clinic
+- coaching
+brands:
+  incompatible:
+  - Apollo Hospital
+  - Gold's Gym
+overture_basic_categories:
+- supermarket
+- grocery_store
+- hypermarket
+- convenience_store
+overture_taxonomy_paths:
+- shopping > food > grocery
+- shopping > supermarket
+osm_tags:
+- shop=supermarket
+- shop=convenience
+- shop=grocery
+- shop=general
+name_patterns:
+- \bsupermarket\b
+- \bgrocery\b
+- \bgroceries\b
+- \bmart\b
+- \bhypermarket\b
+- \bprovisions?\b
+- \bkirana\b
+- \bdmart\b
+- \breliance fresh\b
+- \bmore\b
+- \bdaily needs\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

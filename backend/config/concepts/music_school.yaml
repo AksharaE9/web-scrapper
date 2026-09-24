@@ -1,0 +1,44 @@
+concept_id: music_school
+version: 1
+labels:
+- music school
+- music academy
+- guitar classes
+- vocal training
+definition: Institute teaching musical instruments, classical singing, and sound production.
+signals:
+  defining_terms:
+    strong:
+    - music school
+    - music academy
+    - guitar classes
+    - piano classes
+    - carnatic music
+    - hindustani vocal
+  supporting_terms:
+    medium:
+    - violin
+    - drums
+    - keyboard
+    - western vocals
+    - trinity exam
+    - flute
+  non_evidence: inherit
+categories:
+  defining:
+  - education.music_school
+  - education.arts_school
+  host:
+  - cultural_centre
+  incompatible:
+  - car_wash
+  - butcher
+veto_terms:
+- tyre dealer
+- car repair
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -1,0 +1,68 @@
+concept_id: optician
+version: 1
+labels:
+- optician
+- eyewear store
+- optical shop
+- eye care center
+- spectacle shop
+- lens store
+- lenskart
+definition: An optical retail store offering vision testing, prescription spectacle
+  frames, corrective lenses, contact lenses, and sunglasses.
+signals:
+  defining_terms:
+    strong:
+    - opticians
+    - optical
+    - optometry
+    - eyewear
+    - spectacles
+    - lenskart
+    - titan eye
+    - vision care
+    - optical store
+  supporting_terms:
+    medium:
+    - frames
+    - lenses
+    - sunglasses
+    - vision testing
+    - eye glasses
+    - contact lenses
+    - glare
+    - progressive lenses
+  non_evidence: inherit
+categories:
+  defining:
+  - optician
+  - eyewear_store
+  - shop=optician
+  host:
+  - shopping_mall
+  - hospital
+  - commercial_area
+  incompatible:
+  - restaurant
+  - bakery
+  - hardware_store
+veto_terms:
+- lens manufacturing factory
+- glass factory
+brands:
+  incompatible: []
+overture_basic_categories:
+- optician
+overture_taxonomy_paths:
+- health_and_medicine > eye_care > optician
+osm_tags:
+- shop=optician
+name_patterns:
+- \bopticians?\b
+- \bopticals?\b
+- \beyewear\b
+- \bspectacles?\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

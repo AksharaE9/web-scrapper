@@ -85,10 +85,12 @@ def _parse_raw_text(raw: str) -> tuple[list[str], LocationInput]:
 
 @node("n0_input", critical=True, max_retries=0)
 async def run(state: RunState) -> dict[str, Any]:
-    raw_q = state.get("query")
+    raw_q = state.get("query") if state.get("query") is not None else state.get("input")
     if isinstance(raw_q, str):
         import json
         raw_q = json.loads(raw_q)
+    if hasattr(raw_q, "model_dump"):
+        raw_q = raw_q.model_dump()
     if isinstance(raw_q, dict):
         query = QueryInput(**raw_q)
     elif isinstance(raw_q, QueryInput):

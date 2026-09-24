@@ -1,0 +1,41 @@
+concept_id: pest_control
+version: 1
+labels:
+- pest control service
+- termite treatment
+- disinfestation
+definition: Professional residential and commercial pest management and termite eradication.
+signals:
+  defining_terms:
+    strong:
+    - pest control
+    - termite treatment
+    - bed bug treatment
+    - cockroach control
+    - fumigation
+  supporting_terms:
+    medium:
+    - herbal pest control
+    - fogging
+    - rodent control
+    - sanitization
+    - anti termite
+  non_evidence: inherit
+categories:
+  defining:
+  - services.pest_control
+  - services.home_maintenance
+  host:
+  - office
+  incompatible:
+  - restaurant
+  - bakery
+veto_terms:
+- sweet shop
+- bakery
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -1,0 +1,78 @@
+concept_id: shopping_mall
+version: 1
+labels:
+- shopping mall
+- mall
+- shopping center
+- shopping centre
+- shopping complex
+- retail mall
+- commercial mall
+- hyper mall
+- central mall
+definition: A large enclosed commercial retail complex housing multiple stores, food
+  courts, multiplex cinemas, and brand outlets under one roof.
+signals:
+  defining_terms:
+    strong:
+    - shopping mall
+    - mall
+    - shopping center
+    - shopping centre
+    - shopping complex
+    - inorbit
+    - forum mall
+    - phoenix mall
+    - lulu mall
+    - nexus mall
+    - central mall
+  supporting_terms:
+    medium:
+    - retail outlets
+    - food court
+    - multiplex
+    - brands
+    - anchor store
+    - floor
+    - parking
+    - shopping
+    - lifestyle
+    - hypermarket
+  non_evidence: inherit
+categories:
+  defining:
+  - shopping_mall
+  - shopping_center
+  - shop=mall
+  - building=commercial
+  host:
+  - commercial_district
+  - urban_center
+  incompatible:
+  - dentist
+  - plumber
+  - individual_tailor
+  - mechanic_shed
+veto_terms:
+- mall management software
+- mall security services agency
+- strip center only
+brands:
+  incompatible: []
+overture_basic_categories:
+- shopping_mall
+- shopping_center
+overture_taxonomy_paths:
+- shopping > shopping_mall
+osm_tags:
+- shop=mall
+name_patterns:
+- \bmalls?\b
+- \bshopping mall\b
+- \bshopping complex\b
+- \bshopping centre\b
+- \bshopping center\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

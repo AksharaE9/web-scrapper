@@ -1,0 +1,119 @@
+concept_id: coaching_centre
+version: 1
+labels:
+- coaching centre
+- coaching center
+- coaching centres
+- coaching centers
+- coaching institute
+- tuition centre
+- tuition center
+- tutorials
+- academy
+- training institute
+- classes
+- iit coaching
+- neet coaching
+definition: An educational coaching institute providing supplementary tutoring, competitive
+  exam preparation (IIT-JEE, NEET, UPSC), or professional skills training.
+signals:
+  defining_terms:
+    strong:
+    - coaching
+    - tuition
+    - tuitions
+    - tutorials
+    - academy
+    - classes
+    - iit
+    - jee
+    - neet
+    - cat
+    - allen
+    - aakash
+    - iit-jee
+    - upsc
+    - educational institute
+  supporting_terms:
+    medium:
+    - entrance
+    - exam
+    - training
+    - physics
+    - maths
+    - chemistry
+    - biology
+    - nda
+    - bank exam
+    - batches
+    - faculties
+  non_evidence: inherit
+categories:
+  defining:
+  - coaching_center
+  - tutoring_service
+  - educational_institution
+  - coaching
+  - amenity=school[school=coaching]
+  - amenity=college[type=coaching]
+  - office=educational_institution
+  host:
+  - community_centre
+  - library
+  - commercial_building
+  incompatible:
+  - restaurant
+  - bar
+  - liquor_store
+  - salon
+  - gym
+  - bakery
+  - retail_store
+veto_terms:
+- sports coaching
+- driving school
+- cricket coaching
+- karate class
+- restaurant
+- food
+- cafe
+- wine
+- beer
+- salon
+- spa
+- footwear
+- clothing
+- supermarket
+brands:
+  incompatible:
+  - KFC
+  - Dominos
+  - Bata
+  - Zara
+overture_basic_categories:
+- coaching_center
+- tutoring_service
+- educational_institution
+overture_taxonomy_paths:
+- education > tutoring
+- education > specialty_schools
+osm_tags:
+- amenity=school[school=coaching]
+- amenity=college[type=coaching]
+- office=educational_institution
+name_patterns:
+- \bcoaching\b
+- \btuition\b
+- \btutorials?\b
+- \bacademy\b
+- \bclasses\b
+- \biit\b
+- \bjee\b
+- \bneet\b
+- \bcat\b
+- \ballen\b
+- \baakash\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

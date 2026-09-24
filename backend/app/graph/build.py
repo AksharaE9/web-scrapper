@@ -4,21 +4,24 @@ LangGraph Graph Builder — LeadCore Zero v2
 Wires all nodes into a StateGraph with:
   - Send() fan-out for parallel source agents (N3a/b/c/d/e)
   - interrupt() for geo disambiguation (human-in-the-loop)
-  - PostgresSaver checkpointer (direct Neon URL)
+  - AsyncPostgresSaver checkpointer (direct Neon URL)
   - All edges declared explicitly for docstring/test compatibility
 """
 
 from __future__ import annotations
 
-from functools import lru_cache
-from typing import Any
+import asyncio
+import logging
+from typing import Any, cast
 
-from langgraph.checkpoint.postgres import PostgresSaver
+from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
+from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import Send
 
-from app.db.pool import get_direct_pool
+from app.db.pool import get_direct_async_pool
 from app.graph.state import GeoResolution, QueryInput, RunState
+from app.settings import settings
 
 # Lazy imports to keep startup fast (heavy deps like DuckDB, Splink load on first use)
 from app.graph.nodes import (
@@ -30,7 +33,7 @@ from app.graph.nodes import (
     n3c_wikidata,
     n3d_alltheplaces,
     n3e_imports,
-    n4_filter,
+    n4_relevance,
     n5_resolve,
     n6_enrich,
     n7_verify,
@@ -40,6 +43,8 @@ from app.graph.nodes import (
     n11_eval,
     n12_report,
 )
+
+logger = logging.getLogger(__name__)
 
 
 # ── Fan-out router ────────────────────────────────────────────────────────────
@@ -101,7 +106,7 @@ def _route_critic(state: RunState) -> str:
     entities = state.get("entities", [])
     borderline = [
         e for e in entities
-        if 0.45 <= e.confidence <= 0.65
+        if 0.45 <= getattr(e, "confidence", getattr(e, "relevance_p", 0.5)) <= 0.65
     ]
     budget_obj = state.get("budget")
     http_calls_used = budget_obj.http_calls_used if hasattr(budget_obj, "http_calls_used") else (budget_obj.get("http_calls_used", 0) if isinstance(budget_obj, dict) else 0)
@@ -116,8 +121,8 @@ def _join_geo_kw(s: RunState) -> RunState:
 
 # ── Graph builder ─────────────────────────────────────────────────────────────
 
-def build_graph() -> StateGraph:
-    g = StateGraph(RunState)
+def build_graph() -> Any:
+    g: Any = StateGraph(RunState)
 
     # Nodes
     g.add_node("n0_input", n0_input.run)
@@ -130,7 +135,7 @@ def build_graph() -> StateGraph:
     g.add_node("n3c_wikidata", n3c_wikidata.run)
     g.add_node("n3d_alltheplaces", n3d_alltheplaces.run)
     g.add_node("n3e_imports", n3e_imports.run)
-    g.add_node("n4_filter", n4_filter.run)
+    g.add_node("n4_filter", n4_relevance.run)
     g.add_node("n5_resolve", n5_resolve.run)
     g.add_node("n6_enrich", n6_enrich.run)
     g.add_node("n7_verify", n7_verify.run)
@@ -184,26 +189,52 @@ def build_graph() -> StateGraph:
     return g
 
 
-@lru_cache(maxsize=1)
-def get_compiled_graph() -> Any:
+_COMPILED_GRAPHS: dict[int, Any] = {}
+
+
+async def build_checkpointer(pool: Any | None = None) -> Any:
+    """Build durable AsyncPostgresSaver or MemorySaver in testing."""
+    if getattr(settings, "testing", False):
+        return MemorySaver()
+    if pool is None:
+        pool = get_direct_async_pool()
+    cp = AsyncPostgresSaver(cast(Any, pool))
+    await cp.setup()
+    assert hasattr(cp, "aput"), "checkpointer cannot be used with astream()"
+    assert not isinstance(cp, MemorySaver), "refusing to boot with a non-durable checkpointer"
+    return cp
+
+
+def get_compiled_graph(checkpointer: Any | None = None) -> Any:
     """
-    Return the compiled graph with Postgres checkpointer.
-    Cached as a singleton — the graph is compiled once per process lifetime.
-    Falls back to MemorySaver if database pool is not initialised (e.g. offline tests).
+    Return the compiled graph with checkpointer.
+    Cached per running asyncio event loop so multi-loop test runners remain isolated.
     """
     try:
-        pool = get_direct_pool()
-        checkpointer = PostgresSaver(pool)
-        checkpointer.setup()   # idempotent: creates checkpoint tables if not exist
-    except Exception:
-        from langgraph.checkpoint.memory import MemorySaver
-        checkpointer = MemorySaver()
+        loop = asyncio.get_running_loop()
+        loop_id = id(loop)
+    except RuntimeError:
+        logger.warning("No running event loop found when resolving compiled graph; using fallback key")
+        loop_id = 0
+
+    if loop_id in _COMPILED_GRAPHS and checkpointer is None:
+        return _COMPILED_GRAPHS[loop_id]
+
+    if checkpointer is None:
+        if getattr(settings, "testing", False):
+            checkpointer = MemorySaver()
+        else:
+            pool = get_direct_async_pool()
+            checkpointer = AsyncPostgresSaver(pool)  # type: ignore[arg-type]
+            assert hasattr(checkpointer, "aput"), "checkpointer cannot be used with astream()"
 
     graph = build_graph()
-    return graph.compile(
+    compiled = graph.compile(
         checkpointer=checkpointer,
         interrupt_before=["disambiguation_interrupt"],
     )
+    _COMPILED_GRAPHS[loop_id] = compiled
+    return compiled
 
 
 # ── Node list for doc/test consistency ───────────────────────────────────────

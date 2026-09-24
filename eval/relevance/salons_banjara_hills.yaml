@@ -1,0 +1,19 @@
+case: salons_banjara_hills
+query:
+  keyword: "salons"
+  locality: "Banjara Hills"
+  city: "Hyderabad"
+  state: "Telangana"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  - {name: "Juice Salon & Spa Banjara Hills", categories: ["beauty_salon", "hairdresser"], brand: "Juice Salon", relevant: true}
+  - {name: "Toni & Guy Hairdressing", categories: ["hairdresser"], brand: "Toni & Guy", relevant: true}
+  - {name: "Mirrors Luxury Salons", categories: ["beauty_salon"], brand: "Mirrors", relevant: true}
+  - {name: "Envi Unisex Salon", categories: ["beauty_salon"], brand: "Envi", relevant: true}
+  - {name: "Star Unisex Hair & Beauty Parlour", categories: ["hairdresser"], brand: null, relevant: true}
+  - {name: "Bawarchi Restaurant", categories: ["restaurant"], brand: null, relevant: false}
+  - {name: "Apollo Clinic", categories: ["clinic", "hospital"], brand: "Apollo", relevant: false}
+  - {name: "Karachi Bakery", categories: ["bakery"], brand: "Karachi Bakery", relevant: false}
+  - {name: "MRF Tyre Centre", categories: ["car_repair"], brand: "MRF", relevant: false}
+  - {name: "Royal Footwear & Chappal House", categories: ["shoe_store"], brand: null, relevant: false}

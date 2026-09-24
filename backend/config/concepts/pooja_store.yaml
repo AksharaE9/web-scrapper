@@ -1,0 +1,126 @@
+concept_id: pooja_store
+version: 1
+labels:
+  - pooja store
+  - puja store
+  - pooja samagri
+  - puja samagri
+  - pooja items
+  - pooja shop
+  - puja shop
+  - spiritual store
+  - devotional store
+  - puja bhandar
+definition: A retail shop specializing in Hindu devotional and spiritual supplies including agarbatti, camphor, brass idols, puja oil, deepam, and ritual samagri.
+signals:
+  defining_terms:
+    strong:
+      - pooja
+      - puja
+      - samagri
+      - agarbatti
+      - camphor
+      - havan
+      - dhoop
+      - puja bhandar
+      - mandir items
+    medium: []
+  supporting_terms:
+    medium:
+      - brass idols
+      - kumkum
+      - turmeric
+      - cotton wicks
+      - diya
+      - vilakku
+      - shankha
+      - rudraksha
+      - gangajal
+      - yantra
+      - chandan
+  non_evidence: inherit
+categories:
+  defining:
+    - shop=religion
+    - religion
+    - pooja_store
+    - puja_store
+    - spiritual_store
+    - devotional_store
+    - pooja_samagri
+    - puja_samagri
+    - religious_goods_store
+    - agarbatti_store
+    - camphor_store
+    - pooja_mandir_store
+    - puja_bhandar
+    - pooja_items
+  host:
+    - temple_complex
+    - market_complex
+    - residential_area
+    - general_store
+    - commercial_building
+    - shopping_complex
+    - convenience_store
+    - supermarket
+    - gift_shop
+  incompatible:
+    - travel_company
+    - beauty_salon
+    - jewelry_store
+    - rail_facility_or_station
+    - hardware_home_and_garden
+    - naturopathic_holistic
+    - stationery_store
+    - pharmacy
+    - shoe_store
+    - butcher
+    - bar
+    - nightclub
+    - car_repair
+veto_terms:
+  - footwear
+  - shoes
+  - pen
+  - pens
+  - travel
+  - taxi
+  - cab
+  - reiki
+  - salon
+  - spa
+  - leather
+  - butcher
+  - meat
+  - beef
+  - chicken
+  - liquor
+  - stationery
+  - manufacturing factory
+  - chemical industry
+brands:
+  incompatible:
+    - William Penn
+    - Bata
+    - KFC
+    - McDonald's
+    - Apollo
+    - Subway
+overture_basic_categories:
+  - general_store
+overture_taxonomy_paths:
+  - shopping > gifts_and_novelties > spiritual_store
+osm_tags:
+  - shop=religion
+  - shop=general
+name_patterns:
+  - "\\bpooja\\b"
+  - "\\bpuja\\b"
+  - "\\bsamagri\\b"
+  - "\\bspiritual\\b"
+  - "\\bbhandar\\b"
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -11,6 +11,8 @@ from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel
 
 from app.db.pool import get_conn
+from app.graph.nodes.n1_geo import resolve_location
+from app.graph.state import LocationInput
 from app.settings import settings
 
 router = APIRouter(tags=["geo"])
@@ -154,9 +156,6 @@ async def geo_preview_get(
     country: str = "India",
 ) -> dict[str, Any]:
     """Preview geo boundary via GET query params (called by frontend)."""
-    from app.graph.nodes.n1_geo import resolve_location
-    from app.graph.state import LocationInput
-
     loc = LocationInput(
         raw_text=text,
         locality=locality,
@@ -183,8 +182,9 @@ async def geo_preview_get(
         "osm_id": geo.osm_id,
         "overture_division_id": geo.overture_division_id,
         "polygon_wkt": geo.polygon_wkt,
-        "boundary_geojson": geojson,
+        "boundary_geojson": geo.boundary_geojson or geojson,
         "boundary_kind": geo.boundary_kind,
+        "boundary_source": getattr(geo, "boundary_source", "radius_circle"),
         "buffer_m": geo.buffer_m,
         "bbox": list(geo.bbox),
         "centroid": list(geo.centroid),
@@ -202,9 +202,6 @@ async def geo_resolve(body: dict[str, Any]) -> dict[str, Any]:
     Preview the geo boundary for a location before creating a run.
     Calls N1 GeoResolverAgent logic directly.
     """
-    from app.graph.nodes.n1_geo import resolve_location
-    from app.graph.state import LocationInput
-
     loc = LocationInput(**body)
     try:
         geo = await resolve_location(loc)
@@ -225,8 +222,9 @@ async def geo_resolve(body: dict[str, Any]) -> dict[str, Any]:
         "osm_id": geo.osm_id,
         "overture_division_id": geo.overture_division_id,
         "polygon_wkt": geo.polygon_wkt,
-        "boundary_geojson": geojson,
+        "boundary_geojson": geo.boundary_geojson or geojson,
         "boundary_kind": geo.boundary_kind,
+        "boundary_source": getattr(geo, "boundary_source", "radius_circle"),
         "buffer_m": geo.buffer_m,
         "bbox": list(geo.bbox),
         "centroid": list(geo.centroid),

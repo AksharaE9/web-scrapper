@@ -1,0 +1,36 @@
+concept_id: homoeopathy_clinic
+version: 1
+labels:
+- homoeopathy clinic
+- homeopathic dispensary
+definition: Homoeopathic medical clinic and dispensary.
+signals:
+  defining_terms:
+    strong:
+    - homoeopathy
+    - homeopathy
+    - homeopathic clinic
+    - dr batra
+  supporting_terms:
+    medium:
+    - tincture
+    - dilution
+    - chronic cure
+    - natural remedy
+  non_evidence: inherit
+categories:
+  defining:
+  - health_and_beauty.medical.alternative_medicine
+  host:
+  - clinic
+  incompatible:
+  - supermarket
+  - liquor
+veto_terms:
+- allopathic pharmacy only
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

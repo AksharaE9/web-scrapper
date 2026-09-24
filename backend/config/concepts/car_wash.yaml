@@ -1,0 +1,45 @@
+concept_id: car_wash
+version: 1
+labels:
+- car wash
+- auto detailing
+- ceramic coating
+- water wash
+definition: Vehicle exterior and interior cleaning, pressure washing, and detailing
+  service.
+signals:
+  defining_terms:
+    strong:
+    - car wash
+    - auto detailing
+    - ceramic coating
+    - water wash
+    - foam wash
+    - car spa
+  supporting_terms:
+    medium:
+    - interior cleaning
+    - rubbing polish
+    - ppf
+    - wax polish
+    - bike wash
+  non_evidence: inherit
+categories:
+  defining:
+  - automotive.car_wash
+  - automotive.repair_and_service
+  host:
+  - fuel_station
+  - service_station
+  incompatible:
+  - dental_clinic
+  - bakery
+veto_terms:
+- pharmacy
+- medical store
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

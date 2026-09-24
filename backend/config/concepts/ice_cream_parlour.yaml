@@ -1,0 +1,43 @@
+concept_id: ice_cream_parlour
+version: 1
+labels:
+- ice cream parlour
+- gelato shop
+- frozen yogurt
+definition: Retail outlet serving scoops of ice cream, sundaes, gelato, and frozen
+  desserts.
+signals:
+  defining_terms:
+    strong:
+    - ice cream
+    - gelato
+    - frozen dessert
+    - sundae parlour
+    - kulfi
+  supporting_terms:
+    medium:
+    - scoop
+    - cone
+    - waffle cone
+    - shakes
+    - falooda
+  non_evidence: inherit
+categories:
+  defining:
+  - food_and_drink.ice_cream
+  - food_and_drink.dessert
+  host:
+  - shopping_mall
+  - food_court
+  incompatible:
+  - hardware_store
+  - pharmacy
+veto_terms:
+- dry cleaner
+- hardware
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

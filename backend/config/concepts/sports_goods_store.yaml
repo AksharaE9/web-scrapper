@@ -1,0 +1,42 @@
+concept_id: sports_goods_store
+version: 1
+labels:
+- sports store
+- sports shop
+- fitness equipment store
+definition: Store retailing sporting goods, athletic wear, cricket gear, and fitness
+  items.
+signals:
+  defining_terms:
+    strong:
+    - sports store
+    - sports shop
+    - cricket gear
+    - badminton racket
+    - fitness equipment
+  supporting_terms:
+    medium:
+    - decathlon
+    - dumbbells
+    - sportswear
+    - football
+    - tennis
+    - gym wear
+  non_evidence: inherit
+categories:
+  defining:
+  - shopping.sporting_goods
+  host:
+  - shopping_mall
+  incompatible:
+  - pharmacy
+  - bakery
+veto_terms:
+- medical clinic
+- pharmacy
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

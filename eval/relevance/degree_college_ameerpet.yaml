@@ -1,0 +1,96 @@
+case: degree_college_ameerpet
+query:
+  keyword: "degree college"
+  locality: "Ameerpet"
+  city: "Hyderabad"
+  state: "Telangana"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+# ── Annotator notes ────────────────────────────────────────────────────────
+# Labelled per docs/labelling_protocol.md (VALIDATE-1.0).
+# RUBRIC RULE: A degree college grants UGC-recognised bachelor's/PG degrees.
+# K-12 schools, vocational academies, coaching centres are NOT degree colleges.
+# The PROD-v2.2 flagship example returned 6 schools as degree colleges.
+# This fixture explicitly includes all 6 as SEEDED NEGATIVES (relevant: false).
+labels:
+  # ── TRUE POSITIVES (actual degree colleges in Ameerpet area) ─────────────
+  - name: "Aurora Degree College"
+    categories: ["college", "college_and_university"]
+    relevant: true
+  - name: "St. Mary's Degree College for Women"
+    categories: ["college", "college_and_university"]
+    relevant: true
+  - name: "Badruka College of Commerce and Arts"
+    categories: ["college", "higher_education"]
+    relevant: true
+  - name: "Pragathi Degree College"
+    categories: ["college_and_university"]
+    relevant: true
+  - name: "Narayana Degree College Ameerpet"
+    categories: ["college_and_university", "educational_institution"]
+    relevant: true
+  - name: "Sri Chaitanya Junior College"
+    categories: ["college", "junior_college"]
+    relevant: true
+  - name: "Vijaya Degree College"
+    categories: ["college_and_university"]
+    relevant: true
+
+  # ── SEEDED NEGATIVES — The exact PROD-v2.2 false positives ───────────────
+  # These MUST be rejected. They are the flagship verification failure.
+  - name: "Gowtham Model School"
+    categories: ["school", "educational_institution"]
+    relevant: false
+    seeded_negative: true
+    annotator_note: "K-12 school — not a degree college. PROD-v2.2 wrongly returned this."
+  - name: "Slate - The School"
+    categories: ["school"]
+    relevant: false
+    seeded_negative: true
+    annotator_note: "K-12 school — not a degree college."
+  - name: "Gitanjali Group of Schools"
+    categories: ["school", "educational_institution"]
+    relevant: false
+    seeded_negative: true
+    annotator_note: "Schools chain — not degree colleges."
+  - name: "St. Alphonsa High School"
+    categories: ["school", "secondary_school"]
+    relevant: false
+    seeded_negative: true
+    annotator_note: "High school — not a degree college."
+  - name: "Flying Star Aviation and Hospitality Academy"
+    categories: ["vocational_training", "skill_centre"]
+    relevant: false
+    seeded_negative: true
+    annotator_note: "Vocational academy — not a degree college."
+  - name: "LiveTech"
+    categories: ["it_training", "computer_institute", "educational_institution"]
+    relevant: false
+    seeded_negative: true
+    annotator_note: "IT training institute — not a degree college."
+
+  # ── Additional negatives (other education-adjacent types) ─────────────────
+  - name: "FIITJEE Ameerpet"
+    categories: ["coaching_center", "tutoring_service"]
+    relevant: false
+    annotator_note: "IIT-JEE coaching — not a degree college."
+  - name: "Allen Career Institute Ameerpet"
+    categories: ["coaching_center"]
+    relevant: false
+    annotator_note: "NEET/JEE coaching — not a degree college."
+  - name: "EuroKids Ameerpet"
+    categories: ["preschool", "daycare"]
+    relevant: false
+    annotator_note: "Preschool — not a degree college."
+  - name: "Montessori Play School"
+    categories: ["preschool"]
+    relevant: false
+    annotator_note: "Play school — not a degree college."
+  - name: "Hyundai Service Centre"
+    categories: ["car_repair", "service_station"]
+    relevant: false
+    annotator_note: "Auto service — unrelated."
+  - name: "Apollo Pharmacy"
+    categories: ["pharmacy"]
+    relevant: false
+    annotator_note: "Pharmacy — unrelated."

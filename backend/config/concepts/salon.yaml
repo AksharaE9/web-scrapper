@@ -1,0 +1,112 @@
+concept_id: salon
+version: 1
+labels:
+- salon
+- salons
+- beauty parlour
+- beauty parlor
+- hair salon
+- unisex salon
+- barber
+- haircut
+- makeover
+- hairdresser
+definition: An establishment offering hair care, haircuts, hair styling, skin treatments,
+  facials, pedicures, and beauty grooming services.
+signals:
+  defining_terms:
+    strong:
+    - salon
+    - parlour
+    - parlor
+    - haircut
+    - hairstylist
+    - beauty parlour
+    - barber
+    - hair studio
+    - unisex salon
+    - looks
+    - toni&guy
+    - naturals
+    - enrich
+  supporting_terms:
+    medium:
+    - hair
+    - facial
+    - styling
+    - grooming
+    - waxing
+    - makeup
+    - bridal
+    - pedicure
+    - manicure
+    - keratin
+    - blowdry
+  non_evidence: inherit
+categories:
+  defining:
+  - beauty_salon
+  - hair_salon
+  - barber_shop
+  - hairdresser
+  - shop=hairdresser
+  - shop=beauty
+  - amenity=barber
+  host:
+  - spa
+  - wellness_centre
+  - department_store
+  - shopping_mall
+  incompatible:
+  - gym
+  - bakery
+  - restaurant
+  - pharmacy
+  - automobile
+  - hardware_store
+veto_terms:
+- academy
+- institute
+- training
+- products
+- distributor
+- gym
+- fitness
+- bakery
+- cakes
+- restaurant
+- hardware
+- tyres
+- clinic
+- hospital
+- pharma
+brands:
+  incompatible:
+  - Gold's Gym
+  - KFC
+  - Bata
+overture_basic_categories:
+- beauty_salon
+- hair_salon
+- barber_shop
+overture_taxonomy_paths:
+- services > personal_care > beauty_salon
+- services > personal_care > hair_salon
+osm_tags:
+- shop=hairdresser
+- shop=beauty
+- amenity=barber
+name_patterns:
+- \bsalon\b
+- \bparlou?r\b
+- \bbarber\b
+- \bhair\b
+- \bspa\b
+- \blooks\b
+- \btoni&guy\b
+- \bnaturals\b
+- \benrich\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -1,0 +1,80 @@
+concept_id: sweet_shop
+version: 1
+labels:
+- sweet shop
+- mithai shop
+- sweets
+- mithai
+- halwai
+- sweet mart
+- confectionery shop
+- traditional sweets
+definition: A traditional Indian confectionery store preparing and selling fresh regional
+  mithai, halwa, ladoos, jalebis, kaju katli, and savory namkeen.
+signals:
+  defining_terms:
+    strong:
+    - sweets
+    - mithai
+    - sweet mart
+    - confectioners
+    - halwai
+    - sweet shop
+    - mithai shop
+    - bikanervala
+    - haldiram
+  supporting_terms:
+    medium:
+    - ladoo
+    - gulab jamun
+    - rasgulla
+    - kaju katli
+    - namkeen
+    - jalebi
+    - barfi
+    - peda
+    - samosa
+    - kachori
+    - snacks
+  non_evidence: inherit
+categories:
+  defining:
+  - confectionery
+  - sweet_shop
+  - bakery
+  - shop=confectionery
+  - shop=bakery
+  host:
+  - market_complex
+  - shopping_district
+  incompatible:
+  - hardware_store
+  - car_repair
+  - pharmacy
+  - gym
+veto_terms:
+- sweet factory machinery
+- sugar refinery
+brands:
+  incompatible:
+  - Apollo
+  - Bata
+  - Cult.fit
+overture_basic_categories:
+- confectionery
+- bakery
+overture_taxonomy_paths:
+- food_and_drink > confectionery
+- shopping > food > bakery
+osm_tags:
+- shop=confectionery
+- shop=bakery
+name_patterns:
+- \bsweets?\b
+- \bmithai\b
+- \bhalwai\b
+- \bsweet mart\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -1,0 +1,87 @@
+concept_id: furniture_store
+version: 1
+labels:
+- furniture store
+- furniture shop
+- home decor
+- furnishing
+- wood furniture
+- sofa store
+- mattress store
+- interior design store
+definition: A showroom retailing home and office furniture, sofas, beds, dining tables,
+  wardrobes, and mattresses.
+signals:
+  defining_terms:
+    strong:
+    - furniture
+    - furnishings
+    - decor
+    - sofas
+    - mattress
+    - wooden
+    - home centre
+    - ikea
+    - pepperfry
+    - sofa maker
+    - home furniture
+    - office furniture
+  supporting_terms:
+    medium:
+    - beds
+    - dining table
+    - wardrobes
+    - chairs
+    - recliners
+    - cushions
+    - curtains
+    - woodwork
+  non_evidence: inherit
+categories:
+  defining:
+  - furniture_store
+  - home_goods_store
+  - shop=furniture
+  - shop=interior_decoration
+  - shop=bed
+  host:
+  - shopping_mall
+  - commercial_building
+  - retail_park
+  incompatible:
+  - pharmacy
+  - medical_clinic
+  - restaurant
+  - bakery
+veto_terms:
+- plywood factory
+- saw mill
+- timber logging
+- industrial timber depot
+brands:
+  incompatible:
+  - Apollo Pharmacy
+  - Dominos
+overture_basic_categories:
+- furniture_store
+- home_goods_store
+overture_taxonomy_paths:
+- shopping > home_and_garden > furniture
+osm_tags:
+- shop=furniture
+- shop=interior_decoration
+- shop=bed
+name_patterns:
+- \bfurnitures?\b
+- \bfurnishings?\b
+- \bdecor\b
+- \bsofas?\b
+- \bmattress\b
+- \bwooden\b
+- \bhome centre\b
+- \bikea\b
+- \bpepperfry\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

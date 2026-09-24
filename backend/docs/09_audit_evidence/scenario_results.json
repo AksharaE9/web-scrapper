@@ -1,0 +1,356 @@
+[
+  {
+    "scenario": 1,
+    "name": "Happy Path (Banjara Hills - Hotels, Restaurants)",
+    "run_id": "3650db56-a225-4411-a429-bb062a6453b4",
+    "status": "timeout",
+    "duration_sec": 90.32,
+    "lead_count": 0,
+    "stats": null,
+    "sample_leads": []
+  },
+  {
+    "scenario": 2,
+    "name": "Fresh vs Cached (Cache Hit Verification)",
+    "run_id": "6b706fb4-e6a0-4f9b-924b-17eda238ee8a",
+    "status": "completed",
+    "duration_sec": 28.88,
+    "cache_policy_used": "prefer_cache",
+    "stats": {
+      "geo": {
+        "bbox": [
+          78.43,
+          17.4,
+          78.468,
+          17.432
+        ],
+        "centroid": [
+          78.4482,
+          17.4156
+        ],
+        "display_name": "Banjara Hills, Hyderabad, Telangana, India"
+      },
+      "budget": {
+        "llm_calls_used": 0,
+        "http_calls_used": 0
+      },
+      "errors": [
+        {
+          "node": "n7_verify",
+          "error": "name 'asyncio' is not defined",
+          "traceback": "Traceback (most recent call last):\n  File \"C:\\coding\\web scrapper\\leadcore-zero\\backend\\app\\graph\\runtime.py\", line 94, in wrapper\n    result = await attempt_fn(state)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coding\\web scrapper\\leadcore-zero\\backend\\app\\graph\\nodes\\n7_verify.py\", line 38, in run\n    results = await asyncio.gather(*tasks, return_exceptions=False)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coding\\web scrapper\\leadcore-zero\\backend\\app\\graph\\nodes\\n7_verify.py\", line 29, in _verify_one\n    checks = await run_entity_verification_checks(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coding\\web scrapper\\leadcore-zero\\backend\\app\\verify\\checks.py\", line 75, in run_entity_verification_checks\n    e_res = await asyncio.to_thread(verify_email, first_email)\n                  ^^^^^^^\nNameError: name 'asyncio' is not defined. Did you forget to import 'asyncio'\n",
+          "is_critical": false,
+          "occurred_at": "2026-09-22T09:21:03.064167Z"
+        }
+      ],
+      "metrics": {
+        "completeness": {
+          "email_rate": 0.6,
+          "phone_rate": 1.0,
+          "address_rate": 1.0,
+          "website_rate": 1.0
+        },
+        "total_entities": 10,
+        "capture_recapture": {
+          "caveat": "Assumes independence between Overture and OSM data collection.",
+          "osm_count": 7,
+          "overlap_count": 7,
+          "overture_count": 10,
+          "estimated_coverage_rate": 1.0,
+          "estimated_total_population": 10
+        },
+        "tier_distribution": {
+          "Likely": 0,
+          "Verified": 0,
+          "Unverified": 10
+        },
+        "average_confidence": 0.35,
+        "multi_source_count": 7
+      },
+      "degraded": [],
+      "source_stats": {
+        "osm": {
+          "count": 31,
+          "fallback": "nominatim"
+        },
+        "overture": {
+          "mode": "cache",
+          "matched": 530,
+          "release": "2026-08-19.0",
+          "degraded": [],
+          "cache_hit": true,
+          "raw_count": 9509,
+          "row_count": 9509,
+          "written_at": "2026-09-22T09:19:36.905026+00:00",
+          "snapped_bbox": [
+            78.4,
+            17.35,
+            78.5,
+            17.45
+          ],
+          "fetched_bytes": 0,
+          "cache_age_days": 0.0
+        },
+        "relevance_cascade": {
+          "passed": 19,
+          "review": 0,
+          "accepted": 19,
+          "rejected": 542
+        }
+      },
+      "candidate_count": 580,
+      "provenance_summary": {
+        "osm": {
+          "entities": 8,
+          "candidates": 31
+        },
+        "overture": {
+          "entities": 21,
+          "candidates": 549
+        }
+      },
+      "resolved_entity_count": 10
+    }
+  },
+  {
+    "scenario": 3,
+    "name": "Precision (Pooja Stores in Whitefield)",
+    "run_id": "19ce33bd-a71d-47fc-8a93-1bba8c43c360",
+    "status": "completed",
+    "duration_sec": 33.73,
+    "lead_count": 9,
+    "known_fps_accepted_count": 0,
+    "known_fps_accepted": [],
+    "stats": {
+      "geo": {
+        "bbox": [
+          77.72,
+          12.945,
+          77.778,
+          12.998
+        ],
+        "centroid": [
+          77.7499,
+          12.9698
+        ],
+        "display_name": "Whitefield, Bengaluru, Karnataka, India"
+      },
+      "budget": {
+        "llm_calls_used": 0,
+        "http_calls_used": 0
+      },
+      "errors": [
+        {
+          "node": "n7_verify",
+          "error": "name 'asyncio' is not defined",
+          "traceback": "Traceback (most recent call last):\n  File \"C:\\coding\\web scrapper\\leadcore-zero\\backend\\app\\graph\\runtime.py\", line 94, in wrapper\n    result = await attempt_fn(state)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coding\\web scrapper\\leadcore-zero\\backend\\app\\graph\\nodes\\n7_verify.py\", line 38, in run\n    results = await asyncio.gather(*tasks, return_exceptions=False)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coding\\web scrapper\\leadcore-zero\\backend\\app\\graph\\nodes\\n7_verify.py\", line 29, in _verify_one\n    checks = await run_entity_verification_checks(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\coding\\web scrapper\\leadcore-zero\\backend\\app\\verify\\checks.py\", line 75, in run_entity_verification_checks\n    e_res = await asyncio.to_thread(verify_email, first_email)\n                  ^^^^^^^\nNameError: name 'asyncio' is not defined. Did you forget to import 'asyncio'\n",
+          "is_critical": false,
+          "occurred_at": "2026-09-22T09:21:37.037402Z"
+        }
+      ],
+      "metrics": {
+        "completeness": {
+          "email_rate": 0.556,
+          "phone_rate": 0.889,
+          "address_rate": 1.0,
+          "website_rate": 0.333
+        },
+        "total_entities": 9,
+        "capture_recapture": null,
+        "tier_distribution": {
+          "Likely": 0,
+          "Verified": 0,
+          "Unverified": 9
+        },
+        "average_confidence": 0.35,
+        "multi_source_count": 0
+      },
+      "degraded": [],
+      "source_stats": {
+        "osm": {
+          "error": "no_results"
+        },
+        "overture": {
+          "mode": "live",
+          "matched": 10,
+          "release": "2026-08-19.0",
+          "degraded": [],
+          "cache_hit": false,
+          "raw_count": 4501,
+          "row_count": 4502,
+          "written_at": "2026-09-22T09:21:34.150957+00:00",
+          "snapped_bbox": [
+            77.7,
+            12.9,
+            77.80000000000001,
+            13.0
+          ],
+          "fetched_bytes": 906651,
+          "cache_age_days": 0.0
+        },
+        "enrichment": {
+          "fields_enriched": 1,
+          "domains_attempted": 3
+        },
+        "relevance_cascade": {
+          "passed": 7,
+          "review": 0,
+          "accepted": 7,
+          "rejected": 3
+        }
+      },
+      "candidate_count": 17,
+      "provenance_summary": {
+        "overture": {
+          "entities": 17,
+          "candidates": 17
+        }
+      },
+      "resolved_entity_count": 9
+    }
+  },
+  {
+    "scenario": 4,
+    "name": "Degraded Source Resilience (Overpass Only)",
+    "run_id": "7ceb46a8-2519-4808-991e-1d5e0ece546c",
+    "status": "completed",
+    "duration_sec": 11.16,
+    "lead_count": 5,
+    "stats": {
+      "geo": {
+        "bbox": [
+          77.625,
+          12.965,
+          77.658,
+          12.992
+        ],
+        "centroid": [
+          77.6412,
+          12.9784
+        ],
+        "display_name": "Indiranagar, Bengaluru, Karnataka, India"
+      },
+      "budget": {
+        "llm_calls_used": 0,
+        "http_calls_used": 0
+      },
+      "errors": [],
+      "metrics": {
+        "completeness": {
+          "email_rate": 0.0,
+          "phone_rate": 0.0,
+          "address_rate": 0.0,
+          "website_rate": 0.0
+        },
+        "total_entities": 5,
+        "capture_recapture": null,
+        "tier_distribution": {
+          "Likely": 0,
+          "Verified": 0,
+          "Unverified": 5
+        },
+        "average_confidence": 0.4,
+        "multi_source_count": 0
+      },
+      "degraded": [],
+      "source_stats": {
+        "osm": {
+          "count": 30,
+          "fallback": "nominatim"
+        },
+        "relevance_cascade": {
+          "passed": 22,
+          "review": 0,
+          "accepted": 22,
+          "rejected": 8
+        }
+      },
+      "candidate_count": 52,
+      "provenance_summary": {
+        "osm": {
+          "entities": 10,
+          "candidates": 52
+        }
+      },
+      "resolved_entity_count": 5
+    }
+  },
+  {
+    "scenario": 5,
+    "name": "Empty / Zero Results Graceful Handling",
+    "run_id": "4e3642a9-8509-40ff-9554-85cae3191dc0",
+    "status": "completed",
+    "duration_sec": 9.07,
+    "lead_count": 0,
+    "graceful_completion": true,
+    "stats": {
+      "geo": {
+        "bbox": [
+          77.72,
+          12.945,
+          77.778,
+          12.998
+        ],
+        "centroid": [
+          77.7499,
+          12.9698
+        ],
+        "display_name": "Whitefield, Bengaluru, Karnataka, India"
+      },
+      "budget": {
+        "llm_calls_used": 0,
+        "http_calls_used": 0
+      },
+      "errors": [],
+      "metrics": {
+        "completeness": {
+          "email": 0.0,
+          "phone": 0.0,
+          "address": 0.0,
+          "website": 0.0
+        },
+        "total_entities": 0,
+        "capture_recapture": null,
+        "tier_distribution": {
+          "Likely": 0,
+          "Verified": 0,
+          "Unverified": 0
+        },
+        "average_confidence": 0.0
+      },
+      "degraded": [],
+      "source_stats": {
+        "osm": {
+          "error": "no_results"
+        },
+        "overture": {
+          "mode": "cache",
+          "matched": 0,
+          "release": "2026-08-19.0",
+          "degraded": [],
+          "cache_hit": true,
+          "raw_count": 4501,
+          "row_count": 4502,
+          "written_at": "2026-09-22T09:21:34.150957+00:00",
+          "snapped_bbox": [
+            77.7,
+            12.9,
+            77.80000000000001,
+            13.0
+          ],
+          "fetched_bytes": 0,
+          "cache_age_days": 0.0
+        },
+        "relevance_cascade": {
+          "passed": 0,
+          "review": 0,
+          "accepted": 0,
+          "rejected": 0
+        }
+      },
+      "candidate_count": 0,
+      "provenance_summary": {},
+      "resolved_entity_count": 0
+    }
+  }
+]

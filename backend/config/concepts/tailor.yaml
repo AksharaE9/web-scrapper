@@ -1,0 +1,41 @@
+concept_id: tailor
+version: 1
+labels:
+- tailor
+- tailor near me
+definition: A custom tailoring business measuring, stitching, and altering suits,
+  shirts, blouses, and dresses.
+signals:
+  defining_terms:
+    strong:
+    - tailors
+    - tailoring
+    - ladies tailor
+    - custom tailoring
+    - designer boutique
+  supporting_terms:
+    medium:
+    - stitching
+    - alterations
+    - blouse stitching
+    - suit stitching
+    - embroidery
+  non_evidence: inherit
+categories:
+  defining:
+  - tailor
+  - shop=tailor
+  host:
+  - general_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - unrelated_service
+veto_terms:
+- unrelated_industry
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

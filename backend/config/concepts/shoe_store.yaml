@@ -1,0 +1,84 @@
+concept_id: shoe_store
+version: 1
+labels:
+- shoe store
+- footwear shop
+- footwear
+- chappal shop
+- sneaker store
+- leather footwear
+- shoes store
+- shoe shop
+definition: A retail store specializing in footwear, sports shoes, formal shoes, sandals,
+  chappals, and footwear accessories.
+signals:
+  defining_terms:
+    strong:
+    - footwear
+    - shoes
+    - shoe shop
+    - chappal
+    - sneakers
+    - sandals
+    - footwear world
+    - bata
+    - metro shoes
+    - woodland
+  supporting_terms:
+    medium:
+    - leather shoes
+    - slippers
+    - heels
+    - formal shoes
+    - sports shoes
+    - boots
+    - loafers
+    - flip flops
+    - crocs
+  non_evidence: inherit
+categories:
+  defining:
+  - shoe_store
+  - footwear
+  - shop=shoes
+  host:
+  - clothing_store
+  - department_store
+  - shopping_mall
+  incompatible:
+  - restaurant
+  - bakery
+  - pooja_store
+  - pharmacy
+  - grocery
+veto_terms:
+- pooja
+- agarbatti
+- pastries
+- restaurant
+- food
+- medical
+- medicines
+- bakery
+- tyres
+brands:
+  incompatible:
+  - Apollo
+  - Archies
+  - KFC
+overture_basic_categories:
+- shoe_store
+overture_taxonomy_paths:
+- shopping > clothing > shoes
+osm_tags:
+- shop=shoes
+name_patterns:
+- \bshoes?\b
+- \bfootwear\b
+- \bchappals?\b
+- \bsneakers?\b
+- \bsandals?\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

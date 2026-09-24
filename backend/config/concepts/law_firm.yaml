@@ -1,0 +1,43 @@
+concept_id: law_firm
+version: 1
+labels:
+- law firm
+- advocate office
+- legal counsel
+- lawyer
+definition: Legal practice providing court litigation, drafting, and advisory counsel.
+signals:
+  defining_terms:
+    strong:
+    - advocate
+    - law firm
+    - legal counsel
+    - lawyer office
+    - solicitor
+    - attorney
+  supporting_terms:
+    medium:
+    - court
+    - litigation
+    - legal notice
+    - affidavit
+    - property documentation
+    - notary
+  non_evidence: inherit
+categories:
+  defining:
+  - professional_services.legal
+  host:
+  - office
+  incompatible:
+  - bakery
+  - hardware
+veto_terms:
+- restaurant
+- repair shop
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

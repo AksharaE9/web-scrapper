@@ -1,0 +1,95 @@
+concept_id: hardware_store
+version: 1
+labels:
+- hardware store
+- hardware shop
+- sanitary store
+- paint shop
+- electrical and hardware
+- plywood store
+- hardware
+- paints
+- building materials
+definition: A shop selling tools, construction materials, fasteners, plumbing supplies,
+  sanitary fittings, plywood, and paints.
+signals:
+  defining_terms:
+    strong:
+    - hardware
+    - paints
+    - sanitary
+    - plywood
+    - timber
+    - asian paints
+    - berger
+    - buildpro
+    - tools & hardware
+    - building materials
+    - sanitaryware
+  supporting_terms:
+    medium:
+    - screws
+    - tools
+    - plumbing
+    - pipes
+    - paints
+    - fittings
+    - cement
+    - taps
+    - drills
+    - hinges
+    - adhesives
+  non_evidence: inherit
+categories:
+  defining:
+  - hardware_store
+  - building_materials
+  - shop=hardware
+  - shop=doityourself
+  - shop=trade
+  - shop=paint
+  host:
+  - market_complex
+  - commercial_area
+  incompatible:
+  - restaurant
+  - bakery
+  - pharmacy
+  - shoe_store
+  - beauty_salon
+veto_terms:
+- computer hardware
+- software company
+- industrial steel depot
+- restaurant
+- bakery
+- sweets
+- fashion
+brands:
+  incompatible:
+  - Apollo Pharmacy
+  - Bata
+  - Dominos
+overture_basic_categories:
+- hardware_store
+- building_materials
+overture_taxonomy_paths:
+- shopping > home_and_garden > hardware
+osm_tags:
+- shop=hardware
+- shop=doityourself
+- shop=trade
+- shop=paint
+name_patterns:
+- \bhardware\b
+- \bpaints?\b
+- \bsanitary\b
+- \bplywood\b
+- \btimber\b
+- \basian paints\b
+- \bberger\b
+- \bbuildpro\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

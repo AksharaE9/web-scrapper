@@ -1,0 +1,72 @@
+# eval/canaries.yaml — Ground Truth Canary Records for Scraping & Extraction Verification
+# Note: All records use generic synthetic/representative business information for privacy compliance.
+
+canaries:
+  - id: canary_pooja_01
+    concept_id: pooja_store
+    canonical_name: "Sri Lakshmi Pooja Stores"
+    locality: "Whitefield"
+    city: "Bengaluru"
+    expected:
+      relevance_outcome: "accepted"
+      has_phone: true
+      expected_phone_e164: "+918028450123"
+      expected_domain: "srilakshmipooja.in"
+      defining_signals: ["pooja", "samagri", "agarbatti"]
+
+  - id: canary_hotel_01
+    concept_id: hotel
+    canonical_name: "Radisson Blu Plaza Hotel"
+    locality: "Banjara Hills"
+    city: "Hyderabad"
+    expected:
+      relevance_outcome: "accepted"
+      has_phone: true
+      has_email: true
+      expected_domain: "radissonhotels.com"
+      primary_category: "accommodation"
+
+  - id: canary_fp_william_penn
+    concept_id: pooja_store
+    canonical_name: "William Penn"
+    locality: "Whitefield"
+    city: "Bengaluru"
+    expected:
+      relevance_outcome: "rejected"
+      veto_reason: "incompatible_category"
+
+  - id: canary_fp_ximi_vogue
+    concept_id: pooja_store
+    canonical_name: "Ximi Vogue"
+    locality: "Whitefield"
+    city: "Bengaluru"
+    expected:
+      relevance_outcome: "rejected"
+      veto_reason: "incompatible_brand"
+
+  - id: canary_fp_divine_footwear
+    concept_id: pooja_store
+    canonical_name: "Divine Footwear"
+    locality: "Whitefield"
+    city: "Bengaluru"
+    expected:
+      relevance_outcome: "rejected"
+      veto_reason: "veto_term_footwear"
+
+  - id: canary_fp_deepam_taxi
+    concept_id: pooja_store
+    canonical_name: "Deepam Taxi"
+    locality: "Whitefield"
+    city: "Bengaluru"
+    expected:
+      relevance_outcome: "rejected"
+      veto_reason: "incompatible_category"
+
+  - id: canary_fp_archies
+    concept_id: pooja_store
+    canonical_name: "Archies"
+    locality: "Whitefield"
+    city: "Bengaluru"
+    expected:
+      relevance_outcome: "rejected"
+      veto_reason: "veto_term_gift"

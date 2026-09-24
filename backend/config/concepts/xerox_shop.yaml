@@ -1,0 +1,76 @@
+concept_id: xerox_shop
+version: 1
+labels:
+- xerox shop
+- xerox store
+- photocopy shop
+- xerox centre
+- xerox center
+- print shop
+- dtp centre
+- lamination shop
+definition: A commercial document service shop providing photocopying (xerox), computer
+  printing, scanning, lamination, spiral binding, and typing services.
+signals:
+  defining_terms:
+    strong:
+    - xerox
+    - photocopy
+    - xerox centre
+    - xerox center
+    - dtp
+    - print shop
+    - scanning
+    - lamination
+    - spiral binding
+    - copy centre
+  supporting_terms:
+    medium:
+    - colour print
+    - b&w print
+    - stationery
+    - typing
+    - aadhaar print
+    - passport photo
+    - id card
+  non_evidence: inherit
+categories:
+  defining:
+  - copyshop
+  - printing_service
+  - stationery_store
+  - shop=copyshop
+  - craft=photographer
+  - shop=stationery
+  host:
+  - college_area
+  - court_area
+  - commercial_building
+  incompatible:
+  - restaurant
+  - pharmacy
+  - hotel
+veto_terms:
+- xerox corporation corporate
+- printer hardware manufacturing
+brands:
+  incompatible: []
+overture_basic_categories:
+- copyshop
+- stationery_store
+overture_taxonomy_paths:
+- services > business_services > printing
+- shopping > books_and_stationery
+osm_tags:
+- shop=copyshop
+- shop=stationery
+name_patterns:
+- \bxerox\b
+- \bphotocopy\b
+- \bdtp\b
+- \bprint shop\b
+- \bcopy cent(?:re|er)\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

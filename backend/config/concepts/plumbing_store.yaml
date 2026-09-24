@@ -1,0 +1,44 @@
+concept_id: plumbing_store
+version: 1
+labels:
+- sanitaryware store
+- plumbing store
+- bathroom fittings
+- pipes & fittings
+definition: Retail shop selling pipes, faucets, sanitaryware, and plumbing materials.
+signals:
+  defining_terms:
+    strong:
+    - sanitaryware
+    - plumbing store
+    - bathroom fittings
+    - pvc pipes
+    - cpvc fittings
+    - jaquar
+  supporting_terms:
+    medium:
+    - faucet
+    - wash basin
+    - astral pipes
+    - taps
+    - overhead tank
+    - plumber
+  non_evidence: inherit
+categories:
+  defining:
+  - shopping.hardware.plumbing
+  - shopping.home_improvement
+  host:
+  - hardware_store
+  incompatible:
+  - cafe
+  - gym
+veto_terms:
+- coffee shop
+- salon
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

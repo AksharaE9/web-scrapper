@@ -1,0 +1,87 @@
+concept_id: jewellery_store
+version: 1
+labels:
+- jewellery store
+- jewellery shop
+- jewelry store
+- jewellers
+- gold shop
+- diamond merchant
+- silver store
+- jewellery
+- ornaments
+definition: A retail showroom selling gold, silver, diamond, and precious gem jewelry,
+  ornaments, and bullion.
+signals:
+  defining_terms:
+    strong:
+    - jewellers
+    - jewellery
+    - jewelry
+    - gold
+    - diamonds
+    - tanishq
+    - malabar
+    - kalyan
+    - ornaments
+    - goldsmith
+    - gold showroom
+  supporting_terms:
+    medium:
+    - silver
+    - bangles
+    - necklaces
+    - gemstones
+    - earrings
+    - chains
+    - solitaires
+    - hallmark
+    - bullion
+  non_evidence: inherit
+categories:
+  defining:
+  - jewelry_store
+  - jeweler
+  - shop=jewelry
+  - shop=jewellery
+  host:
+  - shopping_mall
+  - market_complex
+  - commercial_building
+  incompatible:
+  - car_repair
+  - hardware_store
+  - restaurant
+  - pharmacy
+veto_terms:
+- mining
+- refinery
+- gold wholesale refinery
+- raw mining depot
+brands:
+  incompatible:
+  - Apollo
+  - Bata
+  - Domino's
+overture_basic_categories:
+- jewelry_store
+- jeweler
+overture_taxonomy_paths:
+- shopping > jewelry
+osm_tags:
+- shop=jewelry
+- shop=jewellery
+name_patterns:
+- \bjewellers?\b
+- \bjewellery\b
+- \bjewelry\b
+- \bgold\b
+- \bdiamonds?\b
+- \btanishq\b
+- \bmalabar\b
+- \bkalyan\b
+- \bornaments?\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

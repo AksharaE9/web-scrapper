@@ -1,0 +1,41 @@
+concept_id: spa_massage
+version: 1
+labels:
+- spa and massage
+- spa and massage near me
+definition: A wellness centre providing therapeutic body massages, aroma therapy,
+  head massage, and reflexology.
+signals:
+  defining_terms:
+    strong:
+    - spa
+    - ayurvedic spa
+    - massage centre
+    - wellness spa
+    - thai spa
+  supporting_terms:
+    medium:
+    - body massage
+    - aroma therapy
+    - ayurveda
+    - steam bath
+    - reflexology
+  non_evidence: inherit
+categories:
+  defining:
+  - spa
+  - amenity=spa
+  host:
+  - general_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - unrelated_service
+veto_terms:
+- unrelated_industry
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

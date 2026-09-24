@@ -1,0 +1,85 @@
+concept_id: dental_clinic
+version: 1
+labels:
+- dental clinic
+- dental clinics
+- dentist
+- dental hospital
+- orthodontist
+- dental care
+- teeth clinic
+- dental surgeon
+definition: A specialized dental healthcare clinic offering teeth examinations, dental
+  surgery, root canals, braces, and oral treatments.
+signals:
+  defining_terms:
+    strong:
+    - dental
+    - dentist
+    - tooth
+    - teeth
+    - clove
+    - orthodontic
+    - root canal
+    - dental surgeon
+    - dental care
+    - dental hospital
+  supporting_terms:
+    medium:
+    - implants
+    - braces
+    - cavity
+    - filling
+    - cleaning
+    - smile care
+    - oral health
+    - dentistry
+    - extraction
+  non_evidence: inherit
+categories:
+  defining:
+  - dentist
+  - dental_clinic
+  - amenity=dentist
+  - healthcare=dentist
+  host:
+  - hospital
+  - medical_center
+  - polyclinic
+  incompatible:
+  - restaurant
+  - bakery
+  - clothing_store
+  - car_repair
+  - grocery
+veto_terms:
+- dental college
+- instruments manufacturer
+- equipment wholesale
+- laboratory supplies
+brands:
+  incompatible:
+  - KFC
+  - Bata
+  - Domino's
+overture_basic_categories:
+- dentist
+- dental_clinic
+overture_taxonomy_paths:
+- health_and_medicine > dental
+- health_and_medicine > medical_specialties > dentistry
+osm_tags:
+- amenity=dentist
+- healthcare=dentist
+name_patterns:
+- \bdental\b
+- \bdentist\b
+- \btooth\b
+- \bteeth\b
+- \bclove\b
+- \borthodontic\b
+- \broot canal\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

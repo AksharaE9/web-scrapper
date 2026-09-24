@@ -12,10 +12,9 @@ from __future__ import annotations
 
 import operator
 from datetime import datetime, timezone
-from typing import Annotated, Any, Literal
+from typing import Annotated, Any, Literal, TypedDict
 
 from pydantic import BaseModel, Field, field_validator
-from typing_extensions import TypedDict
 
 
 # ── Reducer helpers ───────────────────────────────────────────────────────────
@@ -39,6 +38,9 @@ class LocationInput(BaseModel):
     city: str | None = None           # "Bengaluru"
     state: str | None = None          # "Karnataka"
     country: str = "India"
+    lat: float | None = None          # Direct centroid coordinate
+    lon: float | None = None          # Direct centroid coordinate (GeoJSON lon first)
+    radius_m: float | None = None     # Search radius in metres
 
 
 class QueryInput(BaseModel):
@@ -51,6 +53,9 @@ class QueryInput(BaseModel):
     sources: set[Literal["overture", "osm", "wikidata", "alltheplaces", "imports", "overpass"]] = {
         "overture", "osm"
     }
+    # Cache policy for Overture data (defaults to force_fresh for live fresh data every run)
+    cache_policy: Literal["force_fresh", "auto", "prefer_cache"] = "force_fresh"
+    max_cache_age_days: int = Field(default=0, ge=0, le=365)
 
 
 # ── Budget ────────────────────────────────────────────────────────────────────
@@ -73,14 +78,26 @@ class Budget(BaseModel):
 
 # ── Geo resolution ────────────────────────────────────────────────────────────
 
+BoundaryKind = Literal["admin_polygon", "division_polygon", "buffered_point"]
+BoundarySource = Literal[
+    "osm_relation",
+    "osm_way",
+    "overture_division_area",
+    "poi_concave_hull",
+    "h3_cover",
+    "nominatim_bbox",
+    "radius_circle",
+]
+
+
 class GeoResolution(BaseModel):
     display_name: str
     osm_id: str | None = None
     overture_division_id: str | None = None
     polygon_wkt: str                   # WKT of the boundary polygon used
-    boundary_kind: Literal[
-        "admin_polygon", "division_polygon", "buffered_point"
-    ] = "admin_polygon"
+    boundary_geojson: dict[str, Any] | None = None  # GeoJSON representation of polygon_wkt
+    boundary_kind: BoundaryKind = "admin_polygon"
+    boundary_source: BoundarySource = "radius_circle"
     buffer_m: int | None = None
     # ALWAYS (min_lon, min_lat, max_lon, max_lat) — never swapped
     bbox: tuple[float, float, float, float] = Field(...)
@@ -144,6 +161,69 @@ class RawCandidate(BaseModel):
     fetched_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     raw: dict[str, Any] = {}          # trimmed to useful keys; no full HTML
 
+    # ── Derived fields for entity resolution blocking ─────────────────────────
+    # These are computed from the fields above and used by splink_model.py.
+    geohash7: str | None = None        # 7-char geohash for geo-blocking
+    phones_e164: list[str] = []        # normalized E.164 phones for phone-blocking
+    website_domain: str | None = None  # registrable domain for domain-blocking
+
+    # ── Location fields derived from address dict ─────────────────────────────
+    locality: str | None = None
+    city: str | None = None
+    state: str | None = None
+    country: str = "India"
+
+    def model_post_init(self, __context: Any) -> None:
+        """Derive blocking keys and location fields from raw fields after validation."""
+        import re
+        # geohash7 from lat/lon
+        if self.geohash7 is None and self.lat and self.lon:
+            try:
+                import pygeohash
+                object.__setattr__(self, "geohash7", pygeohash.encode(self.lat, self.lon, precision=7))
+            except Exception:
+                pass
+        # phones_e164: keep entries that look like E.164 (+digits), else pass through
+        if not self.phones_e164 and self.phones:
+            normalized = []
+            for p in self.phones:
+                cleaned = re.sub(r"[^\d+]", "", p)
+                if cleaned:
+                    normalized.append(cleaned)
+            object.__setattr__(self, "phones_e164", normalized)
+        # website_domain: extract registrable domain from first website
+        if self.website_domain is None and self.websites:
+            try:
+                from urllib.parse import urlparse
+                parsed = urlparse(self.websites[0] if "://" in self.websites[0] else "https://" + self.websites[0])
+                host = parsed.netloc or parsed.path.split("/")[0]
+                # Strip www. prefix
+                host = re.sub(r"^www\.", "", host.lower())
+                if host:
+                    object.__setattr__(self, "website_domain", host)
+            except Exception:
+                pass
+        # locality/city/state/country: derive from address dict if not already set
+        if isinstance(self.address, dict):
+            if self.locality is None:
+                val = self.address.get("locality") or self.address.get("suburb") or self.address.get("neighbourhood")
+                if val:
+                    object.__setattr__(self, "locality", str(val))
+            if self.city is None:
+                val = self.address.get("city") or self.address.get("town") or self.address.get("village")
+                if val:
+                    object.__setattr__(self, "city", str(val))
+            if self.state is None:
+                val = self.address.get("state") or self.address.get("region")
+                if val:
+                    object.__setattr__(self, "state", str(val))
+            # country: keep default "India" unless address says otherwise
+            raw_country = self.address.get("country")
+            if raw_country and self.country == "India":
+                object.__setattr__(self, "country", str(raw_country))
+
+
+
 
 # ── Verification check ────────────────────────────────────────────────────────
 
@@ -198,6 +278,7 @@ class ResolvedEntity(BaseModel):
     edge_case: bool = False
     distance_m: float | None = None
     distance_km: float | None = None
+    relevance_decision: dict[str, Any] = Field(default_factory=dict)
 
 
 # ── Node error ────────────────────────────────────────────────────────────────
@@ -212,7 +293,7 @@ class NodeError(BaseModel):
 
 # ── Run state ─────────────────────────────────────────────────────────────────
 
-class RunState(TypedDict):
+class RunState(TypedDict, total=False):
     run_id: str
     query: QueryInput
 
@@ -221,7 +302,8 @@ class RunState(TypedDict):
     plans: list[KeywordPlan]
 
     # Fan-in from parallel source nodes (reducer: extend)
-    candidates: Annotated[list[RawCandidate], operator.add]
+    raw_candidates: Annotated[list[RawCandidate], operator.add]
+    candidates: list[RawCandidate]
     source_stats: Annotated[dict[str, dict[str, Any]], merge_dicts]
 
     # Resolution and enrichment
@@ -237,8 +319,16 @@ class RunState(TypedDict):
     # Error log (reducer: extend)
     errors: Annotated[list[NodeError], operator.add]
 
+    # Degradation signals (reducer: extend) — non-empty means the run used fallback data
+    # Each entry is a string reason code, e.g. "overture_release_discovery_failed"
+    degraded: Annotated[list[str], operator.add]
+
     # Metrics and reporting
     metrics: dict[str, Any]
+
+    # Expansion ladder telemetry — list of per-rung stats dicts from N4
+    # Each entry: {rung, strategy, candidates_evaluated, accepted, review, rejected, elapsed_ms}
+    expansion_stats: list[dict[str, Any]]
 
     # Human-in-the-loop disambiguation
     disambiguation_choice: str | None

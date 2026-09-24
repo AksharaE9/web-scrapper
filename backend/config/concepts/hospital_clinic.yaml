@@ -1,0 +1,96 @@
+concept_id: hospital_clinic
+version: 1
+labels:
+- hospital
+- hospitals
+- clinic
+- clinics
+- nursing home
+- healthcare center
+- poly clinic
+- multi specialty hospital
+- doctor clinic
+- physician
+- medical centre
+definition: A healthcare institution or medical clinic providing outpatient and inpatient
+  medical care, emergency treatment, and consultations.
+signals:
+  defining_terms:
+    strong:
+    - hospital
+    - hospitals
+    - clinic
+    - clinics
+    - nursing home
+    - healthcare
+    - medicare
+    - manipal
+    - apollo hospital
+    - fortis
+    - doctor
+    - polyclinic
+  supporting_terms:
+    medium:
+    - icu
+    - opd
+    - emergency
+    - consultation
+    - specialist
+    - surgeon
+    - physician
+    - pediatrician
+    - gynecologist
+    - cardiologist
+    - beds
+  non_evidence: inherit
+categories:
+  defining:
+  - hospital
+  - medical_clinic
+  - amenity=hospital
+  - amenity=clinic
+  - healthcare=hospital
+  - healthcare=clinic
+  host:
+  - medical_zone
+  - institutional_area
+  incompatible:
+  - restaurant
+  - bakery
+  - bar
+  - hardware_store
+  - automobile_repair
+veto_terms:
+- medical college
+- instruments manufacturer
+- pharma factory
+- veterinary
+brands:
+  incompatible:
+  - KFC
+  - Bata
+overture_basic_categories:
+- hospital
+- medical_clinic
+overture_taxonomy_paths:
+- health_and_medicine > hospitals
+- health_and_medicine > clinics
+osm_tags:
+- amenity=hospital
+- amenity=clinic
+- healthcare=hospital
+- healthcare=clinic
+name_patterns:
+- \bhospitals?\b
+- \bclinics?\b
+- \bnursing home\b
+- \bhealthcare\b
+- \bmedicare\b
+- \bmanipal\b
+- \bapollo hospital\b
+- \bfortis\b
+- \bdoctor\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

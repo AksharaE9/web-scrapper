@@ -1,0 +1,108 @@
+concept_id: restaurant
+version: 1
+labels:
+- restaurant
+- restaurants
+- dining
+- eatery
+- dhaba
+- food court
+- fine dining
+- family restaurant
+- biryani house
+- bhojanalaya
+- veg restaurant
+- non veg restaurant
+definition: A food establishment where meals and beverages are prepared, cooked, and
+  served to seated customers.
+signals:
+  defining_terms:
+    strong:
+    - restaurant
+    - eatery
+    - dhaba
+    - bhojanalaya
+    - kitchen
+    - kitchens
+    - dining
+    - biryani
+    - sagar
+    - hotel (dining)
+    - food court
+    - bistro
+  supporting_terms:
+    medium:
+    - cuisine
+    - thali
+    - meals
+    - tandoori
+    - chinese
+    - south indian
+    - north indian
+    - curry
+    - dosa
+    - veg restaurant
+    - non veg
+  non_evidence: inherit
+categories:
+  defining:
+  - restaurant
+  - diner
+  - bistro
+  - amenity=restaurant
+  - amenity=food_court
+  host:
+  - hotel
+  - resort
+  - food_hall
+  - shopping_mall
+  incompatible:
+  - pharmacy
+  - hardware_store
+  - shoe_store
+  - gym
+  - salon
+  - hospital
+veto_terms:
+- hotel booking
+- food app corporate
+- packaging supply
+- pharmacy
+- medical
+- hardware
+- cement
+- tyres
+- salon
+- spa
+- gym
+- clinic
+brands:
+  incompatible:
+  - Apollo
+  - Bata
+  - MRF
+  - Cult.fit
+overture_basic_categories:
+- restaurant
+- diner
+- bistro
+overture_taxonomy_paths:
+- food_and_drink > restaurant
+osm_tags:
+- amenity=restaurant
+- amenity=food_court
+name_patterns:
+- \brestaurant\b
+- \beatery\b
+- \bdhaba\b
+- \bbhojanalaya\b
+- \bkitchen\b
+- \bkitchens\b
+- \bdining\b
+- \bbiryani\b
+- \bsagar\b
+- \bhotel\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

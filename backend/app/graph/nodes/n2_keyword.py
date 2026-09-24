@@ -1,8 +1,8 @@
 """
 N2 — KeywordPlannerAgent
 
-Resolution chain:
-  1. taxonomy_rules (config/keyword_rules.yaml) — highest precision
+Unified resolution chain:
+  1. Concept Cards & Taxonomy (resolve_concept) — authoritative, unified SMB & Overture taxonomy
   2. RAG over taxonomy_vectors (pgvector cosine similarity)
   3. Optional LLM refinement (JSON schema, only from retrieved list)
 
@@ -20,19 +20,14 @@ import unicodedata
 from pathlib import Path
 from typing import Any
 
-import yaml
-
 from app.db.pool import get_conn
 from app.graph.runtime import node
 from app.graph.state import KeywordPlan, RunState
+from app.llm.ollama_client import refine_keyword_plan
+from app.relevance.concepts import resolve_concept, load_all_cards, ConceptCard
 from app.settings import settings
 
 logger = logging.getLogger(__name__)
-
-# ── Taxonomy rules ────────────────────────────────────────────────────────────
-
-_RULES_PATH = Path(__file__).resolve().parents[3] / "config" / "keyword_rules.yaml"
-_rules: dict[str, Any] | None = None
 
 GENERIC_RETAIL_STOPWORDS = {
     "store", "stores", "shop", "shops", "mart", "marts", "center", "centers",
@@ -42,22 +37,69 @@ GENERIC_RETAIL_STOPWORDS = {
 }
 
 
-def _load_rules() -> dict[str, Any]:
-    global _rules
-    if _rules is None:
-        if _RULES_PATH.exists():
-            with open(_RULES_PATH, encoding="utf-8") as f:
-                _rules = yaml.safe_load(f) or {}
-        else:
-            _rules = {}
-    return _rules
-
-
 def _normalise_keyword(kw: str) -> str:
     """Lowercase, strip diacritics, collapse whitespace."""
     nfkd = unicodedata.normalize("NFKD", kw)
     ascii_ = nfkd.encode("ascii", "ignore").decode("ascii")
     return re.sub(r"\s+", " ", ascii_.lower().strip())
+
+
+def _load_rules() -> dict[str, Any]:
+    """Compatibility dictionary loaded directly from unified Concept Cards."""
+    cards = load_all_cards()
+    rules: dict[str, Any] = {}
+    for cid, card in cards.items():
+        rules[cid] = {
+            "synonyms": card.labels,
+            "overture_basic_categories": card.overture_basic_categories or [cid],
+            "overture_taxonomy_paths": card.overture_taxonomy_paths,
+            "osm": card.osm_tags or [f"shop={cid}"],
+            "name_patterns": card.name_patterns or [f"\\b{re.escape(cid.replace('_', ' '))}\\b"],
+            "exclude_patterns": card.veto_terms,
+        }
+    return rules
+
+
+def _build_plan_from_card(keyword: str, card: ConceptCard) -> KeywordPlan:
+    """Build a KeywordPlan from a resolved ConceptCard."""
+    safe_kw = re.escape(keyword.lower())
+    name_patterns = card.name_patterns or [f"\\b{safe_kw}\\b"]
+    if f"\\b{safe_kw}\\b" not in name_patterns:
+        name_patterns = [f"\\b{safe_kw}\\b"] + name_patterns
+
+    osm_filters = list(card.osm_tags) if card.osm_tags else []
+    for cat in card.categories.defining:
+        if "=" in cat:
+            osm_filters.append(cat)
+        elif not any(cat in tag for tag in osm_filters):
+            osm_filters.append(f"shop={cat}")
+
+    return KeywordPlan(
+        keyword=keyword,
+        synonyms=card.labels,
+        overture_basic_categories=card.overture_basic_categories or [card.concept_id],
+        overture_taxonomy_paths=card.overture_taxonomy_paths,
+        osm_tag_filters=list(dict.fromkeys(osm_filters)),
+        name_patterns=list(dict.fromkeys(name_patterns)),
+        exclude_patterns=card.veto_terms,
+        plan_confidence=max(0.80, card.confidence),
+        planner="taxonomy_rules",
+    )
+
+
+def _build_plan_from_rule(keyword: str, rule: dict[str, Any]) -> KeywordPlan:
+    """Build a KeywordPlan from a rule dictionary."""
+    return KeywordPlan(
+        keyword=keyword,
+        synonyms=rule.get("synonyms", []),
+        overture_basic_categories=rule.get("overture_basic_categories", []),
+        overture_taxonomy_paths=rule.get("overture_taxonomy_paths", []),
+        osm_tag_filters=rule.get("osm", []),
+        name_patterns=rule.get("name_patterns", [f"\\b{re.escape(keyword.lower())}\\b"]),
+        exclude_patterns=rule.get("exclude_patterns", []),
+        plan_confidence=0.9,
+        planner="taxonomy_rules",
+    )
 
 
 # ── Embedding model (lazy loaded, shared across calls) ────────────────────────
@@ -74,7 +116,7 @@ def _get_embed_model() -> Any:
             from fastembed import TextEmbedding
             _embed_model = TextEmbedding(model_name="BAAI/bge-small-en-v1.5")
         except Exception as e:
-            logger.info(f"Fastembed embedding model disabled: {e}")
+            logger.warning(f"Fastembed embedding model failed to initialize: {e}")
             _embed_model_failed = True
             return None
     return _embed_model
@@ -105,23 +147,8 @@ async def _rag_lookup(keyword_norm: str, top_k: int = 8) -> list[dict[str, Any]]
         return []
 
 
-def _build_plan_from_rule(keyword: str, rule: dict[str, Any]) -> KeywordPlan:
-    """Build a KeywordPlan from a keyword_rules.yaml entry."""
-    return KeywordPlan(
-        keyword=keyword,
-        synonyms=rule.get("synonyms", []),
-        overture_basic_categories=rule.get("overture_basic_categories", []),
-        overture_taxonomy_paths=rule.get("overture_taxonomy_paths", []),
-        osm_tag_filters=rule.get("osm", []),
-        name_patterns=rule.get("name_patterns", []),
-        exclude_patterns=rule.get("exclude_patterns", []),
-        plan_confidence=0.9,
-        planner="taxonomy_rules",
-    )
-
-
 def _build_plan_from_rag(keyword: str, rag_results: list[dict[str, Any]]) -> KeywordPlan:
-    """Build a KeywordPlan from RAG results (no rules match)."""
+    """Build a KeywordPlan from RAG results."""
     overture_cats = [r["id"] for r in rag_results if r.get("system") == "overture"]
     osm_tags = [r["id"] for r in rag_results if r.get("system") == "osm"]
 
@@ -144,57 +171,13 @@ def _build_plan_from_rag(keyword: str, rag_results: list[dict[str, Any]]) -> Key
     )
 
 
-def _minimum_plan(keyword: str) -> KeywordPlan:
-    """Last resort: name-pattern only plan. Still functional."""
-    safe = re.escape(keyword.lower())
-    words = [re.escape(w) for w in keyword.lower().split() if len(w) > 2 and w not in GENERIC_RETAIL_STOPWORDS]
-    patterns = [f"\\b{safe}\\b"] + [f"\\b{w}\\b" for w in words]
-
-    # Generate heuristic OSM tag filters
-    osm_tags: list[str] = []
-    kw_lower = keyword.lower()
-    if any(w in kw_lower for w in ["store", "shop", "mart", "retail"]):
-        osm_tags.append("shop")
-    if any(w in kw_lower for w in ["restaurant", "dining", "eatery", "food", "dine", "kitchen", "biryani"]):
-        osm_tags.append("amenity=restaurant")
-    if any(w in kw_lower for w in ["cafe", "coffee", "tea", "bistro", "chai"]):
-        osm_tags.append("amenity=cafe")
-    if any(w in kw_lower for w in ["gym", "fitness", "crossfit", "workout"]):
-        osm_tags.append("leisure=fitness_centre")
-        osm_tags.append("amenity=gym")
-    if any(w in kw_lower for w in ["hotel", "resort", "lodging", "stay", "guest house", "hostel"]):
-        osm_tags.append("tourism=hotel")
-    if any(w in kw_lower for w in ["hospital", "clinic", "doctor", "nursing home"]):
-        osm_tags.append("amenity=hospital")
-        osm_tags.append("amenity=clinic")
-    if any(w in kw_lower for w in ["pharmacy", "chemist", "medical", "druggist"]):
-        osm_tags.append("amenity=pharmacy")
-        osm_tags.append("shop=chemist")
-    if any(w in kw_lower for w in ["electric", "electronics", "appliances", "gadgets", "mobile"]):
-        osm_tags.append("shop=electronics")
-        osm_tags.append("shop=electrical")
-
-    return KeywordPlan(
-        keyword=keyword,
-        synonyms=[],
-        overture_basic_categories=[keyword.lower()],
-        overture_taxonomy_paths=[],
-        osm_tag_filters=osm_tags if osm_tags else ["shop", "amenity"],
-        name_patterns=list(dict.fromkeys(patterns)),
-        exclude_patterns=[],
-        plan_confidence=0.6,
-        planner="taxonomy_rules",
-    )
-
-
 async def plan_keyword(keyword: str, llm_enabled: bool = False) -> KeywordPlan:
     """
-    Plan a single keyword. Tries:
+    Plan a single keyword using unified Concept Card resolution:
       1. keyword_plans cache (previous successful plan)
-      2. taxonomy_rules (exact rule key, synonym match, or significant word overlap)
-      3. RAG (pgvector similarity search)
-      4. LLM refinement (if enabled)
-      5. Minimum name-pattern plan
+      2. Unified Concept Card resolution (seeded, alias, fuzzy, derived)
+      3. RAG / Vector search fallback
+      4. Optional LLM refinement (if enabled)
     """
     kw_norm = _normalise_keyword(keyword)
 
@@ -211,57 +194,28 @@ async def plan_keyword(keyword: str, llm_enabled: bool = False) -> KeywordPlan:
     except Exception:
         pass
 
-    # 2. Try taxonomy rules
-    rules = _load_rules()
-    if rules:
-        # Phase 2a: Exact rule key or synonym match
-        for rule_key, rule in rules.items():
-            rk_norm = _normalise_keyword(rule_key.replace("_", " "))
-            synonyms_norm = [_normalise_keyword(s) for s in rule.get("synonyms", [])]
-            if kw_norm == rk_norm or kw_norm in synonyms_norm:
-                plan = _build_plan_from_rule(keyword, rule)
-                await _save_plan(kw_norm, plan)
-                return plan
-
-        # Phase 2b: Multi-word phrase or significant non-generic word overlap
-        kw_sig_words = {w for w in kw_norm.split() if w not in GENERIC_RETAIL_STOPWORDS and len(w) > 2}
-        for rule_key, rule in rules.items():
-            rk_norm = _normalise_keyword(rule_key.replace("_", " "))
-            synonyms_norm = [_normalise_keyword(s) for s in rule.get("synonyms", [])]
-
-            if rk_norm in kw_norm or any(s in kw_norm for s in synonyms_norm):
-                plan = _build_plan_from_rule(keyword, rule)
-                await _save_plan(kw_norm, plan)
-                return plan
-
-            rk_sig_words = {w for w in rk_norm.split() if w not in GENERIC_RETAIL_STOPWORDS and len(w) > 2}
-            for syn in synonyms_norm:
-                rk_sig_words.update(w for w in syn.split() if w not in GENERIC_RETAIL_STOPWORDS and len(w) > 2)
-
-            if kw_sig_words and rk_sig_words and (kw_sig_words & rk_sig_words):
-                plan = _build_plan_from_rule(keyword, rule)
-                await _save_plan(kw_norm, plan)
-                return plan
+    # 2. Unified Concept Card resolution
+    card = resolve_concept(keyword)
+    if card.provenance in ("seeded", "alias", "fuzzy", "derived", "retrieved"):
+        plan = _build_plan_from_card(keyword, card)
+        await _save_plan(kw_norm, plan)
+        return plan
 
     # 3. Try RAG
     rag_results = await _rag_lookup(kw_norm)
     if rag_results:
         plan = _build_plan_from_rag(keyword, rag_results)
-
-        # Optional LLM refinement
         if llm_enabled and settings.llm_enabled:
             try:
-                from app.llm.ollama_client import refine_keyword_plan
                 plan = await refine_keyword_plan(keyword, plan, rag_results)
                 plan = plan.model_copy(update={"planner": "rag+llm"})
             except Exception:
                 pass
-
         await _save_plan(kw_norm, plan)
         return plan
 
-    # 4. Minimum fallback
-    plan = _minimum_plan(keyword)
+    # 4. Fallback to unresolved card plan
+    plan = _build_plan_from_card(keyword, card)
     await _save_plan(kw_norm, plan)
     return plan
 
@@ -306,7 +260,6 @@ async def run(state: RunState) -> dict[str, Any]:
     plans = []
     for kw in query.keywords:
         plan = await plan_keyword(kw, llm_enabled=llm_enabled)
-        # Always ensure name_patterns is non-empty
         if not plan.name_patterns:
             safe = re.escape(kw.lower())
             plan = plan.model_copy(update={"name_patterns": [f"\\b{safe}\\b"]})

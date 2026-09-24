@@ -1,0 +1,130 @@
+concept_id: primary_school
+version: 2
+labels:
+  - school
+  - schools
+  - high school
+  - higher secondary school
+  - secondary school
+  - primary school
+  - elementary school
+  - public school
+  - model school
+  - cbse school
+  - icse school
+  - matriculation school
+  - state board school
+  - vidyalaya
+  - residential school
+  - international school
+  - boarding school
+  - convent school
+  - english medium school
+  - k-12 school
+  - class 1-10
+  - class 1-12
+definition: >
+  A K-12 formal educational institution providing primary, upper-primary, or secondary/
+  higher-secondary schooling (Classes 1–12). Affiliated to CBSE, ICSE, State Boards,
+  IGCSE or equivalent. Does NOT grant university degrees. Distinct from degree colleges,
+  coaching centres, preschools, and vocational academies.
+signals:
+  defining_terms:
+    strong:
+      - school
+      - schools
+      - high school
+      - higher secondary
+      - secondary school
+      - vidyalaya
+      - model school
+      - convent school
+      - matriculation school
+      - international school
+      - boarding school
+      - english medium school
+  supporting_terms:
+    medium:
+      - cbse
+      - icse
+      - state board
+      - igcse
+      - curriculum
+      - students
+      - teachers
+      - admission
+      - class room
+      - principal
+      - headmaster
+      - class 1
+      - class 10
+      - class 12
+  non_evidence: inherit
+categories:
+  defining:
+    - school
+    - educational_institution
+    - amenity=school
+    - secondary_school
+    - primary_school
+    - high_school
+  host:
+    - educational_zone
+  incompatible:
+    - bar
+    - liquor_store
+    - nightclub
+    - casino
+    - preschool
+    - college_and_university
+    - amenity=college
+    - amenity=university
+# ── CONTRASTIVE VETO TERMS ────────────────────────────────────────────────────
+# Contrastive against siblings: degree_college, preschool_daycare,
+# coaching_centre, vocational_institute.
+veto_terms:
+  - degree college
+  - engineering college
+  - medical college
+  - university
+  - mba
+  - mca
+  - mahavidyalaya
+  - play school
+  - playschool
+  - kindergarten
+  - preschool
+  - pre school
+  - daycare
+  - creche
+  - montessori
+  - coaching class
+  - tuition centre
+  - tutorial
+  - driving school
+  - aviation academy
+  - vocational training
+brands:
+  incompatible: []
+overture_basic_categories:
+  - school
+  - educational_institution
+overture_taxonomy_paths:
+  - education > schools
+  - education > primary_school
+  - education > secondary_school
+osm_tags:
+  - amenity=school
+name_patterns:
+  - "\\bschools?\\b"
+  - "\\bvidyalaya\\b"
+  - "\\bhigh\\s+school\\b"
+  - "\\bsecondary\\s+school\\b"
+  - "\\bmodel\\s+school\\b"
+  - "\\bmatriculation\\b"
+  - "\\bconvent\\s+school\\b"
+  - "\\binternational\\s+school\\b"
+decision:
+  require_defining_signal: true
+  tau_hi: 0.72
+  tau_lo: 0.35

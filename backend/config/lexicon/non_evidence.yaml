@@ -1,0 +1,82 @@
+# Non-evidence stopword classes
+# Rule: A token in this class can never be positive evidence on its own for any keyword.
+
+honorifics:
+  - sri
+  - shri
+  - sree
+  - shree
+  - om
+  - ohm
+  - jai
+  - jay
+  - maa
+  - new
+  - the
+  - sai
+  - sainath
+  - sv
+  - slv
+  - shree_ram
+  - sri_sai
+  - holy
+
+generic_deities_and_blessings:
+  - lakshmi
+  - laxmi
+  - ganesh
+  - ganesha
+  - balaji
+  - venkateshwara
+  - venkateswara
+  - durga
+  - murugan
+  - hanuman
+  - divine
+  - deepam
+  - deepa
+  - jyothi
+  - jyoti
+  - shakti
+  - tirumala
+  - anand
+  - royal
+  - national
+  - golden
+  - star
+  - krishna
+  - shiva
+  - shankar
+  - ram
+  - rama
+  - vishnu
+  - siddhi
+  - riddhi
+  - shubh
+  - labh
+  - blessings
+  - divine_grace
+
+generic_business_suffixes:
+  - enterprises
+  - traders
+  - agencies
+  - "& co"
+  - "and co"
+  - "& sons"
+  - "and sons"
+  - "& brothers"
+  - group
+  - company
+  - pvt
+  - ltd
+  - llp
+  - associates
+  - services
+  - solutions
+  - point
+  - world
+  - zone
+  - hub
+  - international
+  - global

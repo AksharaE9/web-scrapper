@@ -1,0 +1,72 @@
+concept_id: school_college
+version: 3
+# DEPRECATED: This card is split into degree_college and primary_school (v2.2 audit).
+# The system will route 'school' queries to primary_school and 'degree college' queries
+# to degree_college. This card is retained for alias routing only.
+labels:
+  - school college
+  - schools and colleges
+  - educational institution
+definition: >
+  DEPRECATED routing alias. Routes 'school' to primary_school and 'degree college'
+  / 'college' to degree_college. Do not use for direct evaluation.
+signals:
+  defining_terms:
+    strong:
+      - school
+      - college
+  supporting_terms:
+    medium:
+      - educational
+      - institution
+  non_evidence: inherit
+categories:
+  defining:
+    - school
+    - college
+    - college_and_university
+    - educational_institution
+    - amenity=school
+    - amenity=college
+    - amenity=university
+    - preschool
+  host:
+    - educational_zone
+  incompatible:
+    - bar
+    - liquor_store
+    - nightclub
+    - casino
+veto_terms:
+  - driving school
+  - cricket coaching
+  - karate class
+  - dance class
+brands:
+  incompatible: []
+overture_basic_categories:
+  - school
+  - college_and_university
+  - educational_institution
+  - preschool
+  - college
+overture_taxonomy_paths:
+  - education > schools
+  - education > higher_education > college_and_university
+  - education > higher_education
+osm_tags:
+  - amenity=school
+  - amenity=college
+  - amenity=university
+name_patterns:
+  - "\\bschools?\\b"
+  - "\\bcolleges?\\b"
+  - "\\bdegree\\s+colle?ge?\\b"
+  - "\\buniversity\\b"
+  - "\\bvidyalaya\\b"
+  - "\\bmahavidyalaya\\b"
+  - "\\binstitute\\b"
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

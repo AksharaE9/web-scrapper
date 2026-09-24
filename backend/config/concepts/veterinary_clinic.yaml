@@ -1,0 +1,43 @@
+concept_id: veterinary_clinic
+version: 1
+labels:
+- veterinary clinic
+- pet hospital
+- vet doctor
+- animal care
+definition: Medical care and clinical services for domestic pets and animals.
+signals:
+  defining_terms:
+    strong:
+    - veterinary
+    - vet clinic
+    - pet hospital
+    - animal hospital
+    - pet doctor
+  supporting_terms:
+    medium:
+    - vaccination
+    - pet surgery
+    - deworming
+    - canine
+    - feline
+    - puppy care
+  non_evidence: inherit
+categories:
+  defining:
+  - services.veterinary
+  - services.pet_care
+  host:
+  - pet_store
+  incompatible:
+  - human_hospital
+  - restaurant
+veto_terms:
+- human clinic
+- dental clinic for humans
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

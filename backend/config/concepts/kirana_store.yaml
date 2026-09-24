@@ -1,0 +1,80 @@
+concept_id: kirana_store
+version: 1
+labels:
+- kirana store
+- kirana shop
+- kiranam
+- ration shop
+- provision store
+- grocery store
+- daily essentials store
+- corner store
+definition: A traditional Indian neighborhood mom-and-pop grocery store selling packaged
+  foods, daily essentials, spices, pulses, rice, oil, and household provisions.
+signals:
+  defining_terms:
+    strong:
+    - kirana
+    - kiranam
+    - kirana store
+    - provisions
+    - ration
+    - general merchant
+    - daily needs
+    - grocery
+    - provision store
+  supporting_terms:
+    medium:
+    - atta
+    - rice
+    - dal
+    - oil
+    - soap
+    - detergent
+    - masala
+    - spices
+    - sugar
+    - tea powder
+    - fmcg
+  non_evidence: inherit
+categories:
+  defining:
+  - grocery_store
+  - convenience_store
+  - shop=convenience
+  - shop=grocery
+  - shop=general
+  host:
+  - residential_area
+  - market
+  incompatible:
+  - hospital
+  - gym
+  - hotel
+  - bank
+veto_terms:
+- wholesaler
+- fmcg depot
+- warehouse
+- supermarket chain corporate
+brands:
+  incompatible: []
+overture_basic_categories:
+- grocery_store
+- convenience_store
+overture_taxonomy_paths:
+- shopping > food > grocery
+osm_tags:
+- shop=convenience
+- shop=grocery
+- shop=general
+name_patterns:
+- \bkirana\b
+- \bkiranam\b
+- \bprovisions?\b
+- \bgrocery\b
+- \bgeneral merchant\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -1,0 +1,62 @@
+concept_id: florist
+version: 1
+labels:
+- florist
+- flower shop
+- flowers
+- floral boutique
+- bouquet shop
+- garland shop
+definition: A retail flower shop offering fresh flower bouquets, floral gift arrangements,
+  decorative garlands, and event floral decoration.
+signals:
+  defining_terms:
+    strong:
+    - florist
+    - flower shop
+    - flowers
+    - floral boutique
+    - bouquets
+    - ferns n petals
+    - flower delivery
+  supporting_terms:
+    medium:
+    - roses
+    - garlands
+    - decorations
+    - carnations
+    - lilies
+    - orchids
+    - gift flowers
+  non_evidence: inherit
+categories:
+  defining:
+  - florist
+  - flower_shop
+  - shop=florist
+  host:
+  - market_complex
+  - shopping_mall
+  incompatible:
+  - hardware_store
+  - car_repair
+  - pharmacy
+veto_terms:
+- artificial flower wholesale factory
+brands:
+  incompatible: []
+overture_basic_categories:
+- florist
+overture_taxonomy_paths:
+- shopping > gifts_and_novelties > florist
+osm_tags:
+- shop=florist
+name_patterns:
+- \bflorists?\b
+- \bflowers?\b
+- \bfloral\b
+- \bbouquets?\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

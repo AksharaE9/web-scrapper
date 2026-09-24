@@ -1,0 +1,48 @@
+concept_id: preschool_daycare
+version: 1
+labels:
+- preschool
+- play school
+- daycare
+- kindergarten
+- nursery
+definition: Early childhood education centre, play school, and day care facility for
+  toddlers.
+signals:
+  defining_terms:
+    strong:
+    - preschool
+    - play school
+    - daycare
+    - kindergarten
+    - montessori
+    - nursery school
+  supporting_terms:
+    medium:
+    - eurokids
+    - kidzee
+    - toddler
+    - after school care
+    - early learning
+    - activity centre
+  non_evidence: inherit
+categories:
+  defining:
+  - education.preschool
+  - services.child_care
+  host:
+  - school
+  incompatible:
+  - bar
+  - nightclub
+  - liquor
+veto_terms:
+- bar and restaurant
+- pub
+- wine shop
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -1,0 +1,42 @@
+concept_id: organic_store
+version: 1
+labels:
+- organic store
+- organic grocery
+- bio store
+definition: Retail shop offering organic food, chemical-free groceries, and natural
+  products.
+signals:
+  defining_terms:
+    strong:
+    - organic store
+    - organic foods
+    - bio market
+    - natural grocery
+    - chemical free
+  supporting_terms:
+    medium:
+    - cold pressed oil
+    - millets
+    - desi cow ghee
+    - sustainable
+    - vegan
+  non_evidence: inherit
+categories:
+  defining:
+  - shopping.grocery.health_food
+  - shopping.grocery.organic
+  host:
+  - supermarket
+  incompatible:
+  - fast_food
+  - hardware
+veto_terms:
+- car wash
+- tyre shop
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

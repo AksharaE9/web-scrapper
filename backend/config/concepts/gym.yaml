@@ -1,0 +1,120 @@
+concept_id: gym
+version: 1
+labels:
+- gym
+- gyms
+- fitness centre
+- fitness center
+- fitness club
+- health club
+- crossfit
+- workout
+- strength training
+- gymnasium
+- aerobics
+- bodybuilding
+- cult.fit
+- cult fit
+definition: A fitness centre equipped with weights, exercise machines, cardio equipment,
+  and personal trainers for physical workouts and strength training.
+signals:
+  defining_terms:
+    strong:
+    - gym
+    - fitness
+    - crossfit
+    - workout
+    - gymnasium
+    - barbell
+    - bodybuilding
+    - calisthenics
+    - f45
+    - cult.fit
+    - gold's
+    - slam
+    - chisel
+  supporting_terms:
+    medium:
+    - trainer
+    - strength
+    - cardio
+    - zumba
+    - aerobics
+    - physique
+    - weights
+    - dumbbells
+    - muscle
+    - anytime fitness
+  non_evidence: inherit
+categories:
+  defining:
+  - fitness_center
+  - gym
+  - leisure=fitness_centre
+  - leisure=sports_centre
+  - amenity=gym
+  - sport=fitness
+  - sports_club
+  host:
+  - sports_club
+  - health_club
+  - community_centre
+  - hotel
+  - commercial_building
+  incompatible:
+  - restaurant
+  - bakery
+  - pooja_store
+  - shoe_store
+  - pharmacy
+  - bank
+  - supermarket
+veto_terms:
+- equipment manufacturer
+- fitness equipment wholesale
+- apparel export
+- sports wear factory
+- restaurant
+- food
+- kitchen
+- pooja
+- bakery
+- sweets
+- shoes
+- tyre
+- medical
+- hospital
+- stationery
+brands:
+  incompatible:
+  - KFC
+  - McDonald's
+  - Bata
+  - Subway
+overture_basic_categories:
+- gym
+- fitness_center
+- sports_club
+overture_taxonomy_paths:
+- sports_and_recreation > fitness > gym
+- health_and_medicine > physical_fitness
+osm_tags:
+- leisure=fitness_centre
+- leisure=sports_centre
+- amenity=gym
+- sport=fitness
+name_patterns:
+- \bgyms?\b
+- \bfitness\b
+- \bcrossfit\b
+- \bworkout\b
+- \bgold's\b
+- \bcult\b
+- \bslam\b
+- \banytime fitness\b
+- \bchisel\b
+- \bbodybuilding\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

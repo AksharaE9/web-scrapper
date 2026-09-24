@@ -1,0 +1,21 @@
+case: gyms_koramangala
+query:
+  keyword: "gyms"
+  locality: "Koramangala"
+  city: "Bengaluru"
+  state: "Karnataka"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  - {name: "Gold's Gym Koramangala", categories: ["fitness_centre", "gym"], brand: "Gold's Gym", relevant: true}
+  - {name: "Cult.fit Koramangala", categories: ["fitness_centre", "sports_club"], brand: "Cult.fit", relevant: true}
+  - {name: "Snap Fitness 24/7", categories: ["fitness_centre"], brand: "Snap Fitness", relevant: true}
+  - {name: "Transform Gym & Crossfit", categories: ["fitness_centre"], brand: null, relevant: true}
+  - {name: "Fitnesstation Gym", categories: ["fitness_centre"], brand: null, relevant: true}
+  - {name: "Koramangala Barbell Club", categories: ["gym"], brand: null, relevant: true}
+  - {name: "Truffles Restaurant", categories: ["restaurant", "cafe"], brand: null, relevant: false}
+  - {name: "Koramangala Medical Store", categories: ["pharmacy"], brand: null, relevant: false}
+  - {name: "Bata Footwear", categories: ["shoe_store"], brand: "Bata", relevant: false}
+  - {name: "Green Trends Unisex Salon", categories: ["beauty_salon"], brand: "Green Trends", relevant: false}
+  - {name: "Apollo Pharmacy", categories: ["pharmacy"], brand: "Apollo", relevant: false}
+  - {name: "Sri Balaji Wines", categories: ["liquor_store"], brand: null, relevant: false}

@@ -1,0 +1,141 @@
+# LeadCore Zero — Geographic Aliases, Abbreviations & Short-Token Mappings
+# Maps short tokens (< 4 chars) and regional abbreviations directly before fuzzy matching.
+
+version: 1
+
+aliases:
+  hsr:
+    locality: "HSR Layout"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  hsr layout:
+    locality: "HSR Layout"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  btm:
+    locality: "BTM Layout"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  btm layout:
+    locality: "BTM Layout"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  jp nagar:
+    locality: "JP Nagar"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  jpnagar:
+    locality: "JP Nagar"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  kormangala:
+    locality: "Koramangala"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  koramangala:
+    locality: "Koramangala"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  indirangar:
+    locality: "Indiranagar"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  indiranagar:
+    locality: "Indiranagar"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  whitefeild:
+    locality: "Whitefield"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  whitefield:
+    locality: "Whitefield"
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  blr:
+    locality: null
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  bangalore:
+    locality: null
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  bengaluru:
+    locality: null
+    city: "Bengaluru"
+    state: "Karnataka"
+    country: "India"
+  hyd:
+    locality: null
+    city: "Hyderabad"
+    state: "Telangana"
+    country: "India"
+  hyderabad:
+    locality: null
+    city: "Hyderabad"
+    state: "Telangana"
+    country: "India"
+  hyberabad:
+    locality: null
+    city: "Hyderabad"
+    state: "Telangana"
+    country: "India"
+  mumbai:
+    locality: null
+    city: "Mumbai"
+    state: "Maharashtra"
+    country: "India"
+  bombay:
+    locality: null
+    city: "Mumbai"
+    state: "Maharashtra"
+    country: "India"
+  delhi:
+    locality: null
+    city: "Delhi"
+    state: "Delhi"
+    country: "India"
+  chennai:
+    locality: null
+    city: "Chennai"
+    state: "Tamil Nadu"
+    country: "India"
+  madras:
+    locality: null
+    city: "Chennai"
+    state: "Tamil Nadu"
+    country: "India"
+  pune:
+    locality: null
+    city: "Pune"
+    state: "Maharashtra"
+    country: "India"
+  poona:
+    locality: null
+    city: "Pune"
+    state: "Maharashtra"
+    country: "India"
+  kolkata:
+    locality: null
+    city: "Kolkata"
+    state: "West Bengal"
+    country: "India"
+  calcutta:
+    locality: null
+    city: "Kolkata"
+    state: "West Bengal"
+    country: "India"

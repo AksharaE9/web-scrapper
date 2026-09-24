@@ -1,0 +1,44 @@
+concept_id: tyre_dealer
+version: 1
+labels:
+- tyre dealer
+- tyre shop
+- wheel alignment
+- wheel balancing
+definition: Store selling automotive tyres, tubeless puncture repair, and wheel alignment.
+signals:
+  defining_terms:
+    strong:
+    - tyre dealer
+    - tyre shop
+    - wheel alignment
+    - mrf tyres
+    - apollo tyres
+    - bridgestone
+  supporting_terms:
+    medium:
+    - wheel balancing
+    - nitrogen air
+    - puncture repair
+    - tubeless tyre
+    - rims
+  non_evidence: inherit
+categories:
+  defining:
+  - automotive.tires
+  - automotive.parts
+  host:
+  - garage
+  - car_repair
+  incompatible:
+  - restaurant
+  - clothing_store
+veto_terms:
+- ice cream parlour
+- clothing
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

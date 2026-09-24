@@ -98,4 +98,5 @@ asyncio_mode = "auto"
 testpaths = ["tests"]
 pythonpath = ["."]
 addopts = "-v --tb=short"
+base_url = "http://localhost:5174"
 

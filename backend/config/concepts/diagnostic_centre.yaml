@@ -1,0 +1,75 @@
+concept_id: diagnostic_centre
+version: 1
+labels:
+- diagnostic centre
+- diagnostic center
+- pathology lab
+- medical lab
+- diagnostics
+- scan centre
+- scan center
+- blood test lab
+definition: A specialized clinical pathology and medical diagnostic center conducting
+  blood tests, urine tests, X-rays, ECGs, MRI/CT scans, and ultrasound imaging.
+signals:
+  defining_terms:
+    strong:
+    - diagnostic centre
+    - diagnostic center
+    - pathology lab
+    - medical lab
+    - diagnostics
+    - scan centre
+    - dr lal pathlabs
+    - thyrocare
+    - metropolis
+    - vijaya diagnostic
+  supporting_terms:
+    medium:
+    - blood test
+    - pathology
+    - x-ray
+    - ecg
+    - ultrasound
+    - scan
+    - mri
+    - ct scan
+    - lipid profile
+    - cbc
+    - thyroid
+  non_evidence: inherit
+categories:
+  defining:
+  - diagnostic_laboratory
+  - medical_lab
+  - healthcare=laboratory
+  - amenity=hospital
+  host:
+  - hospital_zone
+  - commercial_area
+  incompatible:
+  - restaurant
+  - bakery
+  - hardware_store
+veto_terms:
+- medical device export
+- reagents wholesaler
+brands:
+  incompatible: []
+overture_basic_categories:
+- diagnostic_laboratory
+- medical_clinic
+overture_taxonomy_paths:
+- health_and_medicine > diagnostic_services
+osm_tags:
+- healthcare=laboratory
+- amenity=clinic
+name_patterns:
+- \bdiagnostics?\b
+- \bpathology\b
+- \bmedical lab\b
+- \bscan cent(?:re|er)\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

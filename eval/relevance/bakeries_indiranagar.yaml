@@ -1,0 +1,40 @@
+case: bakeries_indiranagar
+query:
+  keyword: "bakeries"
+  locality: "Indiranagar"
+  city: "Bengaluru"
+  state: "Karnataka"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  - {name: "Thom's Bakery & Bakes", categories: ["bakery"], brand: null, relevant: true}
+  - {name: "Lavonne Academy of Baking & Patisserie", categories: ["pastry_shop", "bakery"], brand: "Lavonne", relevant: true}
+  - {name: "Glen's Bakehouse Indiranagar", categories: ["bakery", "cafe"], brand: "Glen's", relevant: true}
+  - {name: "Smoor Chocolates & Cakes", categories: ["pastry_shop"], brand: "Smoor", relevant: true}
+  - {name: "WarmOven Cakes & Desserts", categories: ["bakery"], brand: "WarmOven", relevant: true}
+  - name: "Toit Brewpub"
+    categories: ["bar", "restaurant"]
+    brand: "Toit"
+    relevant: false
+    seeded_negative: true
+    annotator_note: "Bar/brewpub — incompatible category, not a bakery."
+  - name: "Gold's Gym Indiranagar"
+    categories: ["fitness_centre"]
+    brand: "Gold's Gym"
+    relevant: false
+    seeded_negative: true
+    annotator_note: "Gym — unrelated to bakery."
+  - name: "Apollo Clinic & Pharmacy"
+    categories: ["clinic", "pharmacy"]
+    brand: "Apollo"
+    relevant: false
+    seeded_negative: true
+    annotator_note: "Medical — unrelated to bakery."
+  - name: "Bata Shoe Store"
+    categories: ["shoe_store"]
+    brand: "Bata"
+    relevant: false
+  - name: "Bodycraft Salon & Spa"
+    categories: ["beauty_salon", "spa"]
+    brand: "Bodycraft"
+    relevant: false

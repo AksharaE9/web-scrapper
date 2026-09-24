@@ -1,0 +1,77 @@
+concept_id: tiffin_centre
+version: 1
+labels:
+- tiffin centre
+- tiffin center
+- tiffin room
+- mess
+- breakfast point
+- south indian tiffin
+- idli dosa stall
+- canteen
+definition: A quick-service South Indian dining eatery or mess specializing in freshly
+  made breakfast and snack items like idli, dosa, vada, puri, upma, and filter coffee.
+signals:
+  defining_terms:
+    strong:
+    - tiffin
+    - tiffins
+    - tiffin centre
+    - tiffin center
+    - mess
+    - breakfast centre
+    - idli dosa
+    - bhojanalaya
+    - tiffin room
+  supporting_terms:
+    medium:
+    - idli
+    - dosa
+    - vada
+    - poori
+    - puri
+    - upma
+    - filter coffee
+    - chutney
+    - sambar
+    - meals
+  non_evidence: inherit
+categories:
+  defining:
+  - restaurant
+  - casual_eatery
+  - fast_food
+  - amenity=fast_food
+  - amenity=restaurant
+  host:
+  - commercial_area
+  - transit_station
+  - college_area
+  incompatible:
+  - pharmacy
+  - shoe_store
+  - car_repair
+veto_terms:
+- tiffin box manufacturer
+- tiffin bag wholesaler
+- corporate catering software
+brands:
+  incompatible: []
+overture_basic_categories:
+- restaurant
+- fast_food
+overture_taxonomy_paths:
+- food_and_drink > casual_eatery
+- food_and_drink > fast_food
+osm_tags:
+- amenity=fast_food
+- amenity=restaurant
+name_patterns:
+- \btiffins?\b
+- \btiffin cent(?:re|er)\b
+- \bmess\b
+- \bbreakfast\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

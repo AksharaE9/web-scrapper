@@ -1,0 +1,163 @@
+concept_id: degree_college
+version: 2
+labels:
+  - degree college
+  - degree collage
+  - engineering college
+  - medical college
+  - arts college
+  - science college
+  - bcom college
+  - ba college
+  - bsc college
+  - b.com college
+  - b.a. college
+  - b.sc. college
+  - mba college
+  - mca college
+  - autonomous college
+  - affiliated college
+  - ug college
+  - pg college
+  - undergraduate college
+  - postgraduate college
+  - graduation college
+  - college
+  - colleges
+  - degree colleges
+definition: >
+  A formal degree-granting higher education institution affiliated to a university
+  and offering bachelor's (UG) or postgraduate (PG) programmes in arts, science,
+  commerce, engineering, medicine, management, or law. Grants degrees recognised by
+  UGC/AICTE. NOT a K-12 school, vocational academy, or coaching centre.
+signals:
+  defining_terms:
+    strong:
+      - degree college
+      - degree collage
+      - engineering college
+      - medical college
+      - arts college
+      - science college
+      - college
+      - colleges
+      - bcom
+      - mba college
+      - mca college
+      - mahavidyalaya
+      - university college
+      - autonomous college
+      - b ed college
+      - law college
+  supporting_terms:
+    medium:
+      - degree
+      - graduation
+      - undergraduate
+      - postgraduate
+      - ug
+      - pg
+      - semester
+      - ugc
+      - aicte
+      - affiliated
+      - campus
+      - admission
+      - principal
+      - professor
+      - lecturer
+      - department
+      - hostel
+      - placement
+  non_evidence: inherit
+categories:
+  defining:
+    - college
+    - college_and_university
+    - higher_education
+    - amenity=college
+    - amenity=university
+    - engineering_college
+    - medical_college
+    # NOTE: educational_institution is deliberately EXCLUDED — it is too generic
+    # and matches IT training institutes, coaching centres, and vocational academies.
+  host:
+    - educational_zone
+  incompatible:
+    - bar
+    - liquor_store
+    - nightclub
+    - casino
+    - preschool
+    - kindergarten
+    - amenity=school
+# ── CONTRASTIVE VETO TERMS ────────────────────────────────────────────────────
+# Generated contrastively against siblings: school, preschool_daycare,
+# coaching_centre, vocational_institute. A degree college must NEVER match these.
+veto_terms:
+  - model school
+  - high school
+  - higher secondary school
+  - secondary school
+  - primary school
+  - elementary school
+  - public school
+  - cbse school
+  - icse school
+  - matriculation school
+  - play school
+  - playschool
+  - kindergarten
+  - kg school
+  - lkg
+  - ukg
+  - preschool
+  - pre school
+  - daycare
+  - day care
+  - creche
+  - montessori
+  - aviation academy
+  - hospitality academy
+  - vocational training
+  - skill academy
+  - skill centre
+  - driving school
+  - cricket coaching
+  - karate class
+  - dance class
+  - yoga class
+  - computer institute
+  - it training
+  - software training
+  - coding bootcamp
+  - coaching class
+  - tuition centre
+  - tutorial
+  - k-12
+  - nursery
+brands:
+  incompatible: []
+overture_basic_categories:
+  - college_and_university
+  - higher_education
+  - college
+  - educational_institution
+overture_taxonomy_paths:
+  - education > higher_education > college_and_university
+  - education > higher_education
+osm_tags:
+  - amenity=college
+  - amenity=university
+name_patterns:
+  - "\\bdegree\\s+colle?ge?\\b"
+  - "\\bcolleges?\\b"
+  - "\\bengineering\\s+college\\b"
+  - "\\bmedical\\s+college\\b"
+  - "\\bmahavidyalaya\\b"
+  - "\\buniversity\\s+college\\b"
+  - "\\b[bm]\\.[a-z]{1,3}\\.?\\s+college\\b"
+decision:
+  require_defining_signal: true
+  tau_hi: 0.72
+  tau_lo: 0.35

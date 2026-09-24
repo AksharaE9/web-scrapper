@@ -1,0 +1,45 @@
+concept_id: real_estate_agent
+version: 1
+labels:
+- real estate agent
+- property consultant
+- realtor
+- property dealer
+definition: Brokers and agencies facilitating property sales, rentals, plots, and
+  commercial leasing.
+signals:
+  defining_terms:
+    strong:
+    - real estate
+    - property consultant
+    - realtor
+    - property dealer
+    - real estate broker
+  supporting_terms:
+    medium:
+    - 2bhk
+    - 3bhk
+    - villa
+    - plots
+    - rental flat
+    - commercial leasing
+    - rera
+  non_evidence: inherit
+categories:
+  defining:
+  - real_estate.agent
+  - real_estate.agency
+  host:
+  - commercial_complex
+  incompatible:
+  - restaurant
+  - salon
+veto_terms:
+- car wash
+- dental
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

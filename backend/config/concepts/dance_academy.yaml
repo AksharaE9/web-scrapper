@@ -1,0 +1,46 @@
+concept_id: dance_academy
+version: 1
+labels:
+- dance academy
+- dance class
+- bharatanatyam institute
+- zumba studio
+definition: Dance institute offering classical, contemporary, hip-hop, and fitness
+  dance classes.
+signals:
+  defining_terms:
+    strong:
+    - dance academy
+    - dance classes
+    - dance studio
+    - bharatanatyam
+    - kathak
+    - contemporary dance
+  supporting_terms:
+    medium:
+    - zumba
+    - hip hop
+    - salsa
+    - choreography
+    - dance fitness
+    - kuchipudi
+  non_evidence: inherit
+categories:
+  defining:
+  - education.dance_school
+  - education.arts_school
+  host:
+  - studio
+  - fitness_centre
+  incompatible:
+  - hardware_store
+  - garage
+veto_terms:
+- hardware
+- mechanic
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

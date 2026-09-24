@@ -1,0 +1,98 @@
+concept_id: car_service
+version: 1
+labels:
+- car service
+- car repair
+- auto garage
+- car service center
+- mechanic
+- car workshop
+- auto repair
+- wheel alignment
+- bike service
+- two wheeler service
+- motorcycle repair
+definition: An automobile garage and repair workshop offering vehicle maintenance,
+  engine servicing, wheel alignment, denting, painting, and mechanical fixes.
+signals:
+  defining_terms:
+    strong:
+    - garage
+    - motors
+    - car care
+    - auto repair
+    - workshop
+    - mechanic
+    - pitstop
+    - gomechanic
+    - automotive
+    - car service
+    - bike service
+  supporting_terms:
+    medium:
+    - engine service
+    - denting
+    - painting
+    - wheel alignment
+    - brakes
+    - oil change
+    - battery check
+    - suspension
+    - clutch
+    - puncture
+  non_evidence: inherit
+categories:
+  defining:
+  - auto_repair
+  - car_repair
+  - mechanic
+  - shop=car_repair
+  - amenity=vehicle_inspection
+  - shop=motorcycle_repair
+  host:
+  - auto_hub
+  - industrial_area
+  - service_road
+  incompatible:
+  - bakery
+  - restaurant
+  - pharmacy
+  - beauty_salon
+  - clothing_store
+veto_terms:
+- car showroom
+- car dealer
+- used cars sale
+- dealership
+- bakery
+- restaurant
+- pharmacy
+brands:
+  incompatible:
+  - Apollo Pharmacy
+  - Dominos
+overture_basic_categories:
+- auto_repair
+- car_repair
+- mechanic
+overture_taxonomy_paths:
+- automotive > repair_and_service
+- services > automotive > repair
+osm_tags:
+- shop=car_repair
+- amenity=vehicle_inspection
+- shop=motorcycle_repair
+name_patterns:
+- \bgarage\b
+- \bmotors?\b
+- \bcar care\b
+- \bauto repair\b
+- \bworkshop\b
+- \bmechanic\b
+- \bpitstop\b
+- \bgomechanic\b
+- \bautomotive\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

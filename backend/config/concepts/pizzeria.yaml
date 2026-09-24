@@ -1,0 +1,40 @@
+concept_id: pizzeria
+version: 1
+labels:
+- pizzeria
+- pizza restaurant
+- pizza delivery
+definition: Dining or delivery restaurant specializing in pizza.
+signals:
+  defining_terms:
+    strong:
+    - pizza
+    - pizzeria
+    - wood fired pizza
+    - slice
+  supporting_terms:
+    medium:
+    - garlic bread
+    - pasta
+    - crust
+    - mozzarella
+    - calzone
+  non_evidence: inherit
+categories:
+  defining:
+  - food_and_drink.restaurant.pizza
+  host:
+  - restaurant
+  - food_court
+  incompatible:
+  - clothing_store
+  - optician
+veto_terms:
+- jewellery
+- pet shop
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

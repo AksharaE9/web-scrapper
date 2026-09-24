@@ -1,0 +1,40 @@
+concept_id: mobile_repair
+version: 1
+labels:
+- mobile repair
+- mobile repair near me
+definition: A service shop that diagnoses and repairs smartphones, broken screens,
+  batteries, and charging ports.
+signals:
+  defining_terms:
+    strong:
+    - mobile repair
+    - smartphone service
+    - phone repair
+    - screen replacement
+    - mobile care
+  supporting_terms:
+    medium:
+    - screen replacement
+    - battery replacement
+    - display repair
+    - mic repair
+  non_evidence: inherit
+categories:
+  defining:
+  - mobile_phone_shop
+  - shop=mobile_phone
+  host:
+  - general_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - unrelated_service
+veto_terms:
+- unrelated_industry
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

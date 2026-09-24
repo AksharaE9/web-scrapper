@@ -1,0 +1,42 @@
+concept_id: stationery_store
+version: 1
+labels:
+- stationery store
+- stationery store near me
+definition: A retail shop selling paper goods, notebooks, writing instruments, pens,
+  art supplies, and office stationery.
+signals:
+  defining_terms:
+    strong:
+    - stationery
+    - stationers
+    - pen shop
+    - office supplies
+    - book & stationery
+  supporting_terms:
+    medium:
+    - notebooks
+    - pens
+    - pencils
+    - art supplies
+    - calculators
+    - files
+  non_evidence: inherit
+categories:
+  defining:
+  - stationery_store
+  - shop=stationery
+  host:
+  - general_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - unrelated_service
+veto_terms:
+- unrelated_industry
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

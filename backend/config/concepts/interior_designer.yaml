@@ -1,0 +1,41 @@
+concept_id: interior_designer
+version: 1
+labels:
+- interior designer
+- interior designer near me
+definition: A design studio providing home interior decor, modular kitchen installation,
+  false ceilings, and renovation.
+signals:
+  defining_terms:
+    strong:
+    - interior design
+    - interior designer
+    - interiors
+    - home decor
+    - modular kitchen
+  supporting_terms:
+    medium:
+    - modular kitchen
+    - wardrobe design
+    - false ceiling
+    - 3d design
+    - renovation
+  non_evidence: inherit
+categories:
+  defining:
+  - interior_design
+  - office=architect
+  host:
+  - general_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - unrelated_service
+veto_terms:
+- unrelated_industry
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

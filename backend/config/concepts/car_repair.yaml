@@ -1,0 +1,42 @@
+concept_id: car_repair
+version: 1
+labels:
+- car repair
+- car repair near me
+definition: An automobile garage offering vehicle maintenance, engine servicing, denting,
+  painting, and tyre repair.
+signals:
+  defining_terms:
+    strong:
+    - car service
+    - car repair
+    - auto garage
+    - motor workshop
+    - car clinic
+  supporting_terms:
+    medium:
+    - engine service
+    - denting
+    - painting
+    - wheel alignment
+    - brakes
+    - oil change
+  non_evidence: inherit
+categories:
+  defining:
+  - car_repair
+  - shop=car_repair
+  host:
+  - general_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - unrelated_service
+veto_terms:
+- unrelated_industry
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

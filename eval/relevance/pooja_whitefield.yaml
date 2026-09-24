@@ -1,0 +1,29 @@
+case: pooja_whitefield
+query:
+  keyword: "pooja stores"
+  locality: "Whitefield"
+  city: "Bengaluru"
+  state: "Karnataka"
+  country: "India"
+source_snapshot: "overture-2024-08-20 + osm-2024-09-01"
+labels:
+  # The 5 named false positives from Section 0 & Section 9
+  - {name: "William Penn", categories: ["stationery_store", "pen_shop", "gift_shop"], brand: "William Penn", relevant: false}
+  - {name: "Ximi Vogue", categories: ["fashion_accessories", "gift_shop"], brand: "Ximi Vogue", relevant: false}
+  - {name: "Divine Footwear", categories: ["shoe_store", "general_store"], brand: null, relevant: false}
+  - {name: "Archies", categories: ["gift_shop", "greeting_cards"], brand: "Archies", relevant: false}
+  - {name: "Deepam Taxi", categories: ["taxi_service", "travel_agency"], brand: null, relevant: false}
+  # Additional original run candidates
+  - {name: "Sri Lakshmi Pooja Stores", categories: ["religious_goods_store", "general_store"], brand: null, relevant: true}
+  - {name: "Om Shakti Puja Samagri Shop", categories: ["religious_goods_store"], brand: null, relevant: true}
+  - {name: "Sri Venkateshwara Pooja Kendra", categories: ["general_store"], brand: null, relevant: true}
+  - {name: "Mahalakshmi Agarbathi & Pooja Items", categories: ["gift_shop"], brand: null, relevant: true}
+  - {name: "Whitefield Puja Bhandar", categories: ["grocery"], brand: null, relevant: true}
+  - {name: "Sai Pooja Materials", categories: ["general_store"], brand: null, relevant: true}
+  - {name: "Ganesha Divine Store", categories: ["general_store"], brand: null, relevant: false} # Host cat + non-ev only
+  - {name: "Sri Om Traders", categories: ["general_store"], brand: null, relevant: false} # Non-evidence only
+  - {name: "Bata Shoe Store", categories: ["shoe_store"], brand: "Bata", relevant: false}
+  - {name: "Sri Balaji Hair Salon", categories: ["beauty_salon"], brand: null, relevant: false}
+  - {name: "Lakshmi Medicals", categories: ["pharmacy"], brand: null, relevant: false}
+  - {name: "Gayatri Havan & Pooja Samagri Centre", categories: ["retail"], brand: null, relevant: true}
+  - {name: "Pooja Stores & Agarbathies", categories: ["general_store"], brand: null, relevant: true}

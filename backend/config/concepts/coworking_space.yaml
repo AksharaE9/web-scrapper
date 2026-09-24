@@ -1,0 +1,43 @@
+concept_id: coworking_space
+version: 1
+labels:
+- coworking space
+- shared office
+- managed workspace
+- flex office
+definition: Shared and managed office spaces with desks, cabins, and meeting rooms.
+signals:
+  defining_terms:
+    strong:
+    - coworking
+    - shared office
+    - managed workspace
+    - hot desk
+    - dedicated desk
+    - wework
+  supporting_terms:
+    medium:
+    - meeting room
+    - high speed wifi
+    - virtual office
+    - startup hub
+    - business centre
+  non_evidence: inherit
+categories:
+  defining:
+  - business.coworking
+  - business.office
+  host:
+  - commercial_complex
+  incompatible:
+  - garage
+  - grocery
+veto_terms:
+- car repair
+- pet clinic
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -7,7 +7,8 @@ Computes run quality metrics:
 3. Source agreement matrix & overlap
 4. Lincoln-Petersen capture-recapture estimated total population:
    N_hat = ((n1 + 1) * (n2 + 1) / (m + 1)) - 1
-5. Overall estimated precision/confidence summary
+5. Wilson score confidence intervals (with n < 30 guard)
+6. Overall estimated precision/confidence summary
 """
 
 from __future__ import annotations
@@ -17,6 +18,7 @@ from typing import Any
 
 from app.graph.runtime import node
 from app.graph.state import ResolvedEntity, RunState
+from app.metrics.wilson import compute_wilson_interval
 
 logger = logging.getLogger(__name__)
 
@@ -34,6 +36,7 @@ async def run(state: RunState) -> dict[str, Any]:
             "completeness": {"phone": 0.0, "email": 0.0, "website": 0.0, "address": 0.0},
             "capture_recapture": None,
             "average_confidence": 0.0,
+            "wilson_intervals": {"sample_status": "insufficient"},
         }
         return {"metrics": metrics}
 
@@ -82,12 +85,30 @@ async def run(state: RunState) -> dict[str, Any]:
     # 4. Average confidence
     avg_conf = round(sum(e.confidence for e in entities) / total, 3)
 
+    # 5. Wilson score confidence intervals (with n < 30 sample size guard)
+    if total >= 30:
+        p_pt, p_low, p_high = compute_wilson_interval(with_phone, total)
+        e_pt, e_low, e_high = compute_wilson_interval(with_email, total)
+        v_pt, v_low, v_high = compute_wilson_interval(tiers["Verified"], total)
+        wilson_stats = {
+            "sample_status": "sufficient",
+            "phone_wilson_95": {"point": p_pt, "lower": p_low, "upper": p_high},
+            "email_wilson_95": {"point": e_pt, "lower": e_low, "upper": e_high},
+            "verified_tier_wilson_95": {"point": v_pt, "lower": v_low, "upper": v_high},
+        }
+    else:
+        wilson_stats = {
+            "sample_status": "insufficient",
+            "note": f"Sample size n={total} < 30; statistical intervals withheld.",
+        }
+
     metrics = {
         "total_entities": total,
         "tier_distribution": tiers,
         "completeness": completeness,
         "capture_recapture": capture_recapture,
         "average_confidence": avg_conf,
+        "wilson_intervals": wilson_stats,
         "multi_source_count": sum(1 for e in entities if e.independent_source_count >= 2),
     }
 

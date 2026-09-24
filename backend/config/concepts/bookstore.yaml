@@ -1,0 +1,42 @@
+concept_id: bookstore
+version: 1
+labels:
+- bookstore
+- bookstore near me
+definition: A retail shop selling fiction/non-fiction books, educational textbooks,
+  children's literature, and novels.
+signals:
+  defining_terms:
+    strong:
+    - bookstore
+    - book shop
+    - books & periodicals
+    - book depot
+    - library store
+  supporting_terms:
+    medium:
+    - novels
+    - textbooks
+    - bestsellers
+    - paperbacks
+    - comics
+    - magazines
+  non_evidence: inherit
+categories:
+  defining:
+  - books_store
+  - shop=books
+  host:
+  - general_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - unrelated_service
+veto_terms:
+- unrelated_industry
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

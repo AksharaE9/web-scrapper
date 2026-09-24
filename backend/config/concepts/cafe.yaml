@@ -1,0 +1,102 @@
+concept_id: cafe
+version: 1
+labels:
+- cafe
+- cafes
+- coffee shop
+- coffee house
+- tea shop
+- espresso bar
+- bistro
+- chai point
+- tea stall
+- tea room
+definition: A relaxed beverage and light meal establishment serving coffee, espresso,
+  tea, sandwiches, pastries, and snacks.
+signals:
+  defining_terms:
+    strong:
+    - cafe
+    - "caf\xE9"
+    - coffee
+    - roasters
+    - tea
+    - chai
+    - starbucks
+    - third wave
+    - blue tokai
+    - costa
+    - espresso
+  supporting_terms:
+    medium:
+    - cappuccino
+    - latte
+    - brews
+    - beverages
+    - cold coffee
+    - snacks
+    - frappe
+    - pastas
+    - brownies
+  non_evidence: inherit
+categories:
+  defining:
+  - cafe
+  - coffee_shop
+  - tea_house
+  - amenity=cafe
+  - shop=coffee
+  host:
+  - bakery
+  - bookstore
+  - hotel
+  - library
+  - shopping_mall
+  incompatible:
+  - hardware_store
+  - car_repair
+  - hospital
+  - shoe_store
+  - gym
+veto_terms:
+- internet cafe
+- cyber cafe
+- raw beans
+- plantation
+- hardware
+- repairs
+- tyres
+- clinic
+- hospital
+- pharmacy
+- gym
+brands:
+  incompatible:
+  - Apollo
+  - Bata
+  - Gold's Gym
+overture_basic_categories:
+- cafe
+- coffee_shop
+- tea_house
+overture_taxonomy_paths:
+- food_and_drink > cafe
+- food_and_drink > coffee_shop
+osm_tags:
+- amenity=cafe
+- shop=coffee
+name_patterns:
+- \bcafe\b
+- "\\bcaf\xE9\\b"
+- \bcoffee\b
+- \broasters\b
+- \btea\b
+- \bchai\b
+- \bstarbucks\b
+- \bthird wave\b
+- \bblue tokai\b
+- \bcosta\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

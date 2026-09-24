@@ -1,0 +1,72 @@
+# Transliteration and spelling variant canonicalization mapping
+# Format: canonical_form: [variant1, variant2, variant3, ...]
+
+pooja:
+  - puja
+  - pooja
+  - poojan
+  - pujan
+  - poojai
+  - pujai
+  - poojari
+
+samagri:
+  - samagiri
+  - saamagri
+  - samagriyalu
+  - bhandar
+  - bhandaar
+  - samangri
+
+agarbatti:
+  - agarbathi
+  - agarbathy
+  - agarbathies
+  - agarbattis
+  - dhoop
+  - incenses
+  - incense
+
+kumkum:
+  - kumkuma
+  - kunkum
+  - kunkuma
+  - sindoor
+  - sindhoor
+  - haldi
+  - pasupu
+
+camphor:
+  - kapoor
+  - karpooram
+  - karpura
+  - karpoor
+
+diya:
+  - deepa
+  - deepam
+  - vilakku
+  - lamp
+  - oil_lamp
+
+<shop_word>:
+  - stores
+  - store
+  - shop
+  - shoppe
+  - shopkeeper
+  - mart
+  - centre
+  - center
+  - emporium
+  - bhandar
+  - bhandaar
+  - retail
+  - trader
+  - traders
+  - agency
+  - agencies
+  - depot
+  - outlet
+  - enterprise
+  - enterprises

@@ -1,0 +1,77 @@
+concept_id: pg_accommodation
+version: 1
+labels:
+- pg
+- pg accommodation
+- paying guest
+- mens pg
+- ladies pg
+- coliving
+- student hostel
+- working men pg
+- working women pg
+definition: A residential paying-guest (PG) or shared living facility providing furnished
+  rooms, food (mess), and utilities for students and working professionals.
+signals:
+  defining_terms:
+    strong:
+    - pg
+    - paying guest
+    - mens pg
+    - ladies pg
+    - coliving
+    - working women pg
+    - working men pg
+    - hostel
+    - pg for gents
+    - pg for ladies
+  supporting_terms:
+    medium:
+    - sharing room
+    - single room
+    - food included
+    - wifi
+    - washing machine
+    - ac room
+    - monthly rent
+    - homely food
+  non_evidence: inherit
+categories:
+  defining:
+  - hostel
+  - guest_house
+  - tourism=hostel
+  - tourism=guest_house
+  - amenity=dormitory
+  host:
+  - residential_area
+  - it_corridor
+  - college_zone
+  incompatible:
+  - restaurant
+  - bakery
+  - car_repair
+  - pharmacy
+veto_terms:
+- pg software
+- pg management portal
+- hotel luxury 5 star
+brands:
+  incompatible: []
+overture_basic_categories:
+- hostel
+- guest_house
+overture_taxonomy_paths:
+- travel_and_lodging > lodging > hostel
+osm_tags:
+- tourism=hostel
+- tourism=guest_house
+name_patterns:
+- \bpg\b
+- \bpaying guest\b
+- \bcoliving\b
+- \bhostel\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -1,0 +1,125 @@
+concept_id: hotel
+version: 1
+labels:
+  - hotel
+  - hotels
+  - lodging
+  - resort
+  - resorts
+  - guest house
+  - homestay
+  - motel
+  - hostel
+  - stay
+  - room stay
+  - inn
+definition: A commercial hospitality establishment providing paid lodging, guest rooms, suites, and hospitality accommodations.
+signals:
+  defining_terms:
+    strong:
+      - hotel
+      - resort
+      - guest house
+      - homestay
+      - lodge
+      - lodging
+      - inn
+      - hostel
+      - oyo
+      - taj
+      - marriott
+      - hyatt
+      - grand
+      - rooms available
+      - stay
+    medium: []
+  supporting_terms:
+    medium:
+      - check in
+      - check out
+      - deluxe room
+      - ac rooms
+      - suite
+      - hospitality
+      - staycation
+      - tariff
+      - accommodation
+      - booking
+  non_evidence: inherit
+categories:
+  defining:
+    - hotel
+    - motel
+    - resort
+    - guest_house
+    - hostel
+    - tourism=hotel
+    - tourism=guest_house
+    - tourism=hostel
+    - tourism=motel
+    - tourism=resort
+    - lodging
+  host:
+    - commercial_area
+    - tourist_attraction
+    - airport_zone
+  incompatible:
+    - professional_services
+    - tourism=apartment
+    - apartment
+    - office
+    - serviced_apartment
+    - travel_agency
+    - pharmacy
+    - hardware_store
+    - shoe_store
+    - gym_equipment
+    - dentist
+    - car_repair
+veto_terms:
+  - hotel booking app
+  - hotel management institute
+  - restaurant only
+  - food court
+  - hardware
+  - plywood
+  - pharmaceutical
+  - car spare parts
+brands:
+  incompatible:
+    - Apollo Pharmacy
+    - MRF Tyres
+    - Bata
+overture_basic_categories:
+  - hotel
+  - motel
+  - resort
+  - guest_house
+  - hostel
+overture_taxonomy_paths:
+  - travel_and_lodging > lodging > hotel
+  - lodging > hotel
+osm_tags:
+  - tourism=hotel
+  - tourism=guest_house
+  - tourism=hostel
+  - tourism=motel
+  - tourism=resort
+name_patterns:
+  - "\\bhotels?\\b"
+  - "\\bresorts?\\b"
+  - "\\bguest house\\b"
+  - "\\bhomestay\\b"
+  - "\\blodge\\b"
+  - "\\blodging\\b"
+  - "\\binn\\b"
+  - "\\bhostels?\\b"
+  - "\\boyo\\b"
+  - "\\btaj\\b"
+  - "\\bmarriott\\b"
+  - "\\bhyatt\\b"
+  - "\\bgrand\\b"
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

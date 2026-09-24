@@ -1,0 +1,47 @@
+concept_id: ayurvedic_clinic
+version: 1
+labels:
+- ayurvedic clinic
+- ayurveda centre
+- panchakarma
+definition: Traditional Ayurvedic healthcare and treatment centre providing herbal
+  medicine and panchakarma.
+signals:
+  defining_terms:
+    strong:
+    - ayurvedic
+    - ayurveda
+    - panchakarma
+    - vaidya
+    - nadi pariksha
+    - herbal clinic
+  supporting_terms:
+    medium:
+    - massage
+    - oil therapy
+    - herbal
+    - wellness
+    - dosha
+    - rejuvenation
+  non_evidence: inherit
+categories:
+  defining:
+  - health_and_beauty.medical.alternative_medicine
+  - health_and_beauty.spa
+  host:
+  - hospital
+  - wellness_centre
+  incompatible:
+  - allopathy
+  - fast_food
+  - liquor
+veto_terms:
+- allopathic only
+- bar
+- pub
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -1,0 +1,64 @@
+concept_id: pet_shop
+version: 1
+labels:
+- pet shop
+- pet store
+- pet care
+- aquarium
+- pet clinic
+- dog food shop
+definition: A retail shop providing companion pets, pet food, dog/cat accessories,
+  aquarium fish, bird cages, and pet grooming essentials.
+signals:
+  defining_terms:
+    strong:
+    - pet shop
+    - pet care
+    - aquarium
+    - pet store
+    - pet clinic
+    - pets world
+    - dog food
+    - cat food
+  supporting_terms:
+    medium:
+    - aquarium fish
+    - cages
+    - pet grooming
+    - collars
+    - pedigree
+    - royal canin
+    - fish tank
+    - pet toys
+  non_evidence: inherit
+categories:
+  defining:
+  - pet_store
+  - pet_shop
+  - shop=pet
+  host:
+  - shopping_complex
+  - commercial_building
+  incompatible:
+  - restaurant
+  - bakery
+  - pharmacy
+veto_terms:
+- livestock wholesale
+- poultry farm
+brands:
+  incompatible: []
+overture_basic_categories:
+- pet_store
+overture_taxonomy_paths:
+- shopping > pet_supplies
+osm_tags:
+- shop=pet
+name_patterns:
+- \bpets?\b
+- \bpet shop\b
+- \baquarium\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

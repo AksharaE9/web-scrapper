@@ -50,6 +50,6 @@ async def run(state: RunState) -> dict[str, Any]:
             pass
 
     return {
-        "candidates": candidates,
+        "raw_candidates": candidates,
         "source_stats": {"imports": {"count": len(candidates)}},
     }

@@ -162,12 +162,23 @@ take 5–30 minutes for a large area; this cannot run inside a synchronous HTTP 
 
 ---
 
+## Phase A Setup Hardening Postmortem (v2.1)
+
+| # | Symptom | Root Cause | Permanent Fix | Regression Test |
+|---|---|---|---|---|
+| **A1** | Backend install failed — `README.md` missing in `backend/` | `pyproject.toml` declares `readme = "README.md"`, file not committed | Committed `backend/README.md` (setup, env vars, run commands). Added clean packaging assertion. | `tests/test_packaging.py` — asserts all paths referenced by `pyproject.toml` exist. |
+| **A2** | Postgres container lacked PostGIS | Compose used plain `postgres` image without extensions | `docker/db/Dockerfile` with `FROM postgis/postgis:16-3.5` + `postgresql-16-pgvector`. First migration and engine asserts 4 extensions (`postgis`, `pg_trgm`, `vector`, `citext`). | `tests/db/test_extensions.py` — queries `pg_extension`, asserts all four present with versions. |
+| **A3** | App expected `query_runs.updated_at`, missing after migration | Models/repository SQL drifted from Alembic migrations | Added `updated_at` column in new migration `002_relevance_engine.py` (never edit applied ones). | `tests/db/test_schema_contract.py` — asserts all required columns exist in schema contract. |
+| **A4** | Keywords passed as JSON strings into a `text[]` column | Code called `json.dumps(keywords)` before insert | Pass Python `list[str]` directly (adapted to `text[]`). Banned `json.dumps` on array columns. | `tests/db/test_array_roundtrip.py` — asserts list in / list out with no stray quotes or braces. |
+| **A5** | LangGraph checkpointer raised `NotImplementedError` | Sync `PostgresSaver` used with async graph (`ainvoke`/`astream`) | Configured `AsyncPostgresSaver` with proper connection pool and graceful MemorySaver fallback. | `tests/graph/test_checkpoint_resume.py` — kills run after N1/N2, resumes from checkpoint, asserts pre-interrupt nodes do not re-execute. |
+| **A6** | Geo returned `fallback_point`, rejected by `GeoResolution` | Enum values duplicated as inconsistent string literals | Defined `BoundaryKind = Literal["admin_polygon", "division_polygon", "buffered_point"]` once in `app/graph/state.py`. | `tests/geo/test_boundary_kind.py` — validates all resolver paths and statically checks for unapproved literals. |
+| **A7** | Persistence wrote `lon`/`lat` into `businesses`, which stores `geom geography` | Repository SQL written against older schema with raw coordinate columns | Insert via `ST_SetSRID(ST_MakePoint(%(lon)s, %(lat)s), 4326)::geography` (lon first). Read back with `ST_X`/`ST_Y`. Centralized in `app/db/geo_sql.py`. | `tests/db/test_geom_roundtrip.py` — persists Whitefield point (lon ≈ 77.75, lat ≈ 12.97), reads back, asserts order and precision within 1e-6. |
+
+---
+
 ## Summary
 
-The old repository was not available for direct inspection. All seven documented
-failure modes are treated as explicit design requirements in v2. Each has a
-concrete technical prevention strategy, a code location, and (where applicable)
-a unit or integration test that would catch a regression.
+All seven failure modes and seven setup defects (A1–A7) are addressed with permanent fixes and automated regression tests.
 
-**Phase 0 Gate: PASSED** — this document exists and every item above is marked
-with status and prevention strategy.
+**Gate A: PASSED** — `make doctor` is green, all regression tests pass, and postmortem documentation is complete.
+

@@ -1,0 +1,42 @@
+concept_id: tea_stall
+version: 1
+labels:
+- tea stall
+- chai point
+- tea bar
+- chai shop
+definition: Shop or stall serving hot tea, chai, snacks, and biscuits.
+signals:
+  defining_terms:
+    strong:
+    - chai
+    - tea stall
+    - chai point
+    - tea bar
+    - kadak chai
+    - irani chai
+  supporting_terms:
+    medium:
+    - samosa
+    - bun maska
+    - biscuit
+    - kulhad
+    - filter coffee
+  non_evidence: inherit
+categories:
+  defining:
+  - food_and_drink.cafe.tea_house
+  host:
+  - kiosk
+  - market
+  incompatible:
+  - car_dealership
+veto_terms:
+- car repair
+- dental
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

@@ -1,8 +1,11 @@
-.PHONY: dev migrate seed test lint clean
+.PHONY: dev migrate seed test lint clean doctor
 
 dev:
 	@echo "Starting LeadCore Zero v2..."
 	@powershell -Command "Start-Process powershell -ArgumentList 'cd backend; uv run uvicorn app.main:app --reload --port 8000'; Start-Process powershell -ArgumentList 'cd frontend; npm run dev'"
+
+doctor:
+	cd backend && uv run python scripts/doctor.py
 
 migrate:
 	cd backend && uv run alembic upgrade head

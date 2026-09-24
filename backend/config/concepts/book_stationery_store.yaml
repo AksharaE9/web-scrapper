@@ -1,0 +1,88 @@
+concept_id: book_stationery_store
+version: 1
+labels:
+- book stationery store
+- stationery shop
+- book store
+- book shop
+- bookstore
+- xerox
+- printing
+- office supplies
+- stationery
+definition: A retail shop selling stationery goods, educational textbooks, novels,
+  writing supplies, and photocopy/xerox services.
+signals:
+  defining_terms:
+    strong:
+    - bookstores
+    - bookshops
+    - books
+    - stationery
+    - stationers
+    - xerox
+    - print
+    - shree stationery
+    - pen shop
+    - office supplies
+    - book depot
+  supporting_terms:
+    medium:
+    - notebooks
+    - pens
+    - pencils
+    - art supplies
+    - calculators
+    - files
+    - photocopy
+    - lamination
+    - spiral binding
+    - textbooks
+    - novels
+  non_evidence: inherit
+categories:
+  defining:
+  - book_store
+  - stationery_store
+  - books_store
+  - shop=books
+  - shop=stationery
+  - shop=copyshop
+  host:
+  - shopping_mall
+  - commercial_building
+  - educational_zone
+  incompatible:
+  - car_repair
+  - pharmacy
+  - automobile_dealer
+veto_terms:
+- paper mill
+- publishing house corporate
+- industrial printing plant
+brands:
+  incompatible:
+  - Apollo
+  - Bata
+overture_basic_categories:
+- book_store
+- stationery_store
+overture_taxonomy_paths:
+- shopping > books_and_stationery
+osm_tags:
+- shop=books
+- shop=stationery
+- shop=copyshop
+name_patterns:
+- \bbookstores?\b
+- \bbookshops?\b
+- \bbooks?\b
+- \bstationery\b
+- \bstationers?\b
+- \bxerox\b
+- \bprint\b
+- \bshree stationery\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

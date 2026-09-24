@@ -23,6 +23,8 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
+    testing: bool = Field(default=False, description="Testing mode flag")
+
     # ── Database (Neon Postgres) ──────────────────────────────────────────
     # Pooled URL for the API: use -pooler hostname; PgBouncer transaction mode.
     # prepare_threshold=None is set in the pool to disable server-side prepared

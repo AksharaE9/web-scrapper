@@ -1,0 +1,106 @@
+concept_id: pharmacy
+version: 1
+labels:
+- pharmacy
+- pharmacies
+- chemist
+- medical store
+- drugstore
+- apothecary
+- medicines
+- druggist
+- medicals
+definition: A retail dispensary licensed to sell prescription drugs, over-the-counter
+  medicines, surgical supplies, and health wellness products.
+signals:
+  defining_terms:
+    strong:
+    - pharmacy
+    - chemist
+    - medical
+    - medicos
+    - drugs
+    - apollo
+    - medplus
+    - wellness forever
+    - medicals
+    - medical store
+    - druggist
+    - medicines
+    - apothecary
+  supporting_terms:
+    medium:
+    - tablets
+    - syrup
+    - wellness
+    - surgical
+    - ayurvedic
+    - homeopathy
+    - prescription
+    - capsules
+    - first aid
+  non_evidence: inherit
+categories:
+  defining:
+  - pharmacy
+  - drugstore
+  - chemist
+  - amenity=pharmacy
+  - shop=chemist
+  - healthcare=pharmacy
+  host:
+  - hospital
+  - clinic
+  - supermarket
+  - department_store
+  incompatible:
+  - restaurant
+  - bakery
+  - bar
+  - hardware_store
+  - shoe_store
+  - salon
+veto_terms:
+- pharma manufacturing
+- distributor
+- pvt ltd lab
+- bulk drugs factory
+- restaurant
+- bakery
+- sweets
+- footwear
+- clothing
+- salon
+- spa
+- gym
+- hardware
+brands:
+  incompatible:
+  - KFC
+  - Bata
+  - Zara
+  - McDonald's
+overture_basic_categories:
+- pharmacy
+- drugstore
+overture_taxonomy_paths:
+- health_and_medicine > pharmacy
+- shopping > health > pharmacy
+osm_tags:
+- amenity=pharmacy
+- shop=chemist
+- healthcare=pharmacy
+name_patterns:
+- \bpharmacy\b
+- \bchemist\b
+- \bmedical\b
+- \bmedicos\b
+- \bdrugs?\b
+- \bapollo\b
+- \bmedplus\b
+- \bwellness forever\b
+- \bmedicals\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

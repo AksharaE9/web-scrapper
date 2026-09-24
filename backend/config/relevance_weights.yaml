@@ -1,0 +1,60 @@
+# LeadCore Zero — Relevance Weights v2.2 (Category-First)
+#
+# Weight philosophy:
+#   PRIMARY signals (category, OSM tag, web evidence) carry enough weight to
+#   push p above tau_hi=0.75 from bias alone:
+#     bias + f_def_cat*3.2 = -0.8 + 3.2 = 2.4  → p = σ(2.4) = 0.917  ✓
+#
+#   NAME-ONLY must NOT be sufficient alone:
+#     bias + f_def_name*1.4 = -0.8 + 1.4 = 0.6  → p = σ(0.6) = 0.646  < tau_hi ✓
+#
+#   NAME-ONLY penalty (f_name_only_primary):
+#     bias + f_def_name*1.4 + f_name_only*(-0.5) = -0.8 + 1.4 - 0.5 = 0.1
+#     → p = σ(0.1) = 0.525  — in REVIEW band (tau_lo=0.35 < 0.525 < tau_hi=0.75)
+#     The structural guard in scorer.py (has_primary_signal) then BLOCKS
+#     this from reaching accepted, so it stays in review, not accepted.
+#     This correctly handles "Whitefield Puja Bhandar" (grocery only):
+#     has defining name signal, host category, should be review not rejected.
+#
+#   NAME + SUPPORTING terms can still reach accepted:
+#     bias + f_def_name*1.4 + f_name_only*0 + f_sup_count*0.8*3 = -0.8+1.4+2.4=3.0
+#     → p = 0.95 ✓  (legitimate: "Shri Pooja Store - agarbatti, samagri, diyas")
+
+bias: -0.8
+
+weights:
+  # Primary signals — category-first
+  f_def_cat: 3.2            # Overture/place category in defining set
+  f_def_osm: 2.8            # OSM tag in defining set
+  f_def_web: 2.6            # Defining term found in web evidence
+
+  # Supporting signals — name evidence (demoted in v2.2)
+  f_def_name: 1.4           # Defining term in business name (supporting only)
+
+  # Penalty: name is the ONLY primary signal — routes to review band
+  # Weight tuned so name-only lands in uncertain zone (0.35–0.75):
+  #   -0.8 + 1.4 - 0.5 = 0.1 → p≈0.52 (review, not rejected)
+  # The structural guard in scorer.py blocks it from reaching accepted.
+  f_name_only_primary: -0.5
+
+  # Corroborative signals
+  f_sup_count: 0.8          # Count of supporting terms (max 1.0 at 3 hits)
+  f_host_cat: 0.2           # Category in host list (weak positive)
+  f_src_agree: 0.5          # Multiple independent sources agree
+  f_cat_conf: 0.4           # Source-reported confidence
+
+  # Semantic signals
+  f_sem_pos: 1.0            # Bi-encoder similarity to positive exemplars
+  f_sem_neg: -1.4           # Bi-encoder similarity to negative exemplars
+  f_sem_margin: 1.4         # pos - neg margin
+
+  # Cross-encoder
+  f_ce: 2.2                 # Cross-encoder reranker score
+
+  # Penalty signals
+  f_nonev_only: -2.8        # Name has only non-evidence tokens
+
+thresholds:
+  tau_hi: 0.75              # Accept threshold
+  tau_lo: 0.35              # Reject threshold (below → rejected)
+  require_defining_signal: true

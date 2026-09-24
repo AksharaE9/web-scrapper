@@ -1,0 +1,42 @@
+concept_id: meat_shop
+version: 1
+labels:
+- meat shop
+- meat shop near me
+definition: A butcher shop selling fresh chicken, mutton, fish, seafood, and dressed
+  poultry meats.
+signals:
+  defining_terms:
+    strong:
+    - meat shop
+    - chicken & mutton
+    - butcher
+    - fish & meat
+    - fresh meat
+  supporting_terms:
+    medium:
+    - chicken
+    - mutton
+    - poultry
+    - seafood
+    - fish
+    - prawns
+  non_evidence: inherit
+categories:
+  defining:
+  - butcher
+  - shop=butcher
+  host:
+  - general_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - unrelated_service
+veto_terms:
+- unrelated_industry
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

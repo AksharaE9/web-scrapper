@@ -1,0 +1,113 @@
+concept_id: electrical_store
+version: 1
+labels:
+- electrical store
+- electrical stores
+- electronics store
+- electronics shop
+- electrical shop
+- home appliances
+- mobile store
+- mobile shop
+- computer store
+- lighting shop
+- electronic items
+- electronic
+- electricals
+- electronics
+definition: A retail outlet selling consumer electricals, home appliances, wiring
+  supplies, switches, lighting, televisions, and electronics.
+signals:
+  defining_terms:
+    strong:
+    - electricals
+    - electronics
+    - electrical shop
+    - appliances
+    - lighting shop
+    - home appliances
+    - croma
+    - reliance digital
+    - vijay sales
+    - electronix
+    - gadgets
+  supporting_terms:
+    medium:
+    - wires
+    - switches
+    - fans
+    - refrigerators
+    - washing machine
+    - led bulbs
+    - cables
+    - switchgear
+    - sockets
+    - geyser
+    - inverter
+  non_evidence: inherit
+categories:
+  defining:
+  - electronics_store
+  - electrical_supply_store
+  - appliance_store
+  - shop=electronics
+  - shop=electrical
+  - shop=appliances
+  - shop=lighting
+  - craft=electrician
+  host:
+  - shopping_mall
+  - commercial_building
+  - market_complex
+  incompatible:
+  - pharmacy
+  - clothing_store
+  - restaurant
+  - hotel
+  - bakery
+  - beauty_salon
+veto_terms:
+- electrical contractor pvt ltd
+- substation
+- transformer manufacturer
+- power plant
+- heavy engineering
+- software company
+- civil engineering
+brands:
+  incompatible:
+  - Apollo Pharmacy
+  - Bata
+  - Dominos
+overture_basic_categories:
+- electronics_store
+- electrical_supply_store
+- appliance_store
+overture_taxonomy_paths:
+- shopping > electronics
+- shopping > home_and_garden > appliances
+- shopping > specialty_store > hardware_home_and_garden_store > electrical_supply_store
+osm_tags:
+- shop=electronics
+- shop=electrical
+- shop=appliances
+- shop=lighting
+- shop=mobile_phone
+- shop=computer
+- craft=electrician
+name_patterns:
+- \belectricals?\b
+- \belectronics?\b
+- \bappliances?\b
+- \bcroma\b
+- \breliance digital\b
+- \bvijay sales\b
+- \bmobile\b
+- \blighting\b
+- \belectric\b
+- \belectronix\b
+- \bgadgets?\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

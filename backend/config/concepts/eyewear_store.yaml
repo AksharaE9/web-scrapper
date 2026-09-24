@@ -1,0 +1,44 @@
+concept_id: eyewear_store
+version: 1
+labels:
+- eyewear store
+- optical shop
+- spectacles store
+- sunglasses shop
+definition: Retail store selling frames, sunglasses, lenses, and contact lenses.
+signals:
+  defining_terms:
+    strong:
+    - eyewear
+    - optical shop
+    - opticals
+    - spectacles
+    - lenskart
+    - sunglasses
+  supporting_terms:
+    medium:
+    - contact lenses
+    - frames
+    - eye testing
+    - anti glare
+    - power glasses
+  non_evidence: inherit
+categories:
+  defining:
+  - shopping.optician
+  - shopping.eyewear
+  host:
+  - eye_clinic
+  - mall
+  incompatible:
+  - butcher
+  - hardware
+veto_terms:
+- hardware
+- mechanic
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

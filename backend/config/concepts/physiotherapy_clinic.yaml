@@ -1,0 +1,43 @@
+concept_id: physiotherapy_clinic
+version: 1
+labels:
+- physiotherapy clinic
+- physiotherapist
+- rehab centre
+definition: Physical therapy and rehabilitation clinic offering musculoskeletal and
+  neurological treatment.
+signals:
+  defining_terms:
+    strong:
+    - physiotherapy
+    - physiotherapist
+    - rehab centre
+    - kinesiology
+    - sports rehab
+  supporting_terms:
+    medium:
+    - spine
+    - joint pain
+    - chiropractic
+    - exercise therapy
+    - ortho
+  non_evidence: inherit
+categories:
+  defining:
+  - health_and_beauty.medical.physical_therapy
+  host:
+  - hospital
+  - gym
+  - orthopaedic_clinic
+  incompatible:
+  - restaurant
+  - nightclub
+veto_terms:
+- beauty parlour
+- salon
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

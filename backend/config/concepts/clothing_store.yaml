@@ -1,0 +1,116 @@
+concept_id: clothing_store
+version: 1
+labels:
+- clothing store
+- boutique
+- boutiques
+- designer boutique
+- fashion boutique
+- ethnic wear
+- tailor
+- clothes shop
+- garments
+- apparel
+- mens wear
+- womens wear
+- kids wear
+- textiles
+- saree store
+definition: A retail shop selling ready-made garments, men's/women's/kids' fashion
+  wear, ethnic wear, sarees, and textiles.
+signals:
+  defining_terms:
+    strong:
+    - boutique
+    - couture
+    - fashion
+    - designer studio
+    - creations
+    - threads
+    - clothes
+    - garments
+    - apparel
+    - wear
+    - sarees
+    - clothing
+    - menswear
+    - kidswear
+    - textiles
+  supporting_terms:
+    medium:
+    - shirts
+    - dresses
+    - trousers
+    - kurtis
+    - ethnic wear
+    - fabrics
+    - suits
+    - jeans
+    - frocks
+    - lehenga
+    - dupatta
+  non_evidence: inherit
+categories:
+  defining:
+  - boutique
+  - clothing_store
+  - apparel_store
+  - shop=boutique
+  - shop=clothes
+  - shop=tailor
+  - shop=fashion
+  host:
+  - department_store
+  - shopping_mall
+  - market_complex
+  incompatible:
+  - hardware_store
+  - restaurant
+  - pharmacy
+  - dental_clinic
+  - car_repair
+veto_terms:
+- textile mill
+- garment export factory
+- fabric wholesale depot
+- pharmacy
+- medical
+- dentist
+- hardware
+- cement
+- car repair
+- tyres
+- food
+brands:
+  incompatible:
+  - Apollo
+  - Domino's
+  - MRF
+overture_basic_categories:
+- boutique
+- clothing_store
+- apparel_store
+overture_taxonomy_paths:
+- shopping > clothing > boutique
+- shopping > clothing
+osm_tags:
+- shop=boutique
+- shop=clothes
+- shop=tailor
+- shop=fashion
+name_patterns:
+- \bboutique\b
+- \bcouture\b
+- \bfashion\b
+- \bdesigner studio\b
+- \bcreations\b
+- \bthreads\b
+- \bclothes?\b
+- \bgarments?\b
+- \bapparel\b
+- \bwear\b
+- \bsarees?\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

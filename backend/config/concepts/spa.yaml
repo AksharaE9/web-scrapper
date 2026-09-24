@@ -1,0 +1,81 @@
+concept_id: spa
+version: 1
+labels:
+- spa
+- spas
+- massage center
+- ayurvedic spa
+- wellness center
+- thai spa
+- massage parlour
+- day spa
+definition: A relaxation and wellness sanctuary offering professional therapeutic
+  body massages, steam baths, aroma therapies, and skin treatments.
+signals:
+  defining_terms:
+    strong:
+    - spa
+    - massage
+    - ayurveda
+    - ayurvedic
+    - wellness
+    - thai spa
+    - body massage
+    - aroma massage
+  supporting_terms:
+    medium:
+    - steam bath
+    - jacuzzi
+    - rejuvenation
+    - deep tissue
+    - head massage
+    - reflexology
+    - detox
+  non_evidence: inherit
+categories:
+  defining:
+  - spa
+  - day_spa
+  - massage_therapist
+  - amenity=spa
+  - shop=massage
+  - leisure=spa
+  host:
+  - hotel
+  - resort
+  - wellness_club
+  incompatible:
+  - pharmacy
+  - bakery
+  - hardware_store
+  - clothing_store
+veto_terms:
+- equipment
+- spa equipment manufacturer
+- wholesale distributor
+brands:
+  incompatible:
+  - Bata
+  - MRF
+overture_basic_categories:
+- spa
+- day_spa
+- massage_therapist
+overture_taxonomy_paths:
+- services > personal_care > spa
+- health_and_medicine > alternative_medicine > massage
+osm_tags:
+- amenity=spa
+- shop=massage
+- leisure=spa
+name_patterns:
+- \bspa\b
+- \bmassage\b
+- \bayurveda\b
+- \bayurvedic\b
+- \bwellness\b
+- \bthai spa\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

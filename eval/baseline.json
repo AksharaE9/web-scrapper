@@ -1,0 +1,1151 @@
+{
+  "scorecard_version": "VALIDATE-1.0",
+  "commit_sha": "7b5dab4f1047",
+  "timestamp": "2026-09-24T05:09:18Z",
+  "n_fixtures": 6,
+  "macro_precision": 1.0,
+  "macro_precision_pooled_ci": [
+    0.8713,
+    1.0
+  ],
+  "macro_recall": 0.7583,
+  "macro_f1": 0.8259,
+  "macro_accuracy": 0.8861,
+  "accept_all_baseline": 0.4688,
+  "delta_above_baseline_pp": 53.12,
+  "tier_precision_variance": 0.0,
+  "tier_variance_warning": true,
+  "total_seeded_negatives": 9,
+  "total_seeded_fp": 0,
+  "seeded_fp_rate": 0.0,
+  "cases": [
+    {
+      "case": "bakeries_indiranagar",
+      "keyword": "bakeries",
+      "locality": "Indiranagar",
+      "total_candidates": 10,
+      "positive_labels": 5,
+      "negative_labels": 5,
+      "base_rate": 0.5,
+      "tp": 5,
+      "fp": 0,
+      "tn": 5,
+      "fn": 0,
+      "review": 1,
+      "precision": 1.0,
+      "precision_ci": [
+        0.5655,
+        1.0
+      ],
+      "recall": 1.0,
+      "recall_ci": [
+        0.5655,
+        1.0
+      ],
+      "f1": 1.0,
+      "f05": 1.0,
+      "accept_all_baseline_precision": 0.5,
+      "delta_vs_baseline_pp": 50.0,
+      "permutation_p": 0.0099,
+      "review_rate": 0.1,
+      "accuracy": 1.0,
+      "ms_per_candidate": 50.37,
+      "cascade_split": {
+        "hard_gates": 4,
+        "scorer": 5,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 1
+      },
+      "yield_vs_expectation": {
+        "accepted": 5,
+        "expected_min": 3,
+        "yield_ratio": 1.6667,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 60.0,
+      "false_positives": [],
+      "false_negatives": [],
+      "all_decisions": [
+        {
+          "name": "Thom's Bakery & Bakes",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9932,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Lavonne Academy of Baking & Patisserie",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9932,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Glen's Bakehouse Indiranagar",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9942,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Smoor Chocolates & Cakes",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9931,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "WarmOven Cakes & Desserts",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.995,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Toit Brewpub",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.6032,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": true
+        },
+        {
+          "name": "Gold's Gym Indiranagar",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_brand",
+          "is_seeded_negative": true
+        },
+        {
+          "name": "Apollo Clinic & Pharmacy",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": true
+        },
+        {
+          "name": "Bata Shoe Store",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_brand",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Bodycraft Salon & Spa",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 3,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": 0.0
+    },
+    {
+      "case": "coaching_kukatpally",
+      "keyword": "coaching centres",
+      "locality": "Kukatpally",
+      "total_candidates": 10,
+      "positive_labels": 5,
+      "negative_labels": 5,
+      "base_rate": 0.5,
+      "tp": 4,
+      "fp": 0,
+      "tn": 5,
+      "fn": 1,
+      "review": 4,
+      "precision": 1.0,
+      "precision_ci": [
+        0.5101,
+        1.0
+      ],
+      "recall": 0.8,
+      "recall_ci": [
+        0.3755,
+        0.9638
+      ],
+      "f1": 0.8889,
+      "f05": 0.9524,
+      "accept_all_baseline_precision": 0.5,
+      "delta_vs_baseline_pp": 50.0,
+      "permutation_p": 0.0099,
+      "review_rate": 0.4,
+      "accuracy": 0.9,
+      "ms_per_candidate": 7.02,
+      "cascade_split": {
+        "hard_gates": 2,
+        "scorer": 4,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 4
+      },
+      "yield_vs_expectation": {
+        "accepted": 4,
+        "expected_min": 3,
+        "yield_ratio": 1.3333,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 75.0,
+      "false_positives": [],
+      "false_negatives": [
+        {
+          "name": "Kukatpally Mathematics & Physics Tuition Centre",
+          "stage": "review_band",
+          "p": 0.8137,
+          "categories": [
+            "school"
+          ],
+          "outcome": "review"
+        }
+      ],
+      "all_decisions": [
+        {
+          "name": "Sri Chaitanya IIT Academy",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9927,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Narayana IIT-JEE & NEET Coaching",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9928,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "TIME Institute Kukatpally (CAT/Bank Exams)",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.992,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Vidyalankar Classes",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9922,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Kukatpally Mathematics & Physics Tuition Centre",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.8137,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Pista House Bakery & Restaurant",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Kukatpally Wine Mart",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sujana Forum Mall",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5661,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "MedPlus Pharmacy",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5404,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Raymond Menswear & Tailors",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5504,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    },
+    {
+      "case": "degree_college_ameerpet",
+      "keyword": "degree college",
+      "locality": "Ameerpet",
+      "total_candidates": 19,
+      "positive_labels": 7,
+      "negative_labels": 12,
+      "base_rate": 0.3684,
+      "tp": 7,
+      "fp": 0,
+      "tn": 12,
+      "fn": 0,
+      "review": 3,
+      "precision": 1.0,
+      "precision_ci": [
+        0.6457,
+        1.0
+      ],
+      "recall": 1.0,
+      "recall_ci": [
+        0.6457,
+        1.0
+      ],
+      "f1": 1.0,
+      "f05": 1.0,
+      "accept_all_baseline_precision": 0.3684,
+      "delta_vs_baseline_pp": 63.16,
+      "permutation_p": 0.0099,
+      "review_rate": 0.1579,
+      "accuracy": 1.0,
+      "ms_per_candidate": 5.03,
+      "cascade_split": {
+        "hard_gates": 9,
+        "scorer": 7,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 3
+      },
+      "yield_vs_expectation": {
+        "accepted": 7,
+        "expected_min": 3,
+        "yield_ratio": 2.3333,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 42.9,
+      "false_positives": [],
+      "false_negatives": [],
+      "all_decisions": [
+        {
+          "name": "Aurora Degree College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9951,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "St. Mary's Degree College for Women",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9949,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Badruka College of Commerce and Arts",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9935,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Pragathi Degree College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9951,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Narayana Degree College Ameerpet",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9949,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sri Chaitanya Junior College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9931,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Vijaya Degree College",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9949,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Gowtham Model School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": true
+        },
+        {
+          "name": "Slate - The School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": true
+        },
+        {
+          "name": "Gitanjali Group of Schools",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": true
+        },
+        {
+          "name": "St. Alphonsa High School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": true
+        },
+        {
+          "name": "Flying Star Aviation and Hospitality Academy",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": true
+        },
+        {
+          "name": "LiveTech",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5702,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": true
+        },
+        {
+          "name": "FIITJEE Ameerpet",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.577,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Allen Career Institute Ameerpet",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "EuroKids Ameerpet",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Montessori Play School",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Hyundai Service Centre",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Apollo Pharmacy",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5558,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 6,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": 0.0
+    },
+    {
+      "case": "gyms_koramangala",
+      "keyword": "gyms",
+      "locality": "Koramangala",
+      "total_candidates": 12,
+      "positive_labels": 6,
+      "negative_labels": 6,
+      "base_rate": 0.5,
+      "tp": 3,
+      "fp": 0,
+      "tn": 6,
+      "fn": 3,
+      "review": 5,
+      "precision": 1.0,
+      "precision_ci": [
+        0.4385,
+        1.0
+      ],
+      "recall": 0.5,
+      "recall_ci": [
+        0.1876,
+        0.8124
+      ],
+      "f1": 0.6667,
+      "f05": 0.8333,
+      "accept_all_baseline_precision": 0.5,
+      "delta_vs_baseline_pp": 50.0,
+      "permutation_p": 0.0099,
+      "review_rate": 0.4167,
+      "accuracy": 0.75,
+      "ms_per_candidate": 5.09,
+      "cascade_split": {
+        "hard_gates": 4,
+        "scorer": 3,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 5
+      },
+      "yield_vs_expectation": {
+        "accepted": 3,
+        "expected_min": 3,
+        "yield_ratio": 1.0,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 100.0,
+      "false_positives": [],
+      "false_negatives": [
+        {
+          "name": "Snap Fitness 24/7",
+          "stage": "review_band",
+          "p": 0.7707,
+          "categories": [
+            "fitness_centre"
+          ],
+          "outcome": "review"
+        },
+        {
+          "name": "Transform Gym & Crossfit",
+          "stage": "review_band",
+          "p": 0.7744,
+          "categories": [
+            "fitness_centre"
+          ],
+          "outcome": "review"
+        },
+        {
+          "name": "Fitnesstation Gym",
+          "stage": "review_band",
+          "p": 0.7719,
+          "categories": [
+            "fitness_centre"
+          ],
+          "outcome": "review"
+        }
+      ],
+      "all_decisions": [
+        {
+          "name": "Gold's Gym Koramangala",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9929,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Cult.fit Koramangala",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9936,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Snap Fitness 24/7",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.7707,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Transform Gym & Crossfit",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.7744,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Fitnesstation Gym",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.7719,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Koramangala Barbell Club",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.993,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Truffles Restaurant",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Koramangala Medical Store",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Bata Footwear",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_brand",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Green Trends Unisex Salon",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5586,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Apollo Pharmacy",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sri Balaji Wines",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5623,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    },
+    {
+      "case": "pooja_whitefield",
+      "keyword": "pooja stores",
+      "locality": "Whitefield",
+      "total_candidates": 18,
+      "positive_labels": 8,
+      "negative_labels": 10,
+      "base_rate": 0.4444,
+      "tp": 2,
+      "fp": 0,
+      "tn": 10,
+      "fn": 6,
+      "review": 8,
+      "precision": 1.0,
+      "precision_ci": [
+        0.3424,
+        1.0
+      ],
+      "recall": 0.25,
+      "recall_ci": [
+        0.0715,
+        0.5907
+      ],
+      "f1": 0.4,
+      "f05": 0.625,
+      "accept_all_baseline_precision": 0.4444,
+      "delta_vs_baseline_pp": 55.56,
+      "permutation_p": 0.0099,
+      "review_rate": 0.4444,
+      "accuracy": 0.6667,
+      "ms_per_candidate": 5.86,
+      "cascade_split": {
+        "hard_gates": 6,
+        "scorer": 4,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 8
+      },
+      "yield_vs_expectation": {
+        "accepted": 2,
+        "expected_min": 5,
+        "yield_ratio": 0.4,
+        "passed": false,
+        "note": "\u2717 below 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 150.0,
+      "false_positives": [],
+      "false_negatives": [
+        {
+          "name": "Sri Venkateshwara Pooja Kendra",
+          "stage": "review_band",
+          "p": 0.8241,
+          "categories": [
+            "general_store"
+          ],
+          "outcome": "review"
+        },
+        {
+          "name": "Mahalakshmi Agarbathi & Pooja Items",
+          "stage": "review_band",
+          "p": 0.8251,
+          "categories": [
+            "gift_shop"
+          ],
+          "outcome": "review"
+        },
+        {
+          "name": "Whitefield Puja Bhandar",
+          "stage": "review_band",
+          "p": 0.768,
+          "categories": [
+            "grocery"
+          ],
+          "outcome": "review"
+        },
+        {
+          "name": "Sai Pooja Materials",
+          "stage": "review_band",
+          "p": 0.8136,
+          "categories": [
+            "general_store"
+          ],
+          "outcome": "review"
+        },
+        {
+          "name": "Gayatri Havan & Pooja Samagri Centre",
+          "stage": "review_band",
+          "p": 0.7721,
+          "categories": [
+            "retail"
+          ],
+          "outcome": "review"
+        },
+        {
+          "name": "Pooja Stores & Agarbathies",
+          "stage": "review_band",
+          "p": 0.823,
+          "categories": [
+            "general_store"
+          ],
+          "outcome": "review"
+        }
+      ],
+      "all_decisions": [
+        {
+          "name": "William Penn",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_brand",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Ximi Vogue",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5095,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Divine Footwear",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Archies",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.4963,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Deepam Taxi",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sri Lakshmi Pooja Stores",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9947,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Om Shakti Puja Samagri Shop",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9934,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sri Venkateshwara Pooja Kendra",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.8241,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Mahalakshmi Agarbathi & Pooja Items",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.8251,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Whitefield Puja Bhandar",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.768,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sai Pooja Materials",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.8136,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Ganesha Divine Store",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0871,
+          "stage": "scorer",
+          "reason_code": "low_evidence",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sri Om Traders",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0905,
+          "stage": "scorer",
+          "reason_code": "low_evidence",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Bata Shoe Store",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_brand",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Sri Balaji Hair Salon",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Lakshmi Medicals",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Gayatri Havan & Pooja Samagri Centre",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.7721,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Pooja Stores & Agarbathies",
+          "ground_truth": true,
+          "outcome": "review",
+          "p": 0.823,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    },
+    {
+      "case": "salons_banjara_hills",
+      "keyword": "salons",
+      "locality": "Banjara Hills",
+      "total_candidates": 10,
+      "positive_labels": 5,
+      "negative_labels": 5,
+      "base_rate": 0.5,
+      "tp": 5,
+      "fp": 0,
+      "tn": 5,
+      "fn": 0,
+      "review": 2,
+      "precision": 1.0,
+      "precision_ci": [
+        0.5655,
+        1.0
+      ],
+      "recall": 1.0,
+      "recall_ci": [
+        0.5655,
+        1.0
+      ],
+      "f1": 1.0,
+      "f05": 1.0,
+      "accept_all_baseline_precision": 0.5,
+      "delta_vs_baseline_pp": 50.0,
+      "permutation_p": 0.0099,
+      "review_rate": 0.2,
+      "accuracy": 1.0,
+      "ms_per_candidate": 6.39,
+      "cascade_split": {
+        "hard_gates": 3,
+        "scorer": 5,
+        "cross_encoder": 0,
+        "llm": 0,
+        "review_band": 2
+      },
+      "yield_vs_expectation": {
+        "accepted": 5,
+        "expected_min": 3,
+        "yield_ratio": 1.6667,
+        "passed": true,
+        "note": "\u2713 meets 60% yield floor"
+      },
+      "rule_of_three_failure_floor": 60.0,
+      "false_positives": [],
+      "false_negatives": [],
+      "all_decisions": [
+        {
+          "name": "Juice Salon & Spa Banjara Hills",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9927,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Toni & Guy Hairdressing",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9929,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Mirrors Luxury Salons",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9928,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Envi Unisex Salon",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9927,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Star Unisex Hair & Beauty Parlour",
+          "ground_truth": true,
+          "outcome": "accepted",
+          "p": 0.9946,
+          "stage": "scorer",
+          "reason_code": null,
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Bawarchi Restaurant",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Apollo Clinic",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "veto_term",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Karachi Bakery",
+          "ground_truth": false,
+          "outcome": "rejected",
+          "p": 0.0,
+          "stage": "hard_gates",
+          "reason_code": "incompatible_category",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "MRF Tyre Centre",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5527,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        },
+        {
+          "name": "Royal Footwear & Chappal House",
+          "ground_truth": false,
+          "outcome": "review",
+          "p": 0.5405,
+          "stage": "review_band",
+          "reason_code": "uncertain_llm_disabled",
+          "is_seeded_negative": false
+        }
+      ],
+      "seeded_negatives_count": 0,
+      "seeded_fp_count": 0,
+      "seeded_fp_rate": null
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# LeadCore Zero — Website Crawl & Extraction Configuration
+version: 1
+
+max_fetches_per_domain: 3
+body_size_cap_mb: 2.0
+timeout_s: 8.0
+user_agent: "LeadCoreBot/2.0 (+https://leadcore.local; contact: contact@leadcore.local)"
+rate_limit_per_domain_s: 1.0
+max_concurrent_crawls: 15
+extract_json_ld: true
+extract_microdata: true
+extract_contacts: true
+extract_socials: true

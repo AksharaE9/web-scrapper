@@ -1,0 +1,43 @@
+concept_id: chartered_accountant
+version: 1
+labels:
+- chartered accountant
+- ca firm
+- tax consultant
+- auditor
+definition: Professional accounting, taxation, GST filing, and financial auditing
+  practice.
+signals:
+  defining_terms:
+    strong:
+    - chartered accountant
+    - ca firm
+    - tax consultant
+    - auditor
+    - gst practitioner
+  supporting_terms:
+    medium:
+    - income tax return
+    - audit
+    - balance sheet
+    - tds filing
+    - company registration
+  non_evidence: inherit
+categories:
+  defining:
+  - professional_services.accounting_and_bookkeeping
+  - professional_services.tax_consultant
+  host:
+  - office_building
+  incompatible:
+  - restaurant
+  - garage
+veto_terms:
+- grocery
+- car wash
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

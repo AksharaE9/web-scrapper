@@ -1,0 +1,44 @@
+concept_id: car_rental
+version: 1
+labels:
+- car rental
+- self drive cars
+- taxi hire
+- cab service
+definition: Vehicle hiring agency offering self-drive cars, chauffeurs, and outstation
+  cabs.
+signals:
+  defining_terms:
+    strong:
+    - car rental
+    - self drive cars
+    - car hire
+    - zoomcar
+    - cab rental
+    - outstation cabs
+  supporting_terms:
+    medium:
+    - hourly rental
+    - airport taxi
+    - innova hire
+    - sedan rental
+    - luxury car hire
+  non_evidence: inherit
+categories:
+  defining:
+  - transportation.rental
+  - transportation.taxi
+  host:
+  - travel_agency
+  incompatible:
+  - bakery
+  - gym
+veto_terms:
+- fitness centre
+- spa
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

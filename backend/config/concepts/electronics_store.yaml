@@ -1,0 +1,40 @@
+concept_id: electronics_store
+version: 1
+labels:
+- electronics store
+- electronics store near me
+definition: A retail shop selling consumer electronics, televisions, appliances, home
+  appliances, and audio gear.
+signals:
+  defining_terms:
+    strong:
+    - electronics
+    - appliances
+    - gadgets
+    - home appliances
+  supporting_terms:
+    medium:
+    - tv
+    - fridge
+    - refrigerator
+    - ac
+    - audio
+  non_evidence: inherit
+categories:
+  defining:
+  - electronics_store
+  - shop=electronics
+  host:
+  - general_store
+  - shopping_mall
+  - commercial_building
+  incompatible:
+  - unrelated_service
+veto_terms:
+- unrelated_industry
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

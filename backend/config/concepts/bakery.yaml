@@ -1,0 +1,104 @@
+concept_id: bakery
+version: 1
+labels:
+- bakery
+- bakeries
+- cake shop
+- pastry shop
+- confectionery
+- bakehouse
+- patisserie
+- sweet shop
+definition: A retail establishment that bakes and sells bread, cakes, pastries, cookies,
+  puffs, biscuits, and confectionery goods.
+signals:
+  defining_terms:
+    strong:
+    - bakery
+    - bake
+    - cake
+    - cakes
+    - pastry
+    - oven
+    - patisserie
+    - mio amore
+    - theobroma
+    - cookies
+    - bakes
+  supporting_terms:
+    medium:
+    - bread
+    - puffs
+    - muffins
+    - brownies
+    - desserts
+    - cupcakes
+    - croissants
+    - birthday cake
+  non_evidence: inherit
+categories:
+  defining:
+  - bakery
+  - pastry_shop
+  - cake_shop
+  - shop=bakery
+  - shop=pastry
+  - craft=bakery
+  host:
+  - cafe
+  - coffee_shop
+  - restaurant
+  - supermarket
+  - grocery
+  incompatible:
+  - gym
+  - salon
+  - hardware_store
+  - car_repair
+  - pharmacy
+  - shoe_store
+veto_terms:
+- machinery
+- industrial
+- flour mill
+- ingredients factory
+- gym
+- fitness
+- salon
+- haircut
+- tyre
+- repair
+- hardware
+- cement
+- pharma
+- shoes
+brands:
+  incompatible:
+  - Bata
+  - Apollo Pharmacy
+  - Gold's Gym
+overture_basic_categories:
+- bakery
+- pastry_shop
+- cake_shop
+overture_taxonomy_paths:
+- food_and_drink > bakery
+- shopping > food > bakery
+osm_tags:
+- shop=bakery
+- shop=pastry
+- craft=bakery
+name_patterns:
+- \bbakery\b
+- \bbake\b
+- \bcakes?\b
+- \bpastry\b
+- \boven\b
+- \bpatisserie\b
+- \bmio amore\b
+- \btheobroma\b
+- \bcookies\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

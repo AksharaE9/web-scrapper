@@ -1,0 +1,57 @@
+# LeadCore Zero — Geographic Resolution & Buffer Configuration
+# Zero hardcoded magic numbers. All values are read by app/graph/nodes/n1_geo.py and exposed via /api/config/geo.
+
+version: 1
+
+nominatim:
+  min_interval_s: 1.05
+  timeout_s: 8.0
+  max_structured_results: 8
+  max_retries: 1
+  polygon_threshold: 0.0005
+
+photon:
+  timeout_s: 8.0
+  max_results: 5
+
+buffers_m:
+  microhood: 500
+  neighbourhood: 800
+  locality: 1500
+  suburb: 1500
+  county: 8000
+  city: 8000
+  region: 20000
+  default: 1500
+
+buffer_by_result_target:
+  locality:
+    - { max_results: 100, buffer_m: 2500 }
+    - { max_results: 300, buffer_m: 4500 }
+    - { max_results: 1000, buffer_m: 8000 }
+    - { max_results: 5000, buffer_m: 14000 }
+  city:
+    - { max_results: 100, buffer_m: 6000 }
+    - { max_results: 300, buffer_m: 10000 }
+    - { max_results: 1000, buffer_m: 18000 }
+    - { max_results: 5000, buffer_m: 30000 }
+
+subtype_weights:
+  microhood: 1.0
+  neighbourhood: 0.95
+  locality: 0.90
+  suburb: 0.85
+  county: 0.70
+  region: 0.50
+
+accept_threshold:
+  with_locality: 0.55
+  without_locality: 0.50
+
+penalties:
+  city_mismatch: 0.60
+  state_mismatch: 0.80
+
+state_match_min: 60
+typo_fuzzy_min: 85
+lru_cache_ttl_s: 900

@@ -1,0 +1,44 @@
+concept_id: printing_press
+version: 1
+labels:
+- printing press
+- digital printing
+- offset printer
+- flex printing
+definition: Commercial printing service for business cards, banners, brochures, and
+  offset print.
+signals:
+  defining_terms:
+    strong:
+    - printing press
+    - digital printing
+    - flex printing
+    - offset printer
+    - banner printing
+  supporting_terms:
+    medium:
+    - visiting cards
+    - brochure
+    - screen print
+    - pamphlets
+    - binding
+    - laser print
+  non_evidence: inherit
+categories:
+  defining:
+  - services.printing
+  - services.copying_and_printing
+  host:
+  - stationery_store
+  incompatible:
+  - spa
+  - hospital
+veto_terms:
+- spa massage
+- dental surgery
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

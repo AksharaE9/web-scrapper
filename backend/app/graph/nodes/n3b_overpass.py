@@ -199,9 +199,6 @@ async def _fetch_nominatim_pois(
                             continue
                         osm_type = item.get("osm_type", "node")
                         cats = [c for c in [item.get("class"), item.get("type")] if c]
-                        for p_cat in plan.overture_basic_categories:
-                            if p_cat not in cats:
-                                cats.append(p_cat)
 
                         candidates.append(RawCandidate(
                             source="osm",
@@ -258,7 +255,7 @@ async def _fetch_nominatim_pois(
                             name=name.strip(),
                             lon=float(coords[0]),
                             lat=float(coords[1]),
-                            categories=cats or ["hotel"],
+                            categories=cats,
                             phones=[],
                             emails=[],
                             websites=[],
@@ -283,7 +280,7 @@ async def run(state: RunState) -> dict[str, Any]:
         return {"source_stats": {"osm": {"error": "no_geo"}}}
 
     query = _build_overpass_query(geo, plans)
-    elements = []
+    elements: list[dict[str, Any]] = []
     candidates: list[RawCandidate] = []
 
     if query.strip():
@@ -300,14 +297,14 @@ async def run(state: RunState) -> dict[str, Any]:
         if candidates:
             log.info("Nominatim fallback discovered candidates", count=len(candidates))
             return {
-                "candidates": candidates,
+                "raw_candidates": candidates,
                 "source_stats": {"osm": {"count": len(candidates), "fallback": "nominatim"}},
             }
 
     if not elements and not candidates:
         log.warning("Overpass and Nominatim discovery returned no results")
         return {
-            "candidates": [],
+            "raw_candidates": [],
             "source_stats": {"osm": {"error": "no_results"}},
         }
 
@@ -356,6 +353,6 @@ async def run(state: RunState) -> dict[str, Any]:
 
     log.info("OSM candidates found", count=len(candidates))
     return {
-        "candidates": candidates,
+        "raw_candidates": candidates,
         "source_stats": {"osm": {"count": len(candidates), "raw_elements": len(elements)}},
     }

@@ -1,0 +1,68 @@
+concept_id: dry_cleaner
+version: 1
+labels:
+- dry cleaner
+- dry cleaners
+- laundry
+- dry cleaning
+- wash and fold
+- steam iron
+- laundromat
+definition: A professional garment care shop offering dry cleaning, laundry washing,
+  steam pressing, and fabric stain removal.
+signals:
+  defining_terms:
+    strong:
+    - dry cleaners
+    - laundry
+    - dry cleaning
+    - wash & fold
+    - steam iron
+    - laundromat
+    - dhobi
+    - tumbledry
+    - fabrico
+  supporting_terms:
+    medium:
+    - garment care
+    - washing
+    - ironing
+    - suits cleaning
+    - blanket wash
+    - saree rolling
+    - stain removal
+  non_evidence: inherit
+categories:
+  defining:
+  - dry_cleaning
+  - laundry
+  - shop=dry_cleaning
+  - shop=laundry
+  host:
+  - residential_area
+  - shopping_complex
+  incompatible:
+  - restaurant
+  - bakery
+  - pharmacy
+veto_terms:
+- washing machine manufacturer
+- detergent factory
+brands:
+  incompatible: []
+overture_basic_categories:
+- dry_cleaning
+- laundry
+overture_taxonomy_paths:
+- services > personal_care > laundry_and_dry_cleaning
+osm_tags:
+- shop=dry_cleaning
+- shop=laundry
+name_patterns:
+- \bdry cleaners?\b
+- \blaundry\b
+- \bdry cleaning\b
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35

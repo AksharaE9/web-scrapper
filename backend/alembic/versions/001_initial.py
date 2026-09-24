@@ -47,7 +47,7 @@ def upgrade() -> None:
 
     halfvec_ok = _check_halfvec_support(conn)
     vec_type = "halfvec(384)" if halfvec_ok else "vector(384)"
-    print(f"\n  pgvector halfvec support: {halfvec_ok} → using {vec_type}\n")
+    print(f"\n  pgvector halfvec support: {halfvec_ok} -> using {vec_type}\n")
 
     # ── query_runs ────────────────────────────────────────────────────────
     op.create_table(

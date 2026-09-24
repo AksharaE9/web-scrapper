@@ -1,0 +1,44 @@
+concept_id: yoga_studio
+version: 1
+labels:
+- yoga studio
+- yoga centre
+- yoga classes
+- hatha yoga
+definition: Dedicated studio offering yoga asanas, meditation, and pranayama sessions.
+signals:
+  defining_terms:
+    strong:
+    - yoga studio
+    - yoga centre
+    - yoga classes
+    - hatha yoga
+    - ashtanga yoga
+    - iyengar yoga
+  supporting_terms:
+    medium:
+    - pranayama
+    - meditation
+    - surya namaskar
+    - mindfulness
+    - yoga teacher training
+  non_evidence: inherit
+categories:
+  defining:
+  - health_and_beauty.yoga
+  - fitness.yoga_studio
+  host:
+  - wellness_centre
+  - gym
+  incompatible:
+  - fast_food
+  - car_dealer
+veto_terms:
+- liquor store
+- bar
+brands:
+  incompatible: []
+decision:
+  require_defining_signal: true
+  tau_hi: 0.75
+  tau_lo: 0.35
