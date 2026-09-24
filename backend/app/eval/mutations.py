@@ -30,7 +30,9 @@ if str(backend_root) not in sys.path:
 
 if sys.platform == "win32":
     try:
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        reconfig = getattr(sys.stdout, "reconfigure", None)
+        if callable(reconfig):
+            reconfig(encoding="utf-8", errors="replace")
     except Exception:
         pass
 
@@ -98,7 +100,7 @@ def load_all_fixtures() -> list[dict[str, Any]]:
 
 async def _run_fixture_with_engine(
     fixture: dict[str, Any],
-    engine_fn: Callable,
+    engine_fn: Callable[..., Any],
 ) -> dict[str, int]:
     """Run one fixture through the provided engine function, return TP/FP/TN/FN."""
     keyword = fixture.get("query", {}).get("keyword", "business")
@@ -157,7 +159,10 @@ def _compute_metrics(counts: dict[str, int]) -> dict[str, float]:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 # MUT-1: Invert the relevance predicate
-async def mut1_inverted_predicate(name: str, keyword: str, lon: float, lat: float, categories=None, brand=None, **kwargs) -> RelevanceDecision:
+async def mut1_inverted_predicate(
+    name: str, keyword: str, lon: float, lat: float,
+    categories: list[str] | None = None, brand: str | None = None, **kwargs: Any
+) -> RelevanceDecision:
     dec = await evaluate_candidate(name=name, keyword=keyword, lon=lon, lat=lat, categories=categories, brand=brand, **kwargs)
     inverted = {"accepted": "rejected", "rejected": "accepted", "review": "review"}[dec.outcome]
     return RelevanceDecision(
@@ -172,7 +177,10 @@ async def mut1_inverted_predicate(name: str, keyword: str, lon: float, lat: floa
     )
 
 # MUT-2: Geo filter bypass (Simulate geo filter removed / far out of bounds)
-async def mut2_geo_bypass(name: str, keyword: str, lon: float, lat: float, categories=None, brand=None, **kwargs) -> RelevanceDecision:
+async def mut2_geo_bypass(
+    name: str, keyword: str, lon: float, lat: float,
+    categories: list[str] | None = None, brand: str | None = None, **kwargs: Any
+) -> RelevanceDecision:
     # Simulates geo bypass by evaluating far away location but removing boundary constraint
     return await evaluate_candidate(
         name=name, keyword=keyword, lon=lon, lat=lat,
@@ -180,14 +188,20 @@ async def mut2_geo_bypass(name: str, keyword: str, lon: float, lat: float, categ
     )
 
 # MUT-3: No category gate (All category constraints bypassed)
-async def mut3_no_category_gate(name: str, keyword: str, lon: float, lat: float, categories=None, brand=None, **kwargs) -> RelevanceDecision:
+async def mut3_no_category_gate(
+    name: str, keyword: str, lon: float, lat: float,
+    categories: list[str] | None = None, brand: str | None = None, **kwargs: Any
+) -> RelevanceDecision:
     return await evaluate_candidate(
         name=name, keyword=keyword, lon=lon, lat=lat,
         categories=[], brand=brand,
     )
 
 # MUT-4: Typo normaliser identity (Disable normaliser on realistic novel typos)
-async def mut4_normaliser_identity(name: str, keyword: str, lon: float, lat: float, categories=None, brand=None, **kwargs) -> RelevanceDecision:
+async def mut4_normaliser_identity(
+    name: str, keyword: str, lon: float, lat: float,
+    categories: list[str] | None = None, brand: str | None = None, **kwargs: Any
+) -> RelevanceDecision:
     # Inject unknown/novel typo patterns that only normalisation can resolve
     mangled_kw = keyword.replace("college", "colege").replace("pharmacy", "farmcy").replace("supermarket", "suprrmarket")
     mangled_name = name.replace("College", "Colege").replace("Pharmacy", "Farmcy").replace("Supermarket", "Suprrmarket")
@@ -197,7 +211,10 @@ async def mut4_normaliser_identity(name: str, keyword: str, lon: float, lat: flo
     )
 
 # MUT-5: Wrong rank window (Return tail ranked candidates 20–40)
-async def mut5_wrong_rank_window(name: str, keyword: str, lon: float, lat: float, categories=None, brand=None, **kwargs) -> RelevanceDecision:
+async def mut5_wrong_rank_window(
+    name: str, keyword: str, lon: float, lat: float,
+    categories: list[str] | None = None, brand: str | None = None, **kwargs: Any
+) -> RelevanceDecision:
     # Degrade candidate categories to generic/tail types
     degraded_cats = ["general_store"] if categories else []
     return await evaluate_candidate(
@@ -236,7 +253,10 @@ async def run_mut6_shuffled_labels(fixtures: list[dict[str, Any]]) -> dict[str, 
     return _compute_metrics({"tp": tp, "fp": fp, "tn": tn, "fn": fn})
 
 # MUT-7: Empty results
-async def mut7_empty_results(name: str, keyword: str, lon: float, lat: float, categories=None, brand=None, **kwargs) -> RelevanceDecision:
+async def mut7_empty_results(
+    name: str, keyword: str, lon: float, lat: float,
+    categories: list[str] | None = None, brand: str | None = None, **kwargs: Any
+) -> RelevanceDecision:
     return RelevanceDecision(
         outcome="rejected", p=0.0, stage="hard_gates", features={},
         reasons=[{"code": "MUT-7", "detail": "Empty result mutation"}],
@@ -246,7 +266,10 @@ async def mut7_empty_results(name: str, keyword: str, lon: float, lat: float, ca
 # MUT-8: Return previous query's results (Stale / cross-query contamination)
 _MUT8_LAST_DECISION: RelevanceDecision | None = None
 
-async def mut8_stale_results(name: str, keyword: str, lon: float, lat: float, categories=None, brand=None, **kwargs) -> RelevanceDecision:
+async def mut8_stale_results(
+    name: str, keyword: str, lon: float, lat: float,
+    categories: list[str] | None = None, brand: str | None = None, **kwargs: Any
+) -> RelevanceDecision:
     global _MUT8_LAST_DECISION
     # Stale cross-domain result generator: evaluate under unrelated query "fuel station"
     stale = await evaluate_candidate(
@@ -344,14 +367,26 @@ async def run_shuffled_label_control(fixtures: list[dict[str, Any]], n_runs: int
 
 # MR-1: Specialisation (child category ⊆ parent category)
 async def run_mr1_specialisation() -> dict[str, Any]:
-    test_cases = [
+    test_cases: list[dict[str, Any]] = [
         {"name": "Gold's Gym", "cats_child": ["gym"], "cats_parent": ["fitness_centre"], "kw_child": "gym", "kw_parent": "fitness centre"},
         {"name": "Cult Fit Studio", "cats_child": ["fitness_centre"], "cats_parent": ["sports_complex"], "kw_child": "gym", "kw_parent": "fitness centre"},
     ]
     results = []
     for tc in test_cases:
-        child_dec = await evaluate_candidate(name=tc["name"], keyword=tc["kw_child"], lon=77.75, lat=12.97, categories=tc["cats_child"])
-        parent_dec = await evaluate_candidate(name=tc["name"], keyword=tc["kw_parent"], lon=77.75, lat=12.97, categories=tc["cats_parent"])
+        child_dec = await evaluate_candidate(
+            name=str(tc["name"]),
+            keyword=str(tc["kw_child"]),
+            lon=77.75,
+            lat=12.97,
+            categories=list(tc["cats_child"]),
+        )
+        parent_dec = await evaluate_candidate(
+            name=str(tc["name"]),
+            keyword=str(tc["kw_parent"]),
+            lon=77.75,
+            lat=12.97,
+            categories=list(tc["cats_parent"]),
+        )
         violation = (child_dec.outcome == "accepted" and parent_dec.outcome == "rejected")
         results.append({"name": tc["name"], "child": child_dec.outcome, "parent": parent_dec.outcome, "violation": violation})
     violations = [r for r in results if r["violation"]]
@@ -474,7 +509,7 @@ async def run_all_mutations() -> dict[str, Any]:
     b5 = await run_shuffled_label_control(fixtures, n_runs=5)
 
     # 3. All 8 Mutations
-    mut_results = {}
+    mut_results: dict[str, Any] = {}
     mut_funcs = [
         ("MUT-1 Inverted predicate", mut1_inverted_predicate, "collapses to ~0%"),
         ("MUT-2 Geo filter bypass", mut2_geo_bypass, "degrades precision"),
@@ -522,7 +557,7 @@ async def run_all_mutations() -> dict[str, Any]:
 
     print("\n[MUTATION MATRIX]")
     for m_name, m_val in mut_results.items():
-        p_val = m_val.get('precision', 0.0)
+        p_val = m_val.get('precision', 0.0) if isinstance(m_val, dict) else 0.0
         print(f"  {m_name:<30} -> precision: {p_val:.4f}")
 
     print("\n[METAMORPHIC RELATIONS]")
@@ -537,7 +572,7 @@ async def run_all_mutations() -> dict[str, Any]:
     }
 
 
-def main():
+def main() -> None:
     results = asyncio.run(run_all_mutations())
     out_file = backend_root.parent / "eval" / "mutation_results.json"
     with open(out_file, "w", encoding="utf-8") as f:

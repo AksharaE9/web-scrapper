@@ -45,7 +45,9 @@ if str(backend_root) not in sys.path:
 
 if sys.platform == "win32":
     try:
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        reconfig = getattr(sys.stdout, "reconfigure", None)
+        if callable(reconfig):
+            reconfig(encoding="utf-8", errors="replace")
     except Exception:
         pass
 
@@ -56,12 +58,12 @@ EVAL_DIR = backend_root.parent / "eval" / "relevance"
 BASELINE_PATH = backend_root.parent / "eval" / "baseline.json"
 
 # Tier definitions for difficulty grading (MR-3 / tier-variance check)
-TIER_DEFINITIONS = {
+TIER_DEFINITIONS: dict[str, list[str]] = {
     "A_seeded_easy": ["gyms_koramangala", "pooja_whitefield", "salons_banjara_hills"],
     "B_clean_nonzero": ["bakeries_indiranagar"],
     "C_ambiguous": ["coaching_kukatpally"],
-    "D_hard_negatives": [],   # populate with degree_college cases after split
-    "E_hard_typos": [],       # populate with typo-variant cases
+    "D_hard_negatives": ["degree_college_ameerpet", "degree_college_kukatpally"],
+    "E_hard_typos": ["degree_college_dilsukhnagar"],
 }
 
 # Yield-vs-expectation floor values per keyword (M2 replacement)

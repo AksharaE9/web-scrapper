@@ -59,7 +59,7 @@ pytestmark = pytest.mark.asyncio
 
 # ── 1. All 8 Mutations Tests ──────────────────────────────────────────────────
 
-async def test_mut1_ci_gate():
+async def test_mut1_ci_gate() -> None:
     """MUT-1: Invert relevance predicate -> benchmark must collapse (100pp drop)."""
     fixtures = load_all_fixtures()
     assert fixtures, "No fixtures found"
@@ -79,7 +79,7 @@ async def test_mut1_ci_gate():
     assert b_metrics["precision"] - m1_metrics["precision"] >= 0.50
 
 
-async def test_mut2_geo_bypass_executes():
+async def test_mut2_geo_bypass_executes() -> None:
     fixtures = load_all_fixtures()
     m2_counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
     for f in fixtures:
@@ -89,7 +89,7 @@ async def test_mut2_geo_bypass_executes():
     assert m2["tp"] >= 0
 
 
-async def test_mut3_no_category_gate():
+async def test_mut3_no_category_gate() -> None:
     fixtures = load_all_fixtures()
     m3_counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
     for f in fixtures:
@@ -99,7 +99,7 @@ async def test_mut3_no_category_gate():
     assert "precision" in m3
 
 
-async def test_mut4_normaliser_identity():
+async def test_mut4_normaliser_identity() -> None:
     fixtures = load_all_fixtures()
     m4_counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
     for f in fixtures:
@@ -109,7 +109,7 @@ async def test_mut4_normaliser_identity():
     assert "precision" in m4
 
 
-async def test_mut5_wrong_rank_window():
+async def test_mut5_wrong_rank_window() -> None:
     fixtures = load_all_fixtures()
     m5_counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
     for f in fixtures:
@@ -119,7 +119,7 @@ async def test_mut5_wrong_rank_window():
     assert "precision" in m5
 
 
-async def test_mut7_empty_results_collapses_yield():
+async def test_mut7_empty_results_collapses_yield() -> None:
     fixtures = load_all_fixtures()
     mut7_counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
     for f in fixtures:
@@ -129,7 +129,7 @@ async def test_mut7_empty_results_collapses_yield():
     assert mut7["tp"] == 0
 
 
-async def test_mut8_stale_cross_query_results():
+async def test_mut8_stale_cross_query_results() -> None:
     fixtures = load_all_fixtures()
     m8_counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
     for f in fixtures:
@@ -141,7 +141,7 @@ async def test_mut8_stale_cross_query_results():
 
 # ── 2. All 5 Baselines ────────────────────────────────────────────────────────
 
-async def test_all_baselines():
+async def test_all_baselines() -> None:
     fixtures = load_all_fixtures()
     b1 = await run_accept_all_baseline(fixtures)
     b2 = await run_random_selection_baseline(fixtures)
@@ -157,7 +157,7 @@ async def test_all_baselines():
 
 # ── 3. All 8 Metamorphic Relations ────────────────────────────────────────────
 
-async def test_all_8_metamorphic_relations():
+async def test_all_8_metamorphic_relations() -> None:
     mr1 = await run_mr1_specialisation()
     mr2 = await run_mr2_radius_monotonicity()
     mr3 = await run_mr3_typo_invariance()
@@ -179,7 +179,7 @@ async def test_all_8_metamorphic_relations():
 
 # ── 4. Blocker 2: Held-out Locality Generalization ────────────────────────────
 
-async def test_degree_college_generalization_held_out():
+async def test_degree_college_generalization_held_out() -> None:
     """Verify degree college classification on held-out localities (Kukatpally, Dilsukhnagar, Madhapur)."""
     held_out_cases = [
         # Kukatpally
@@ -202,7 +202,7 @@ async def test_degree_college_generalization_held_out():
 
 # ── 5. Blocker 1: Double-Blind Annotation & Cohen's Kappa ─────────────────────
 
-async def test_double_blind_annotation_and_kappa():
+async def test_double_blind_annotation_and_kappa() -> None:
     blind_candidates = pool_and_blind_candidates(target_count=100)
     assert len(blind_candidates) == 100
 
@@ -218,7 +218,7 @@ async def test_double_blind_annotation_and_kappa():
 
 # ── 6. Statistical Properties ─────────────────────────────────────────────────
 
-async def test_wilson_ci_properties():
+async def test_wilson_ci_properties() -> None:
     lo, hi = wilson_ci(4, 4)
     assert hi - lo > 0.30
     lo, hi = wilson_ci(312, 343)

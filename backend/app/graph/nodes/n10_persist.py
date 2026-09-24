@@ -53,6 +53,8 @@ async def run(state: RunState) -> dict[str, Any]:
         logger.info(f"N10: No entities to persist for run {run_id_str}")
         return {"entities": []}
 
+    query_obj = state.get("query")
+    max_results = getattr(query_obj, "max_results", 50) if query_obj else 50
     raw_entity_count = len(entities)
     target_entities = entities[:max_results] if max_results else entities
     logger.info(
